@@ -28,9 +28,7 @@ import org.lastaflute.web.login.option.LoginSpecifiedOption;
 import saaya.murakami.app.web.RootAction;
 import saaya.murakami.dbflute.cbean.MemberCB;
 import saaya.murakami.dbflute.exbhv.MemberBhv;
-import saaya.murakami.dbflute.exbhv.MemberLoginBhv;
 import saaya.murakami.dbflute.exentity.Member;
-import saaya.murakami.dbflute.exentity.MemberLogin;
 import saaya.murakami.mylasta.action.BatchUserBean;
 import saaya.murakami.mylasta.direction.BatchConfig;
 
@@ -52,8 +50,6 @@ public class BatchLoginAssist extends KakeibochanLoginAssist<BatchUserBean, Memb
     private BatchConfig config;
     @Resource
     private MemberBhv memberBhv;
-    @Resource
-    private MemberLoginBhv memberLoginBhv;
 
     // ===================================================================================
     //                                                                           Find User
@@ -73,14 +69,16 @@ public class BatchLoginAssist extends KakeibochanLoginAssist<BatchUserBean, Memb
     }
 
     private void arrangeLoginByCredential(MemberCB cb, UserPasswordCredential credential) {
-        cb.query().arrangeLogin(credential.getUser(), encryptPassword(credential.getPassword()));
+        //TODO       cb.query().arrangeLogin(credential.getUser(), encryptPassword(credential.getPassword()));
     }
 
     @Override
     protected OptionalEntity<Member> doFindLoginUser(Integer userId) {
-        return memberBhv.selectEntity(cb -> {
-            cb.query().arrangeLoginByIdentity(userId);
-        });
+        return OptionalEntity.empty();
+        //TODO
+        //        return memberBhv.selectEntity(cb -> {
+        //            cb.query().arrangeLoginByIdentity(userId);
+        //        });
     }
 
     // ===================================================================================
@@ -106,12 +104,13 @@ public class BatchLoginAssist extends KakeibochanLoginAssist<BatchUserBean, Memb
     }
 
     protected void insertLogin(Member member) {
-        MemberLogin login = new MemberLogin();
-        login.setMemberId(member.getMemberId());
-        login.setLoginMemberStatusCodeAsMemberStatus(member.getMemberStatusCodeAsMemberStatus());
-        login.setLoginDatetime(timeManager.currentDateTime());
-        login.setMobileLoginFlg_False(); // mobile unsupported for now
-        memberLoginBhv.insert(login);
+        //TODO
+        //        MemberLogin login = new MemberLogin();
+        //        login.setMemberId(member.getMemberId());
+        //        login.setLoginMemberStatusCodeAsMemberStatus(member.getMemberStatusCodeAsMemberStatus());
+        //        login.setLoginDatetime(timeManager.currentDateTime());
+        //        login.setMobileLoginFlg_False(); // mobile unsupported for now
+        //        memberLoginBhv.insert(login);
     }
 
     // ===================================================================================

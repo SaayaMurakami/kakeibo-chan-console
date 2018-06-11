@@ -51,25 +51,25 @@ map:{
     # ====================================================================================
     #                                                                               Member
     #                                                                               ======
-    ; MemberStatus = list:{
-        ; map:{
-            ; topComment=status of member from entry to withdrawal; codeType=String
-            ; groupingMap = map:{
-                ; serviceAvailable = map:{
-                    ; groupComment = means member that can use services
-                    ; elementList = list:{Formalized;Provisional}
-                }
-                ; shortOfFormalized = map:{
-                    ; groupComment = Members are not formalized yet
-                    ; elementList = list:{Provisional}
-                }
-            }
-        }
-        ; map:{
-            ; table=MEMBER_STATUS
-            ; code=MEMBER_STATUS_CODE; name=MEMBER_STATUS_NAME
-            ; comment=DESCRIPTION; orderBy=DISPLAY_ORDER
-        }
-    }
+#    ; MemberStatus = list:{
+#        ; map:{
+#            ; topComment=status of member from entry to withdrawal; codeType=String
+#            ; groupingMap = map:{
+#                ; serviceAvailable = map:{
+#                    ; groupComment = means member that can use services
+#                    ; elementList = list:{Formalized;Provisional}
+#                }
+#                ; shortOfFormalized = map:{
+#                    ; groupComment = Members are not formalized yet
+#                    ; elementList = list:{Provisional}
+#                }
+#            }
+#        }
+#        ; map:{
+#            ; table=MEMBER_STATUS
+#            ; code=MEMBER_STATUS_CODE; name=MEMBER_STATUS_NAME
+#            ; comment=DESCRIPTION; orderBy=DISPLAY_ORDER
+#        }
+#    }
 }
 # ----------------/

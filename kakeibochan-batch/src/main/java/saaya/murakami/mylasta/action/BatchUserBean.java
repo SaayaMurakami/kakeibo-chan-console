@@ -32,16 +32,19 @@ public class BatchUserBean extends KakeibochanUserBean { // #change_it also Logi
     //                                                                           Attribute
     //                                                                           =========
     protected final Integer memberId;
-    protected final String memberName;
-    protected final String memberAccount;
+
+    //TODO
+    //    protected final String memberName;
+    //    protected final String memberAccount;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public BatchUserBean(Member member) {
-        memberId = member.getMemberId();
-        memberName = member.getMemberName();
-        memberAccount = member.getMemberAccount();
+        memberId = member.getUserId().intValue();
+        //TODO
+        //        memberName = member.getMemberName();
+        //        memberAccount = member.getMemberAccount();
     }
 
     // ===================================================================================
@@ -60,10 +63,12 @@ public class BatchUserBean extends KakeibochanUserBean { // #change_it also Logi
     }
 
     public String getMemberName() {
-        return memberName;
+        return null;
+        //TODO        return memberName;
     }
 
     public String getMemberAccount() {
-        return memberAccount;
+        return null;
+        //TODO        return memberAccount;
     }
 }

@@ -1,4 +1,206 @@
 map:{
+    ; 2018/06/11 13:05:01 = map:{
+        ; diffDate = 2018/06/11 13:05:01
+        ; diffAuthor = ta-kato2
+        ; diffGitBranch = master
+        ; tableDiff = map:{
+            ; ACCOUNT = map:{
+                ; tableName = ACCOUNT
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; REGISTER_USER = map:{
+                        ; columnName = REGISTER_USER
+                        ; diffType = ADD
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; UPDATE_USER = map:{
+                        ; columnName = UPDATE_USER
+                        ; diffType = ADD
+                    }
+                    ; VERSION_NO = map:{
+                        ; columnName = VERSION_NO
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; CATEGORY = map:{
+                ; tableName = CATEGORY
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; REGISTER_USER = map:{
+                        ; columnName = REGISTER_USER
+                        ; diffType = ADD
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; UPDATE_USER = map:{
+                        ; columnName = UPDATE_USER
+                        ; diffType = ADD
+                    }
+                    ; VERSION_NO = map:{
+                        ; columnName = VERSION_NO
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; REGISTER_USER = map:{
+                        ; columnName = REGISTER_USER
+                        ; diffType = ADD
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; UPDATE_USER = map:{
+                        ; columnName = UPDATE_USER
+                        ; diffType = ADD
+                    }
+                    ; VERSION_NO = map:{
+                        ; columnName = VERSION_NO
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; STATEMENT = map:{
+                ; tableName = STATEMENT
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; REGISTER_USER = map:{
+                        ; columnName = REGISTER_USER
+                        ; diffType = ADD
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; UPDATE_USER = map:{
+                        ; columnName = UPDATE_USER
+                        ; diffType = ADD
+                    }
+                    ; VERSION_NO = map:{
+                        ; columnName = VERSION_NO
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2018/06/11 11:44:46 = map:{
+        ; diffDate = 2018/06/11 11:44:46
+        ; tableCount = map:{
+            ; next = 4
+            ; previous = 16
+        }
+        ; diffAuthor = ta-kato2
+        ; diffGitBranch = master
+        ; tableDiff = map:{
+            ; ACCOUNT = map:{
+                ; tableName = ACCOUNT
+                ; diffType = ADD
+            }
+            ; CATEGORY = map:{
+                ; tableName = CATEGORY
+                ; diffType = ADD
+            }
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = ADD
+            }
+            ; STATEMENT = map:{
+                ; tableName = STATEMENT
+                ; diffType = ADD
+            }
+            ; member = map:{
+                ; tableName = member
+                ; diffType = DELETE
+            }
+            ; member_address = map:{
+                ; tableName = member_address
+                ; diffType = DELETE
+            }
+            ; member_following = map:{
+                ; tableName = member_following
+                ; diffType = DELETE
+            }
+            ; member_login = map:{
+                ; tableName = member_login
+                ; diffType = DELETE
+            }
+            ; member_security = map:{
+                ; tableName = member_security
+                ; diffType = DELETE
+            }
+            ; member_service = map:{
+                ; tableName = member_service
+                ; diffType = DELETE
+            }
+            ; member_status = map:{
+                ; tableName = member_status
+                ; diffType = DELETE
+            }
+            ; member_withdrawal = map:{
+                ; tableName = member_withdrawal
+                ; diffType = DELETE
+            }
+            ; product = map:{
+                ; tableName = product
+                ; diffType = DELETE
+            }
+            ; product_category = map:{
+                ; tableName = product_category
+                ; diffType = DELETE
+            }
+            ; product_status = map:{
+                ; tableName = product_status
+                ; diffType = DELETE
+            }
+            ; purchase = map:{
+                ; tableName = purchase
+                ; diffType = DELETE
+            }
+            ; purchase_payment = map:{
+                ; tableName = purchase_payment
+                ; diffType = DELETE
+            }
+            ; region = map:{
+                ; tableName = region
+                ; diffType = DELETE
+            }
+            ; service_rank = map:{
+                ; tableName = service_rank
+                ; diffType = DELETE
+            }
+            ; withdrawal_reason = map:{
+                ; tableName = withdrawal_reason
+                ; diffType = DELETE
+            }
+        }
+    }
     ; 2015/06/21 16:04:08 = map:{
         ; diffDate = 2015/06/21 16:04:08
         ; tableDiff = map:{

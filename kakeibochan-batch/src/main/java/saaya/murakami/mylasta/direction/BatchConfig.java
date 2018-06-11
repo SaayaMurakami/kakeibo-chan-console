@@ -30,7 +30,7 @@ public interface BatchConfig extends BatchEnv {
     String DOMAIN_TITLE = "domain.title";
 
     /** The key of the configuration. e.g. ORL */
-    String COOKIE_REMEMBER_ME_ORLEANS_KEY = "cookie.remember.me.batch.key";
+    String COOKIE_REMEMBER_ME_BATCH_KEY = "cookie.remember.me.batch.key";
 
     /**
      * Get the value of property as {@link String}.
@@ -92,7 +92,7 @@ public interface BatchConfig extends BatchEnv {
         }
 
         public String getCookieRememberMeBatchKey() {
-            return get(BatchConfig.COOKIE_REMEMBER_ME_ORLEANS_KEY);
+            return get(BatchConfig.COOKIE_REMEMBER_ME_BATCH_KEY);
         }
     }
 }

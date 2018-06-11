@@ -28,7 +28,7 @@ import saaya.murakami.dbflute.cbean.*;
 import saaya.murakami.dbflute.cbean.cq.*;
 
 /**
- * The base condition-query of member.
+ * The base condition-query of MEMBER.
  * @author DBFlute(AutoGenerator)
  */
 public class BsMemberCQ extends AbstractBsMemberCQ {
@@ -50,7 +50,7 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     //                                                                 ===================
     /**
      * Prepare InlineView query. <br>
-     * {select ... from ... left outer join (select * from member) where FOO = [value] ...}
+     * {select ... from ... left outer join (select * from MEMBER) where FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">inline()</span>.setFoo...;
      * </pre>
@@ -73,7 +73,7 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     /**
      * Prepare OnClause query. <br>
-     * {select ... from ... left outer join member on ... and FOO = [value] ...}
+     * {select ... from ... left outer join MEMBER on ... and FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">on()</span>.setFoo...;
      * </pre>
@@ -88,195 +88,113 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    protected ConditionValue _memberId;
-    public ConditionValue xdfgetMemberId()
-    { if (_memberId == null) { _memberId = nCV(); }
-      return _memberId; }
-    protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
+    protected ConditionValue _userId;
+    public ConditionValue xdfgetUserId()
+    { if (_userId == null) { _userId = nCV(); }
+      return _userId; }
+    protected ConditionValue xgetCValueUserId() { return xdfgetUserId(); }
 
-    public Map<String, MemberAddressCQ> xdfgetMemberId_ExistsReferrer_MemberAddressList() { return xgetSQueMap("memberId_ExistsReferrer_MemberAddressList"); }
-    public String keepMemberId_ExistsReferrer_MemberAddressList(MemberAddressCQ sq) { return xkeepSQue("memberId_ExistsReferrer_MemberAddressList", sq); }
+    public Map<String, AccountCQ> xdfgetUserId_ExistsReferrer_AccountList() { return xgetSQueMap("userId_ExistsReferrer_AccountList"); }
+    public String keepUserId_ExistsReferrer_AccountList(AccountCQ sq) { return xkeepSQue("userId_ExistsReferrer_AccountList", sq); }
 
-    public Map<String, MemberFollowingCQ> xdfgetMemberId_ExistsReferrer_MemberFollowingByMyMemberIdList() { return xgetSQueMap("memberId_ExistsReferrer_MemberFollowingByMyMemberIdList"); }
-    public String keepMemberId_ExistsReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq) { return xkeepSQue("memberId_ExistsReferrer_MemberFollowingByMyMemberIdList", sq); }
+    public Map<String, CategoryCQ> xdfgetUserId_ExistsReferrer_CategoryList() { return xgetSQueMap("userId_ExistsReferrer_CategoryList"); }
+    public String keepUserId_ExistsReferrer_CategoryList(CategoryCQ sq) { return xkeepSQue("userId_ExistsReferrer_CategoryList", sq); }
 
-    public Map<String, MemberFollowingCQ> xdfgetMemberId_ExistsReferrer_MemberFollowingByYourMemberIdList() { return xgetSQueMap("memberId_ExistsReferrer_MemberFollowingByYourMemberIdList"); }
-    public String keepMemberId_ExistsReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq) { return xkeepSQue("memberId_ExistsReferrer_MemberFollowingByYourMemberIdList", sq); }
+    public Map<String, AccountCQ> xdfgetUserId_NotExistsReferrer_AccountList() { return xgetSQueMap("userId_NotExistsReferrer_AccountList"); }
+    public String keepUserId_NotExistsReferrer_AccountList(AccountCQ sq) { return xkeepSQue("userId_NotExistsReferrer_AccountList", sq); }
 
-    public Map<String, MemberLoginCQ> xdfgetMemberId_ExistsReferrer_MemberLoginList() { return xgetSQueMap("memberId_ExistsReferrer_MemberLoginList"); }
-    public String keepMemberId_ExistsReferrer_MemberLoginList(MemberLoginCQ sq) { return xkeepSQue("memberId_ExistsReferrer_MemberLoginList", sq); }
+    public Map<String, CategoryCQ> xdfgetUserId_NotExistsReferrer_CategoryList() { return xgetSQueMap("userId_NotExistsReferrer_CategoryList"); }
+    public String keepUserId_NotExistsReferrer_CategoryList(CategoryCQ sq) { return xkeepSQue("userId_NotExistsReferrer_CategoryList", sq); }
 
-    public Map<String, PurchaseCQ> xdfgetMemberId_ExistsReferrer_PurchaseList() { return xgetSQueMap("memberId_ExistsReferrer_PurchaseList"); }
-    public String keepMemberId_ExistsReferrer_PurchaseList(PurchaseCQ sq) { return xkeepSQue("memberId_ExistsReferrer_PurchaseList", sq); }
+    public Map<String, AccountCQ> xdfgetUserId_SpecifyDerivedReferrer_AccountList() { return xgetSQueMap("userId_SpecifyDerivedReferrer_AccountList"); }
+    public String keepUserId_SpecifyDerivedReferrer_AccountList(AccountCQ sq) { return xkeepSQue("userId_SpecifyDerivedReferrer_AccountList", sq); }
 
-    public Map<String, MemberAddressCQ> xdfgetMemberId_NotExistsReferrer_MemberAddressList() { return xgetSQueMap("memberId_NotExistsReferrer_MemberAddressList"); }
-    public String keepMemberId_NotExistsReferrer_MemberAddressList(MemberAddressCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_MemberAddressList", sq); }
+    public Map<String, CategoryCQ> xdfgetUserId_SpecifyDerivedReferrer_CategoryList() { return xgetSQueMap("userId_SpecifyDerivedReferrer_CategoryList"); }
+    public String keepUserId_SpecifyDerivedReferrer_CategoryList(CategoryCQ sq) { return xkeepSQue("userId_SpecifyDerivedReferrer_CategoryList", sq); }
 
-    public Map<String, MemberFollowingCQ> xdfgetMemberId_NotExistsReferrer_MemberFollowingByMyMemberIdList() { return xgetSQueMap("memberId_NotExistsReferrer_MemberFollowingByMyMemberIdList"); }
-    public String keepMemberId_NotExistsReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_MemberFollowingByMyMemberIdList", sq); }
+    public Map<String, AccountCQ> xdfgetUserId_QueryDerivedReferrer_AccountList() { return xgetSQueMap("userId_QueryDerivedReferrer_AccountList"); }
+    public String keepUserId_QueryDerivedReferrer_AccountList(AccountCQ sq) { return xkeepSQue("userId_QueryDerivedReferrer_AccountList", sq); }
+    public Map<String, Object> xdfgetUserId_QueryDerivedReferrer_AccountListParameter() { return xgetSQuePmMap("userId_QueryDerivedReferrer_AccountList"); }
+    public String keepUserId_QueryDerivedReferrer_AccountListParameter(Object pm) { return xkeepSQuePm("userId_QueryDerivedReferrer_AccountList", pm); }
 
-    public Map<String, MemberFollowingCQ> xdfgetMemberId_NotExistsReferrer_MemberFollowingByYourMemberIdList() { return xgetSQueMap("memberId_NotExistsReferrer_MemberFollowingByYourMemberIdList"); }
-    public String keepMemberId_NotExistsReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_MemberFollowingByYourMemberIdList", sq); }
-
-    public Map<String, MemberLoginCQ> xdfgetMemberId_NotExistsReferrer_MemberLoginList() { return xgetSQueMap("memberId_NotExistsReferrer_MemberLoginList"); }
-    public String keepMemberId_NotExistsReferrer_MemberLoginList(MemberLoginCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_MemberLoginList", sq); }
-
-    public Map<String, PurchaseCQ> xdfgetMemberId_NotExistsReferrer_PurchaseList() { return xgetSQueMap("memberId_NotExistsReferrer_PurchaseList"); }
-    public String keepMemberId_NotExistsReferrer_PurchaseList(PurchaseCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_PurchaseList", sq); }
-
-    public Map<String, MemberAddressCQ> xdfgetMemberId_SpecifyDerivedReferrer_MemberAddressList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_MemberAddressList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_MemberAddressList(MemberAddressCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_MemberAddressList", sq); }
-
-    public Map<String, MemberFollowingCQ> xdfgetMemberId_SpecifyDerivedReferrer_MemberFollowingByMyMemberIdList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_MemberFollowingByMyMemberIdList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_MemberFollowingByMyMemberIdList", sq); }
-
-    public Map<String, MemberFollowingCQ> xdfgetMemberId_SpecifyDerivedReferrer_MemberFollowingByYourMemberIdList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_MemberFollowingByYourMemberIdList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_MemberFollowingByYourMemberIdList", sq); }
-
-    public Map<String, MemberLoginCQ> xdfgetMemberId_SpecifyDerivedReferrer_MemberLoginList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_MemberLoginList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_MemberLoginList(MemberLoginCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_MemberLoginList", sq); }
-
-    public Map<String, PurchaseCQ> xdfgetMemberId_SpecifyDerivedReferrer_PurchaseList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_PurchaseList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_PurchaseList(PurchaseCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_PurchaseList", sq); }
-
-    public Map<String, MemberAddressCQ> xdfgetMemberId_QueryDerivedReferrer_MemberAddressList() { return xgetSQueMap("memberId_QueryDerivedReferrer_MemberAddressList"); }
-    public String keepMemberId_QueryDerivedReferrer_MemberAddressList(MemberAddressCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_MemberAddressList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_MemberAddressListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_MemberAddressList"); }
-    public String keepMemberId_QueryDerivedReferrer_MemberAddressListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_MemberAddressList", pm); }
-
-    public Map<String, MemberFollowingCQ> xdfgetMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList() { return xgetSQueMap("memberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList"); }
-    public String keepMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList"); }
-    public String keepMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList", pm); }
-
-    public Map<String, MemberFollowingCQ> xdfgetMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList() { return xgetSQueMap("memberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList"); }
-    public String keepMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList"); }
-    public String keepMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList", pm); }
-
-    public Map<String, MemberLoginCQ> xdfgetMemberId_QueryDerivedReferrer_MemberLoginList() { return xgetSQueMap("memberId_QueryDerivedReferrer_MemberLoginList"); }
-    public String keepMemberId_QueryDerivedReferrer_MemberLoginList(MemberLoginCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_MemberLoginList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_MemberLoginListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_MemberLoginList"); }
-    public String keepMemberId_QueryDerivedReferrer_MemberLoginListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_MemberLoginList", pm); }
-
-    public Map<String, PurchaseCQ> xdfgetMemberId_QueryDerivedReferrer_PurchaseList() { return xgetSQueMap("memberId_QueryDerivedReferrer_PurchaseList"); }
-    public String keepMemberId_QueryDerivedReferrer_PurchaseList(PurchaseCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_PurchaseList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_PurchaseListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_PurchaseList"); }
-    public String keepMemberId_QueryDerivedReferrer_PurchaseListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_PurchaseList", pm); }
+    public Map<String, CategoryCQ> xdfgetUserId_QueryDerivedReferrer_CategoryList() { return xgetSQueMap("userId_QueryDerivedReferrer_CategoryList"); }
+    public String keepUserId_QueryDerivedReferrer_CategoryList(CategoryCQ sq) { return xkeepSQue("userId_QueryDerivedReferrer_CategoryList", sq); }
+    public Map<String, Object> xdfgetUserId_QueryDerivedReferrer_CategoryListParameter() { return xgetSQuePmMap("userId_QueryDerivedReferrer_CategoryList"); }
+    public String keepUserId_QueryDerivedReferrer_CategoryListParameter(Object pm) { return xkeepSQuePm("userId_QueryDerivedReferrer_CategoryList", pm); }
 
     /**
      * Add order-by as ascend. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
+    public BsMemberCQ addOrderBy_UserId_Asc() { regOBA("USER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
+    public BsMemberCQ addOrderBy_UserId_Desc() { regOBD("USER_ID"); return this; }
 
-    protected ConditionValue _memberName;
-    public ConditionValue xdfgetMemberName()
-    { if (_memberName == null) { _memberName = nCV(); }
-      return _memberName; }
-    protected ConditionValue xgetCValueMemberName() { return xdfgetMemberName(); }
+    protected ConditionValue _mailAddress;
+    public ConditionValue xdfgetMailAddress()
+    { if (_mailAddress == null) { _mailAddress = nCV(); }
+      return _mailAddress; }
+    protected ConditionValue xgetCValueMailAddress() { return xdfgetMailAddress(); }
 
     /**
      * Add order-by as ascend. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)}
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_MemberName_Asc() { regOBA("MEMBER_NAME"); return this; }
+    public BsMemberCQ addOrderBy_MailAddress_Asc() { regOBA("MAIL_ADDRESS"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)}
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_MemberName_Desc() { regOBD("MEMBER_NAME"); return this; }
+    public BsMemberCQ addOrderBy_MailAddress_Desc() { regOBD("MAIL_ADDRESS"); return this; }
 
-    protected ConditionValue _memberAccount;
-    public ConditionValue xdfgetMemberAccount()
-    { if (_memberAccount == null) { _memberAccount = nCV(); }
-      return _memberAccount; }
-    protected ConditionValue xgetCValueMemberAccount() { return xdfgetMemberAccount(); }
+    protected ConditionValue _userName;
+    public ConditionValue xdfgetUserName()
+    { if (_userName == null) { _userName = nCV(); }
+      return _userName; }
+    protected ConditionValue xgetCValueUserName() { return xdfgetUserName(); }
 
     /**
      * Add order-by as ascend. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)}
+     * (名前)USER_NAME: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_MemberAccount_Asc() { regOBA("MEMBER_ACCOUNT"); return this; }
+    public BsMemberCQ addOrderBy_UserName_Asc() { regOBA("USER_NAME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)}
+     * (名前)USER_NAME: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_MemberAccount_Desc() { regOBD("MEMBER_ACCOUNT"); return this; }
+    public BsMemberCQ addOrderBy_UserName_Desc() { regOBD("USER_NAME"); return this; }
 
-    protected ConditionValue _memberStatusCode;
-    public ConditionValue xdfgetMemberStatusCode()
-    { if (_memberStatusCode == null) { _memberStatusCode = nCV(); }
-      return _memberStatusCode; }
-    protected ConditionValue xgetCValueMemberStatusCode() { return xdfgetMemberStatusCode(); }
+    protected ConditionValue _password;
+    public ConditionValue xdfgetPassword()
+    { if (_password == null) { _password = nCV(); }
+      return _password; }
+    protected ConditionValue xgetCValuePassword() { return xdfgetPassword(); }
 
     /**
      * Add order-by as ascend. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus}
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_MemberStatusCode_Asc() { regOBA("MEMBER_STATUS_CODE"); return this; }
+    public BsMemberCQ addOrderBy_Password_Asc() { regOBA("PASSWORD"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus}
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_MemberStatusCode_Desc() { regOBD("MEMBER_STATUS_CODE"); return this; }
-
-    protected ConditionValue _formalizedDatetime;
-    public ConditionValue xdfgetFormalizedDatetime()
-    { if (_formalizedDatetime == null) { _formalizedDatetime = nCV(); }
-      return _formalizedDatetime; }
-    protected ConditionValue xgetCValueFormalizedDatetime() { return xdfgetFormalizedDatetime(); }
-
-    /**
-     * Add order-by as ascend. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_FormalizedDatetime_Asc() { regOBA("FORMALIZED_DATETIME"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_FormalizedDatetime_Desc() { regOBD("FORMALIZED_DATETIME"); return this; }
-
-    protected ConditionValue _birthdate;
-    public ConditionValue xdfgetBirthdate()
-    { if (_birthdate == null) { _birthdate = nCV(); }
-      return _birthdate; }
-    protected ConditionValue xgetCValueBirthdate() { return xdfgetBirthdate(); }
-
-    /**
-     * Add order-by as ascend. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_Birthdate_Asc() { regOBA("BIRTHDATE"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_Birthdate_Desc() { regOBD("BIRTHDATE"); return this; }
+    public BsMemberCQ addOrderBy_Password_Desc() { regOBD("PASSWORD"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()
@@ -417,159 +335,12 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     //                                                                         Union Query
     //                                                                         ===========
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
-        MemberCQ bq = (MemberCQ)bqs;
-        MemberCQ uq = (MemberCQ)uqs;
-        if (bq.hasConditionQueryMemberStatus()) {
-            uq.queryMemberStatus().reflectRelationOnUnionQuery(bq.queryMemberStatus(), uq.queryMemberStatus());
-        }
-        if (bq.hasConditionQueryMemberAddressAsValid()) {
-            uq.xsetParameterMapMemberAddressAsValid(bq.xdfgetParameterMapMemberAddressAsValid());
-            uq.xdfgetConditionQueryMemberAddressAsValid().reflectRelationOnUnionQuery(bq.xdfgetConditionQueryMemberAddressAsValid(), uq.xdfgetConditionQueryMemberAddressAsValid());
-        }
-        if (bq.hasConditionQueryMemberLoginAsLatest()) {
-            uq.queryMemberLoginAsLatest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsLatest(), uq.queryMemberLoginAsLatest());
-        }
-        if (bq.hasConditionQueryMemberSecurityAsOne()) {
-            uq.queryMemberSecurityAsOne().reflectRelationOnUnionQuery(bq.queryMemberSecurityAsOne(), uq.queryMemberSecurityAsOne());
-        }
-        if (bq.hasConditionQueryMemberServiceAsOne()) {
-            uq.queryMemberServiceAsOne().reflectRelationOnUnionQuery(bq.queryMemberServiceAsOne(), uq.queryMemberServiceAsOne());
-        }
-        if (bq.hasConditionQueryMemberWithdrawalAsOne()) {
-            uq.queryMemberWithdrawalAsOne().reflectRelationOnUnionQuery(bq.queryMemberWithdrawalAsOne(), uq.queryMemberWithdrawalAsOne());
-        }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
-    /**
-     * Get the condition-query for relation table. <br>
-     * (会員ステータス)MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberStatusCQ queryMemberStatus() {
-        return xdfgetConditionQueryMemberStatus();
-    }
-    public MemberStatusCQ xdfgetConditionQueryMemberStatus() {
-        String prop = "memberStatus";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberStatus()); xsetupOuterJoinMemberStatus(); }
-        return xgetQueRlMap(prop);
-    }
-    protected MemberStatusCQ xcreateQueryMemberStatus() {
-        String nrp = xresolveNRP("member", "memberStatus"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberStatusCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberStatus", nrp);
-    }
-    protected void xsetupOuterJoinMemberStatus() { xregOutJo("memberStatus"); }
-    public boolean hasConditionQueryMemberStatus() { return xhasQueRlMap("memberStatus"); }
-
-    /**
-     * Get the condition-query for relation table. <br>
-     * (会員住所情報)MEMBER_ADDRESS by my MEMBER_ID, named 'memberAddressAsValid'. <br>
-     * Member's address at the target date.
-     * @param targetDate The bind parameter of fixed condition for targetDate. (NotNull)
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberAddressCQ queryMemberAddressAsValid(java.time.LocalDate targetDate) {
-        Map<String, Object> parameterMap = xdfgetParameterMapMemberAddressAsValid();
-        parameterMap.put("targetDate", targetDate);
-        xassertFCDP("memberAddressAsValid", parameterMap);
-        return xdfgetConditionQueryMemberAddressAsValid();
-    }
-    public MemberAddressCQ xdfgetConditionQueryMemberAddressAsValid() {
-        String prop = "memberAddressAsValid";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberAddressAsValid()); xsetupOuterJoinMemberAddressAsValid(); }
-        return xgetQueRlMap(prop);
-    }
-    protected Map<String, Object> _parameterMapMemberAddressAsValid;
-    public Map<String, Object> xdfgetParameterMapMemberAddressAsValid()
-    { if (_parameterMapMemberAddressAsValid == null) { _parameterMapMemberAddressAsValid = newLinkedHashMapSized(4); }
-      return _parameterMapMemberAddressAsValid; }
-    public void xsetParameterMapMemberAddressAsValid(Map<String, Object> parameterMap)
-    { _parameterMapMemberAddressAsValid = parameterMap; } // for UnionQuery
-    protected MemberAddressCQ xcreateQueryMemberAddressAsValid() {
-        String nrp = xresolveNRP("member", "memberAddressAsValid"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberAddressCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberAddressAsValid", nrp);
-    }
-    protected void xsetupOuterJoinMemberAddressAsValid() { xregOutJo("memberAddressAsValid"); }
-    public boolean hasConditionQueryMemberAddressAsValid() { return xhasQueRlMap("memberAddressAsValid"); }
-
-    /**
-     * Get the condition-query for relation table. <br>
-     * (会員ログイン)MEMBER_LOGIN by my MEMBER_ID, named 'memberLoginAsLatest'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberLoginCQ queryMemberLoginAsLatest() {
-        return xdfgetConditionQueryMemberLoginAsLatest();
-    }
-    public MemberLoginCQ xdfgetConditionQueryMemberLoginAsLatest() {
-        String prop = "memberLoginAsLatest";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberLoginAsLatest()); xsetupOuterJoinMemberLoginAsLatest(); }
-        return xgetQueRlMap(prop);
-    }
-    protected MemberLoginCQ xcreateQueryMemberLoginAsLatest() {
-        String nrp = xresolveNRP("member", "memberLoginAsLatest"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberLoginAsLatest", nrp);
-    }
-    protected void xsetupOuterJoinMemberLoginAsLatest() { xregOutJo("memberLoginAsLatest"); }
-    public boolean hasConditionQueryMemberLoginAsLatest() { return xhasQueRlMap("memberLoginAsLatest"); }
-
-    /**
-     * Get the condition-query for relation table. <br>
-     * (会員セキュリティ)member_security by MEMBER_ID, named 'memberSecurityAsOne'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberSecurityCQ queryMemberSecurityAsOne() { return xdfgetConditionQueryMemberSecurityAsOne(); }
-    public MemberSecurityCQ xdfgetConditionQueryMemberSecurityAsOne() {
-        String prop = "memberSecurityAsOne";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberSecurityAsOne()); xsetupOuterJoinMemberSecurityAsOne(); }
-        return xgetQueRlMap(prop);
-    }
-    protected MemberSecurityCQ xcreateQueryMemberSecurityAsOne() {
-        String nrp = xresolveNRP("member", "memberSecurityAsOne"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberSecurityCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberSecurityAsOne", nrp);
-    }
-    protected void xsetupOuterJoinMemberSecurityAsOne() { xregOutJo("memberSecurityAsOne"); }
-    public boolean hasConditionQueryMemberSecurityAsOne() { return xhasQueRlMap("memberSecurityAsOne"); }
-
-    /**
-     * Get the condition-query for relation table. <br>
-     * (会員サービス)member_service by MEMBER_ID, named 'memberServiceAsOne'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberServiceCQ queryMemberServiceAsOne() { return xdfgetConditionQueryMemberServiceAsOne(); }
-    public MemberServiceCQ xdfgetConditionQueryMemberServiceAsOne() {
-        String prop = "memberServiceAsOne";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberServiceAsOne()); xsetupOuterJoinMemberServiceAsOne(); }
-        return xgetQueRlMap(prop);
-    }
-    protected MemberServiceCQ xcreateQueryMemberServiceAsOne() {
-        String nrp = xresolveNRP("member", "memberServiceAsOne"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberServiceCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberServiceAsOne", nrp);
-    }
-    protected void xsetupOuterJoinMemberServiceAsOne() { xregOutJo("memberServiceAsOne"); }
-    public boolean hasConditionQueryMemberServiceAsOne() { return xhasQueRlMap("memberServiceAsOne"); }
-
-    /**
-     * Get the condition-query for relation table. <br>
-     * (会員退会情報)member_withdrawal by MEMBER_ID, named 'memberWithdrawalAsOne'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberWithdrawalCQ queryMemberWithdrawalAsOne() { return xdfgetConditionQueryMemberWithdrawalAsOne(); }
-    public MemberWithdrawalCQ xdfgetConditionQueryMemberWithdrawalAsOne() {
-        String prop = "memberWithdrawalAsOne";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberWithdrawalAsOne()); xsetupOuterJoinMemberWithdrawalAsOne(); }
-        return xgetQueRlMap(prop);
-    }
-    protected MemberWithdrawalCQ xcreateQueryMemberWithdrawalAsOne() {
-        String nrp = xresolveNRP("member", "memberWithdrawalAsOne"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberWithdrawalCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberWithdrawalAsOne", nrp);
-    }
-    protected void xsetupOuterJoinMemberWithdrawalAsOne() { xregOutJo("memberWithdrawalAsOne"); }
-    public boolean hasConditionQueryMemberWithdrawalAsOne() { return xhasQueRlMap("memberWithdrawalAsOne"); }
-
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
-        if ("memberAddressAsValid".equalsIgnoreCase(property)) { return _parameterMapMemberAddressAsValid; }
         return null;
     }
 

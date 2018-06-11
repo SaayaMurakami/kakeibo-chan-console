@@ -73,7 +73,7 @@ public class DBCurrent {
     //                                                                        ============
     /**
      * Get project name of the database (DBFlute client).
-     * @return The name string, lower case in many cases. e.g. kakeibochandb (NotNull)
+     * @return The name string, lower case in many cases. e.g. maihamadb (NotNull)
      */
     public String projectName() {
         return _projectName;

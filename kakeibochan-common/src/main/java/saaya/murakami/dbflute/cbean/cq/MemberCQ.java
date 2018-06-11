@@ -17,6 +17,7 @@ package saaya.murakami.dbflute.cbean.cq;
 
 import org.dbflute.cbean.ConditionQuery;
 import org.dbflute.cbean.sqlclause.SqlClause;
+
 import saaya.murakami.dbflute.cbean.cq.bs.BsMemberCQ;
 
 /**
@@ -50,44 +51,44 @@ public class MemberCQ extends BsMemberCQ {
     // public void arranegeXxx() {
     //     ...
     // }
-    /**
-     * Arrange member login query.
-     * <pre>
-     * o match email address
-     * o match password
-     * o member status is service available
-     * </pre>
-     * @param email The string of email address. (NotNull)
-     * @param cipheredPassword The already-ciphered password. (NotNull)
-     */
-    public void arrangeLogin(String email, String cipheredPassword) {
-        if (email == null || email.trim().length() == 0) {
-            String msg = "The argument 'email' should not be null or empty: " + email;
-            throw new IllegalArgumentException(msg);
-        }
-        if (cipheredPassword == null || cipheredPassword.trim().length() == 0) {
-            String msg = "The argument 'cipheredPassword' should not be null or empty: " + cipheredPassword;
-            throw new IllegalArgumentException(msg);
-        }
-        setMemberAccount_Equal(email); // member account (the database has no email)
-        queryMemberSecurityAsOne().setLoginPassword_Equal(cipheredPassword);
-        setMemberStatusCode_InScope_ServiceAvailable();
-    }
-
-    /**
-     * Arrange member login query by identity.
-     * <pre>
-     * o match member ID
-     * o member status is service available
-     * </pre>
-     * @param memberId The ID of the login member. (NotNull)
-     */
-    public void arrangeLoginByIdentity(Integer memberId) {
-        if (memberId == null) {
-            String msg = "The argument 'memberId' should not be null.";
-            throw new IllegalArgumentException(msg);
-        }
-        setMemberId_Equal(memberId);
-        setMemberStatusCode_InScope_ServiceAvailable();
-    }
+    //    /**
+    //     * Arrange member login query.
+    //     * <pre>
+    //     * o match email address
+    //     * o match password
+    //     * o member status is service available
+    //     * </pre>
+    //     * @param email The string of email address. (NotNull)
+    //     * @param cipheredPassword The already-ciphered password. (NotNull)
+    //     */
+    //    public void arrangeLogin(String email, String cipheredPassword) {
+    //        if (email == null || email.trim().length() == 0) {
+    //            String msg = "The argument 'email' should not be null or empty: " + email;
+    //            throw new IllegalArgumentException(msg);
+    //        }
+    //        if (cipheredPassword == null || cipheredPassword.trim().length() == 0) {
+    //            String msg = "The argument 'cipheredPassword' should not be null or empty: " + cipheredPassword;
+    //            throw new IllegalArgumentException(msg);
+    //        }
+    //        setMemberAccount_Equal(email); // member account (the database has no email)
+    //        queryMemberSecurityAsOne().setLoginPassword_Equal(cipheredPassword);
+    //        setMemberStatusCode_InScope_ServiceAvailable();
+    //    }
+    //
+    //    /**
+    //     * Arrange member login query by identity.
+    //     * <pre>
+    //     * o match member ID
+    //     * o member status is service available
+    //     * </pre>
+    //     * @param memberId The ID of the login member. (NotNull)
+    //     */
+    //    public void arrangeLoginByIdentity(Integer memberId) {
+    //        if (memberId == null) {
+    //            String msg = "The argument 'memberId' should not be null.";
+    //            throw new IllegalArgumentException(msg);
+    //        }
+    //        setMemberId_Equal(memberId);
+    //        setMemberStatusCode_InScope_ServiceAvailable();
+    //    }
 }

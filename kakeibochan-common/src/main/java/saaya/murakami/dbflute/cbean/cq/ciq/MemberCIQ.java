@@ -27,7 +27,7 @@ import saaya.murakami.dbflute.cbean.cq.bs.*;
 import saaya.murakami.dbflute.cbean.cq.*;
 
 /**
- * The condition-query for in-line of member.
+ * The condition-query for in-line of MEMBER.
  * @author DBFlute(AutoGenerator)
  */
 public class MemberCIQ extends AbstractBsMemberCQ {
@@ -76,62 +76,30 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
-    protected ConditionValue xgetCValueMemberId() { return _myCQ.xdfgetMemberId(); }
-    public String keepMemberId_ExistsReferrer_MemberAddressList(MemberAddressCQ sq)
+    protected ConditionValue xgetCValueUserId() { return _myCQ.xdfgetUserId(); }
+    public String keepUserId_ExistsReferrer_AccountList(AccountCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberId_ExistsReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq)
+    public String keepUserId_ExistsReferrer_CategoryList(CategoryCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberId_ExistsReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberId_ExistsReferrer_MemberLoginList(MemberLoginCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberId_ExistsReferrer_PurchaseList(PurchaseCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberId_NotExistsReferrer_MemberAddressList(MemberAddressCQ sq)
+    public String keepUserId_NotExistsReferrer_AccountList(AccountCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberId_NotExistsReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq)
+    public String keepUserId_NotExistsReferrer_CategoryList(CategoryCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberId_NotExistsReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberId_NotExistsReferrer_MemberLoginList(MemberLoginCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberId_NotExistsReferrer_PurchaseList(PurchaseCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberId_SpecifyDerivedReferrer_MemberAddressList(MemberAddressCQ sq)
+    public String keepUserId_SpecifyDerivedReferrer_AccountList(AccountCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberId_SpecifyDerivedReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq)
+    public String keepUserId_SpecifyDerivedReferrer_CategoryList(CategoryCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberId_SpecifyDerivedReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberId_SpecifyDerivedReferrer_MemberLoginList(MemberLoginCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberId_SpecifyDerivedReferrer_PurchaseList(PurchaseCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_MemberAddressList(MemberAddressCQ sq)
+    public String keepUserId_QueryDerivedReferrer_AccountList(AccountCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_MemberAddressListParameter(Object vl)
+    public String keepUserId_QueryDerivedReferrer_AccountListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq)
+    public String keepUserId_QueryDerivedReferrer_CategoryList(CategoryCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdListParameter(Object vl)
+    public String keepUserId_QueryDerivedReferrer_CategoryListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_MemberLoginList(MemberLoginCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_MemberLoginListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_PurchaseList(PurchaseCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_PurchaseListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue xgetCValueMemberName() { return _myCQ.xdfgetMemberName(); }
-    protected ConditionValue xgetCValueMemberAccount() { return _myCQ.xdfgetMemberAccount(); }
-    protected ConditionValue xgetCValueMemberStatusCode() { return _myCQ.xdfgetMemberStatusCode(); }
-    protected ConditionValue xgetCValueFormalizedDatetime() { return _myCQ.xdfgetFormalizedDatetime(); }
-    protected ConditionValue xgetCValueBirthdate() { return _myCQ.xdfgetBirthdate(); }
+    protected ConditionValue xgetCValueMailAddress() { return _myCQ.xdfgetMailAddress(); }
+    protected ConditionValue xgetCValueUserName() { return _myCQ.xdfgetUserName(); }
+    protected ConditionValue xgetCValuePassword() { return _myCQ.xdfgetPassword(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueRegisterUser() { return _myCQ.xdfgetRegisterUser(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }

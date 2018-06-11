@@ -31,7 +31,7 @@ import saaya.murakami.dbflute.cbean.*;
 import saaya.murakami.dbflute.cbean.cq.*;
 
 /**
- * The abstract condition-query of member.
+ * The abstract condition-query of MEMBER.
  * @author DBFlute(AutoGenerator)
  */
 public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
@@ -52,7 +52,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     }
 
     public String asTableDbName() {
-        return "member";
+        return "MEMBER";
     }
 
     // ===================================================================================
@@ -60,993 +60,536 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param memberId The value of memberId as equal. (basically NotNull: error as default, or no condition as option)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param userId The value of userId as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_Equal(Integer memberId) {
-        doSetMemberId_Equal(memberId);
+    public void setUserId_Equal(Long userId) {
+        doSetUserId_Equal(userId);
     }
 
-    protected void doSetMemberId_Equal(Integer memberId) {
-        regMemberId(CK_EQ, memberId);
+    protected void doSetUserId_Equal(Long userId) {
+        regUserId(CK_EQ, userId);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param memberId The value of memberId as notEqual. (basically NotNull: error as default, or no condition as option)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param userId The value of userId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_NotEqual(Integer memberId) {
-        doSetMemberId_NotEqual(memberId);
+    public void setUserId_NotEqual(Long userId) {
+        doSetUserId_NotEqual(userId);
     }
 
-    protected void doSetMemberId_NotEqual(Integer memberId) {
-        regMemberId(CK_NES, memberId);
+    protected void doSetUserId_NotEqual(Long userId) {
+        regUserId(CK_NES, userId);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param memberId The value of memberId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param userId The value of userId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_GreaterThan(Integer memberId) {
-        regMemberId(CK_GT, memberId);
+    public void setUserId_GreaterThan(Long userId) {
+        regUserId(CK_GT, userId);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param memberId The value of memberId as lessThan. (basically NotNull: error as default, or no condition as option)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param userId The value of userId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_LessThan(Integer memberId) {
-        regMemberId(CK_LT, memberId);
+    public void setUserId_LessThan(Long userId) {
+        regUserId(CK_LT, userId);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param memberId The value of memberId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param userId The value of userId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_GreaterEqual(Integer memberId) {
-        regMemberId(CK_GE, memberId);
+    public void setUserId_GreaterEqual(Long userId) {
+        regUserId(CK_GE, userId);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param memberId The value of memberId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param userId The value of userId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_LessEqual(Integer memberId) {
-        regMemberId(CK_LE, memberId);
+    public void setUserId_LessEqual(Long userId) {
+        regUserId(CK_LE, userId);
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param minNumber The min number of memberId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param maxNumber The max number of memberId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param minNumber The min number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of range-of. (NotNull)
      */
-    public void setMemberId_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
-        setMemberId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    public void setUserId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setUserId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param minNumber The min number of memberId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param maxNumber The max number of memberId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param minNumber The min number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param rangeOfOption The option of range-of. (NotNull)
      */
-    protected void setMemberId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
-        regROO(minNumber, maxNumber, xgetCValueMemberId(), "MEMBER_ID", rangeOfOption);
+    protected void setUserId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueUserId(), "USER_ID", rangeOfOption);
     }
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param memberIdList The collection of memberId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param userIdList The collection of userId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setMemberId_InScope(Collection<Integer> memberIdList) {
-        doSetMemberId_InScope(memberIdList);
+    public void setUserId_InScope(Collection<Long> userIdList) {
+        doSetUserId_InScope(userIdList);
     }
 
-    protected void doSetMemberId_InScope(Collection<Integer> memberIdList) {
-        regINS(CK_INS, cTL(memberIdList), xgetCValueMemberId(), "MEMBER_ID");
+    protected void doSetUserId_InScope(Collection<Long> userIdList) {
+        regINS(CK_INS, cTL(userIdList), xgetCValueUserId(), "USER_ID");
     }
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
-     * @param memberIdList The collection of memberId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param userIdList The collection of userId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setMemberId_NotInScope(Collection<Integer> memberIdList) {
-        doSetMemberId_NotInScope(memberIdList);
+    public void setUserId_NotInScope(Collection<Long> userIdList) {
+        doSetUserId_NotInScope(userIdList);
     }
 
-    protected void doSetMemberId_NotInScope(Collection<Integer> memberIdList) {
-        regINS(CK_NINS, cTL(memberIdList), xgetCValueMemberId(), "MEMBER_ID");
+    protected void doSetUserId_NotInScope(Collection<Long> userIdList) {
+        regINS(CK_NINS, cTL(userIdList), xgetCValueUserId(), "USER_ID");
     }
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select MEMBER_ID from member_address where ...)} <br>
-     * (会員住所情報)member_address by MEMBER_ID, named 'memberAddressAsOne'.
+     * {exists (select USER_ID from ACCOUNT where ...)} <br>
+     * (アカウント)ACCOUNT by USER_ID, named 'accountAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">existsMemberAddress</span>(addressCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     addressCB.query().set...
+     * cb.query().<span style="color: #CC4747">existsAccount</span>(accountCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     accountCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of MemberAddressList for 'exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of AccountList for 'exists'. (NotNull)
      */
-    public void existsMemberAddress(SubQuery<MemberAddressCB> subCBLambda) {
+    public void existsAccount(SubQuery<AccountCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_ExistsReferrer_MemberAddressList(cb.query());
-        registerExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberAddressList");
+        AccountCB cb = new AccountCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepUserId_ExistsReferrer_AccountList(cb.query());
+        registerExistsReferrer(cb.query(), "USER_ID", "USER_ID", pp, "accountList");
     }
-    public abstract String keepMemberId_ExistsReferrer_MemberAddressList(MemberAddressCQ sq);
+    public abstract String keepUserId_ExistsReferrer_AccountList(AccountCQ sq);
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select MY_MEMBER_ID from member_following where ...)} <br>
-     * (会員フォローイング)member_following by MY_MEMBER_ID, named 'memberFollowingByMyMemberIdAsOne'.
+     * {exists (select USER_ID from CATEGORY where ...)} <br>
+     * (カテゴリー)CATEGORY by USER_ID, named 'categoryAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">existsMemberFollowingByMyMemberId</span>(followingCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     followingCB.query().set...
+     * cb.query().<span style="color: #CC4747">existsCategory</span>(categoryCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     categoryCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of MemberFollowingByMyMemberIdList for 'exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of CategoryList for 'exists'. (NotNull)
      */
-    public void existsMemberFollowingByMyMemberId(SubQuery<MemberFollowingCB> subCBLambda) {
+    public void existsCategory(SubQuery<CategoryCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberFollowingCB cb = new MemberFollowingCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_ExistsReferrer_MemberFollowingByMyMemberIdList(cb.query());
-        registerExistsReferrer(cb.query(), "MEMBER_ID", "MY_MEMBER_ID", pp, "memberFollowingByMyMemberIdList");
+        CategoryCB cb = new CategoryCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepUserId_ExistsReferrer_CategoryList(cb.query());
+        registerExistsReferrer(cb.query(), "USER_ID", "USER_ID", pp, "categoryList");
     }
-    public abstract String keepMemberId_ExistsReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq);
-
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select YOUR_MEMBER_ID from member_following where ...)} <br>
-     * (会員フォローイング)member_following by YOUR_MEMBER_ID, named 'memberFollowingByYourMemberIdAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsMemberFollowingByYourMemberId</span>(followingCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     followingCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of MemberFollowingByYourMemberIdList for 'exists'. (NotNull)
-     */
-    public void existsMemberFollowingByYourMemberId(SubQuery<MemberFollowingCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberFollowingCB cb = new MemberFollowingCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_ExistsReferrer_MemberFollowingByYourMemberIdList(cb.query());
-        registerExistsReferrer(cb.query(), "MEMBER_ID", "YOUR_MEMBER_ID", pp, "memberFollowingByYourMemberIdList");
-    }
-    public abstract String keepMemberId_ExistsReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq);
-
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select MEMBER_ID from member_login where ...)} <br>
-     * (会員ログイン)member_login by MEMBER_ID, named 'memberLoginAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsMemberLogin</span>(loginCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     loginCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of MemberLoginList for 'exists'. (NotNull)
-     */
-    public void existsMemberLogin(SubQuery<MemberLoginCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_ExistsReferrer_MemberLoginList(cb.query());
-        registerExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberLoginList");
-    }
-    public abstract String keepMemberId_ExistsReferrer_MemberLoginList(MemberLoginCQ sq);
-
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select MEMBER_ID from purchase where ...)} <br>
-     * (購入)purchase by MEMBER_ID, named 'purchaseAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsPurchase</span>(purchaseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     purchaseCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of PurchaseList for 'exists'. (NotNull)
-     */
-    public void existsPurchase(SubQuery<PurchaseCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        PurchaseCB cb = new PurchaseCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_ExistsReferrer_PurchaseList(cb.query());
-        registerExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "purchaseList");
-    }
-    public abstract String keepMemberId_ExistsReferrer_PurchaseList(PurchaseCQ sq);
+    public abstract String keepUserId_ExistsReferrer_CategoryList(CategoryCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select MEMBER_ID from member_address where ...)} <br>
-     * (会員住所情報)member_address by MEMBER_ID, named 'memberAddressAsOne'.
+     * {not exists (select USER_ID from ACCOUNT where ...)} <br>
+     * (アカウント)ACCOUNT by USER_ID, named 'accountAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsMemberAddress</span>(addressCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     addressCB.query().set...
+     * cb.query().<span style="color: #CC4747">notExistsAccount</span>(accountCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     accountCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of MemberId_NotExistsReferrer_MemberAddressList for 'not exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of UserId_NotExistsReferrer_AccountList for 'not exists'. (NotNull)
      */
-    public void notExistsMemberAddress(SubQuery<MemberAddressCB> subCBLambda) {
+    public void notExistsAccount(SubQuery<AccountCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_NotExistsReferrer_MemberAddressList(cb.query());
-        registerNotExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberAddressList");
+        AccountCB cb = new AccountCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepUserId_NotExistsReferrer_AccountList(cb.query());
+        registerNotExistsReferrer(cb.query(), "USER_ID", "USER_ID", pp, "accountList");
     }
-    public abstract String keepMemberId_NotExistsReferrer_MemberAddressList(MemberAddressCQ sq);
+    public abstract String keepUserId_NotExistsReferrer_AccountList(AccountCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select MY_MEMBER_ID from member_following where ...)} <br>
-     * (会員フォローイング)member_following by MY_MEMBER_ID, named 'memberFollowingByMyMemberIdAsOne'.
+     * {not exists (select USER_ID from CATEGORY where ...)} <br>
+     * (カテゴリー)CATEGORY by USER_ID, named 'categoryAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsMemberFollowingByMyMemberId</span>(followingCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     followingCB.query().set...
+     * cb.query().<span style="color: #CC4747">notExistsCategory</span>(categoryCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     categoryCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of MemberId_NotExistsReferrer_MemberFollowingByMyMemberIdList for 'not exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of UserId_NotExistsReferrer_CategoryList for 'not exists'. (NotNull)
      */
-    public void notExistsMemberFollowingByMyMemberId(SubQuery<MemberFollowingCB> subCBLambda) {
+    public void notExistsCategory(SubQuery<CategoryCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberFollowingCB cb = new MemberFollowingCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_NotExistsReferrer_MemberFollowingByMyMemberIdList(cb.query());
-        registerNotExistsReferrer(cb.query(), "MEMBER_ID", "MY_MEMBER_ID", pp, "memberFollowingByMyMemberIdList");
+        CategoryCB cb = new CategoryCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepUserId_NotExistsReferrer_CategoryList(cb.query());
+        registerNotExistsReferrer(cb.query(), "USER_ID", "USER_ID", pp, "categoryList");
     }
-    public abstract String keepMemberId_NotExistsReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq);
+    public abstract String keepUserId_NotExistsReferrer_CategoryList(CategoryCQ sq);
 
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select YOUR_MEMBER_ID from member_following where ...)} <br>
-     * (会員フォローイング)member_following by YOUR_MEMBER_ID, named 'memberFollowingByYourMemberIdAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsMemberFollowingByYourMemberId</span>(followingCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     followingCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of MemberId_NotExistsReferrer_MemberFollowingByYourMemberIdList for 'not exists'. (NotNull)
-     */
-    public void notExistsMemberFollowingByYourMemberId(SubQuery<MemberFollowingCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberFollowingCB cb = new MemberFollowingCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_NotExistsReferrer_MemberFollowingByYourMemberIdList(cb.query());
-        registerNotExistsReferrer(cb.query(), "MEMBER_ID", "YOUR_MEMBER_ID", pp, "memberFollowingByYourMemberIdList");
-    }
-    public abstract String keepMemberId_NotExistsReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select MEMBER_ID from member_login where ...)} <br>
-     * (会員ログイン)member_login by MEMBER_ID, named 'memberLoginAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsMemberLogin</span>(loginCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     loginCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of MemberId_NotExistsReferrer_MemberLoginList for 'not exists'. (NotNull)
-     */
-    public void notExistsMemberLogin(SubQuery<MemberLoginCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_NotExistsReferrer_MemberLoginList(cb.query());
-        registerNotExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberLoginList");
-    }
-    public abstract String keepMemberId_NotExistsReferrer_MemberLoginList(MemberLoginCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select MEMBER_ID from purchase where ...)} <br>
-     * (購入)purchase by MEMBER_ID, named 'purchaseAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsPurchase</span>(purchaseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     purchaseCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of MemberId_NotExistsReferrer_PurchaseList for 'not exists'. (NotNull)
-     */
-    public void notExistsPurchase(SubQuery<PurchaseCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        PurchaseCB cb = new PurchaseCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_NotExistsReferrer_PurchaseList(cb.query());
-        registerNotExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "purchaseList");
-    }
-    public abstract String keepMemberId_NotExistsReferrer_PurchaseList(PurchaseCQ sq);
-
-    public void xsderiveMemberAddressList(String fn, SubQuery<MemberAddressCB> sq, String al, DerivedReferrerOption op) {
+    public void xsderiveAccountList(String fn, SubQuery<AccountCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepMemberId_SpecifyDerivedReferrer_MemberAddressList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberAddressList", al, op);
+        AccountCB cb = new AccountCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepUserId_SpecifyDerivedReferrer_AccountList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "USER_ID", "USER_ID", pp, "accountList", al, op);
     }
-    public abstract String keepMemberId_SpecifyDerivedReferrer_MemberAddressList(MemberAddressCQ sq);
+    public abstract String keepUserId_SpecifyDerivedReferrer_AccountList(AccountCQ sq);
 
-    public void xsderiveMemberFollowingByMyMemberIdList(String fn, SubQuery<MemberFollowingCB> sq, String al, DerivedReferrerOption op) {
+    public void xsderiveCategoryList(String fn, SubQuery<CategoryCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberFollowingCB cb = new MemberFollowingCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepMemberId_SpecifyDerivedReferrer_MemberFollowingByMyMemberIdList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MY_MEMBER_ID", pp, "memberFollowingByMyMemberIdList", al, op);
+        CategoryCB cb = new CategoryCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepUserId_SpecifyDerivedReferrer_CategoryList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "USER_ID", "USER_ID", pp, "categoryList", al, op);
     }
-    public abstract String keepMemberId_SpecifyDerivedReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq);
-
-    public void xsderiveMemberFollowingByYourMemberIdList(String fn, SubQuery<MemberFollowingCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        MemberFollowingCB cb = new MemberFollowingCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepMemberId_SpecifyDerivedReferrer_MemberFollowingByYourMemberIdList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "YOUR_MEMBER_ID", pp, "memberFollowingByYourMemberIdList", al, op);
-    }
-    public abstract String keepMemberId_SpecifyDerivedReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq);
-
-    public void xsderiveMemberLoginList(String fn, SubQuery<MemberLoginCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepMemberId_SpecifyDerivedReferrer_MemberLoginList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberLoginList", al, op);
-    }
-    public abstract String keepMemberId_SpecifyDerivedReferrer_MemberLoginList(MemberLoginCQ sq);
-
-    public void xsderivePurchaseList(String fn, SubQuery<PurchaseCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        PurchaseCB cb = new PurchaseCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepMemberId_SpecifyDerivedReferrer_PurchaseList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "purchaseList", al, op);
-    }
-    public abstract String keepMemberId_SpecifyDerivedReferrer_PurchaseList(PurchaseCQ sq);
+    public abstract String keepUserId_SpecifyDerivedReferrer_CategoryList(CategoryCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from member_address where ...)} <br>
-     * (会員住所情報)member_address by MEMBER_ID, named 'memberAddressAsOne'.
+     * {FOO &lt;= (select max(BAR) from ACCOUNT where ...)} <br>
+     * (アカウント)ACCOUNT by USER_ID, named 'accountAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">derivedMemberAddress()</span>.<span style="color: #CC4747">max</span>(addressCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     addressCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     addressCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * cb.query().<span style="color: #CC4747">derivedAccount()</span>.<span style="color: #CC4747">max</span>(accountCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     accountCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     accountCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
-    public HpQDRFunction<MemberAddressCB> derivedMemberAddress() {
-        return xcreateQDRFunctionMemberAddressList();
+    public HpQDRFunction<AccountCB> derivedAccount() {
+        return xcreateQDRFunctionAccountList();
     }
-    protected HpQDRFunction<MemberAddressCB> xcreateQDRFunctionMemberAddressList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveMemberAddressList(fn, sq, rd, vl, op));
+    protected HpQDRFunction<AccountCB> xcreateQDRFunctionAccountList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveAccountList(fn, sq, rd, vl, op));
     }
-    public void xqderiveMemberAddressList(String fn, SubQuery<MemberAddressCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    public void xqderiveAccountList(String fn, SubQuery<AccountCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepMemberId_QueryDerivedReferrer_MemberAddressList(cb.query()); String prpp = keepMemberId_QueryDerivedReferrer_MemberAddressListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", sqpp, "memberAddressList", rd, vl, prpp, op);
+        AccountCB cb = new AccountCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepUserId_QueryDerivedReferrer_AccountList(cb.query()); String prpp = keepUserId_QueryDerivedReferrer_AccountListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "USER_ID", "USER_ID", sqpp, "accountList", rd, vl, prpp, op);
     }
-    public abstract String keepMemberId_QueryDerivedReferrer_MemberAddressList(MemberAddressCQ sq);
-    public abstract String keepMemberId_QueryDerivedReferrer_MemberAddressListParameter(Object vl);
+    public abstract String keepUserId_QueryDerivedReferrer_AccountList(AccountCQ sq);
+    public abstract String keepUserId_QueryDerivedReferrer_AccountListParameter(Object vl);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from member_following where ...)} <br>
-     * (会員フォローイング)member_following by MY_MEMBER_ID, named 'memberFollowingByMyMemberIdAsOne'.
+     * {FOO &lt;= (select max(BAR) from CATEGORY where ...)} <br>
+     * (カテゴリー)CATEGORY by USER_ID, named 'categoryAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">derivedMemberFollowingByMyMemberId()</span>.<span style="color: #CC4747">max</span>(followingCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     followingCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     followingCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * cb.query().<span style="color: #CC4747">derivedCategory()</span>.<span style="color: #CC4747">max</span>(categoryCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     categoryCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     categoryCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
-    public HpQDRFunction<MemberFollowingCB> derivedMemberFollowingByMyMemberId() {
-        return xcreateQDRFunctionMemberFollowingByMyMemberIdList();
+    public HpQDRFunction<CategoryCB> derivedCategory() {
+        return xcreateQDRFunctionCategoryList();
     }
-    protected HpQDRFunction<MemberFollowingCB> xcreateQDRFunctionMemberFollowingByMyMemberIdList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveMemberFollowingByMyMemberIdList(fn, sq, rd, vl, op));
+    protected HpQDRFunction<CategoryCB> xcreateQDRFunctionCategoryList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveCategoryList(fn, sq, rd, vl, op));
     }
-    public void xqderiveMemberFollowingByMyMemberIdList(String fn, SubQuery<MemberFollowingCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    public void xqderiveCategoryList(String fn, SubQuery<CategoryCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberFollowingCB cb = new MemberFollowingCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList(cb.query()); String prpp = keepMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MY_MEMBER_ID", sqpp, "memberFollowingByMyMemberIdList", rd, vl, prpp, op);
+        CategoryCB cb = new CategoryCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepUserId_QueryDerivedReferrer_CategoryList(cb.query()); String prpp = keepUserId_QueryDerivedReferrer_CategoryListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "USER_ID", "USER_ID", sqpp, "categoryList", rd, vl, prpp, op);
     }
-    public abstract String keepMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdList(MemberFollowingCQ sq);
-    public abstract String keepMemberId_QueryDerivedReferrer_MemberFollowingByMyMemberIdListParameter(Object vl);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from member_following where ...)} <br>
-     * (会員フォローイング)member_following by YOUR_MEMBER_ID, named 'memberFollowingByYourMemberIdAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedMemberFollowingByYourMemberId()</span>.<span style="color: #CC4747">max</span>(followingCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     followingCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     followingCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<MemberFollowingCB> derivedMemberFollowingByYourMemberId() {
-        return xcreateQDRFunctionMemberFollowingByYourMemberIdList();
-    }
-    protected HpQDRFunction<MemberFollowingCB> xcreateQDRFunctionMemberFollowingByYourMemberIdList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveMemberFollowingByYourMemberIdList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveMemberFollowingByYourMemberIdList(String fn, SubQuery<MemberFollowingCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        MemberFollowingCB cb = new MemberFollowingCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList(cb.query()); String prpp = keepMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "MEMBER_ID", "YOUR_MEMBER_ID", sqpp, "memberFollowingByYourMemberIdList", rd, vl, prpp, op);
-    }
-    public abstract String keepMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdList(MemberFollowingCQ sq);
-    public abstract String keepMemberId_QueryDerivedReferrer_MemberFollowingByYourMemberIdListParameter(Object vl);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from member_login where ...)} <br>
-     * (会員ログイン)member_login by MEMBER_ID, named 'memberLoginAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedMemberLogin()</span>.<span style="color: #CC4747">max</span>(loginCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     loginCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     loginCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<MemberLoginCB> derivedMemberLogin() {
-        return xcreateQDRFunctionMemberLoginList();
-    }
-    protected HpQDRFunction<MemberLoginCB> xcreateQDRFunctionMemberLoginList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveMemberLoginList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveMemberLoginList(String fn, SubQuery<MemberLoginCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepMemberId_QueryDerivedReferrer_MemberLoginList(cb.query()); String prpp = keepMemberId_QueryDerivedReferrer_MemberLoginListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", sqpp, "memberLoginList", rd, vl, prpp, op);
-    }
-    public abstract String keepMemberId_QueryDerivedReferrer_MemberLoginList(MemberLoginCQ sq);
-    public abstract String keepMemberId_QueryDerivedReferrer_MemberLoginListParameter(Object vl);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from purchase where ...)} <br>
-     * (購入)purchase by MEMBER_ID, named 'purchaseAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedPurchase()</span>.<span style="color: #CC4747">max</span>(purchaseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     purchaseCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     purchaseCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<PurchaseCB> derivedPurchase() {
-        return xcreateQDRFunctionPurchaseList();
-    }
-    protected HpQDRFunction<PurchaseCB> xcreateQDRFunctionPurchaseList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderivePurchaseList(fn, sq, rd, vl, op));
-    }
-    public void xqderivePurchaseList(String fn, SubQuery<PurchaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        PurchaseCB cb = new PurchaseCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepMemberId_QueryDerivedReferrer_PurchaseList(cb.query()); String prpp = keepMemberId_QueryDerivedReferrer_PurchaseListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", sqpp, "purchaseList", rd, vl, prpp, op);
-    }
-    public abstract String keepMemberId_QueryDerivedReferrer_PurchaseList(PurchaseCQ sq);
-    public abstract String keepMemberId_QueryDerivedReferrer_PurchaseListParameter(Object vl);
+    public abstract String keepUserId_QueryDerivedReferrer_CategoryList(CategoryCQ sq);
+    public abstract String keepUserId_QueryDerivedReferrer_CategoryListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
      */
-    public void setMemberId_IsNull() { regMemberId(CK_ISN, DOBJ); }
+    public void setUserId_IsNull() { regUserId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
+     * (会員ID)USER_ID: {PK, ID, NotNull, BIGINT(19)}
      */
-    public void setMemberId_IsNotNull() { regMemberId(CK_ISNN, DOBJ); }
+    public void setUserId_IsNotNull() { regUserId(CK_ISNN, DOBJ); }
 
-    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberId(), "MEMBER_ID"); }
-    protected abstract ConditionValue xgetCValueMemberId();
+    protected void regUserId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueUserId(), "USER_ID"); }
+    protected abstract ConditionValue xgetCValueUserId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)}
-     * @param memberName The value of memberName as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)}
+     * @param mailAddress The value of mailAddress as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setMemberName_Equal(String memberName) {
-        doSetMemberName_Equal(fRES(memberName));
+    public void setMailAddress_Equal(String mailAddress) {
+        doSetMailAddress_Equal(fRES(mailAddress));
     }
 
-    protected void doSetMemberName_Equal(String memberName) {
-        regMemberName(CK_EQ, memberName);
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)} <br>
-     * <pre>e.g. setMemberName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param memberName The value of memberName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setMemberName_LikeSearch(String memberName, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setMemberName_LikeSearch(memberName, xcLSOP(opLambda));
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)} <br>
-     * <pre>e.g. setMemberName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param memberName The value of memberName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     * @param likeSearchOption The option of like-search. (NotNull)
-     */
-    protected void setMemberName_LikeSearch(String memberName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(memberName), xgetCValueMemberName(), "MEMBER_NAME", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)}
-     * @param memberName The value of memberName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setMemberName_NotLikeSearch(String memberName, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setMemberName_NotLikeSearch(memberName, xcLSOP(opLambda));
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(100)}
-     * @param memberName The value of memberName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    protected void setMemberName_NotLikeSearch(String memberName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(memberName), xgetCValueMemberName(), "MEMBER_NAME", likeSearchOption);
-    }
-
-    protected void regMemberName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberName(), "MEMBER_NAME"); }
-    protected abstract ConditionValue xgetCValueMemberName();
-
-    /**
-     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)}
-     * @param memberAccount The value of memberAccount as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     */
-    public void setMemberAccount_Equal(String memberAccount) {
-        doSetMemberAccount_Equal(fRES(memberAccount));
-    }
-
-    protected void doSetMemberAccount_Equal(String memberAccount) {
-        regMemberAccount(CK_EQ, memberAccount);
+    protected void doSetMailAddress_Equal(String mailAddress) {
+        regMailAddress(CK_EQ, mailAddress);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)}
-     * @param memberAccount The value of memberAccount as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)}
+     * @param mailAddress The value of mailAddress as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setMemberAccount_NotEqual(String memberAccount) {
-        doSetMemberAccount_NotEqual(fRES(memberAccount));
+    public void setMailAddress_NotEqual(String mailAddress) {
+        doSetMailAddress_NotEqual(fRES(mailAddress));
     }
 
-    protected void doSetMemberAccount_NotEqual(String memberAccount) {
-        regMemberAccount(CK_NES, memberAccount);
+    protected void doSetMailAddress_NotEqual(String mailAddress) {
+        regMailAddress(CK_NES, mailAddress);
     }
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)}
-     * @param memberAccountList The collection of memberAccount as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)}
+     * @param mailAddressList The collection of mailAddress as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setMemberAccount_InScope(Collection<String> memberAccountList) {
-        doSetMemberAccount_InScope(memberAccountList);
+    public void setMailAddress_InScope(Collection<String> mailAddressList) {
+        doSetMailAddress_InScope(mailAddressList);
     }
 
-    protected void doSetMemberAccount_InScope(Collection<String> memberAccountList) {
-        regINS(CK_INS, cTL(memberAccountList), xgetCValueMemberAccount(), "MEMBER_ACCOUNT");
+    protected void doSetMailAddress_InScope(Collection<String> mailAddressList) {
+        regINS(CK_INS, cTL(mailAddressList), xgetCValueMailAddress(), "MAIL_ADDRESS");
     }
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)}
-     * @param memberAccountList The collection of memberAccount as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)}
+     * @param mailAddressList The collection of mailAddress as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setMemberAccount_NotInScope(Collection<String> memberAccountList) {
-        doSetMemberAccount_NotInScope(memberAccountList);
+    public void setMailAddress_NotInScope(Collection<String> mailAddressList) {
+        doSetMailAddress_NotInScope(mailAddressList);
     }
 
-    protected void doSetMemberAccount_NotInScope(Collection<String> memberAccountList) {
-        regINS(CK_NINS, cTL(memberAccountList), xgetCValueMemberAccount(), "MEMBER_ACCOUNT");
+    protected void doSetMailAddress_NotInScope(Collection<String> mailAddressList) {
+        regINS(CK_NINS, cTL(mailAddressList), xgetCValueMailAddress(), "MAIL_ADDRESS");
     }
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)} <br>
-     * <pre>e.g. setMemberAccount_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param memberAccount The value of memberAccount as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)} <br>
+     * <pre>e.g. setMailAddress_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param mailAddress The value of mailAddress as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setMemberAccount_LikeSearch(String memberAccount, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setMemberAccount_LikeSearch(memberAccount, xcLSOP(opLambda));
+    public void setMailAddress_LikeSearch(String mailAddress, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setMailAddress_LikeSearch(mailAddress, xcLSOP(opLambda));
     }
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)} <br>
-     * <pre>e.g. setMemberAccount_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param memberAccount The value of memberAccount as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)} <br>
+     * <pre>e.g. setMailAddress_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param mailAddress The value of mailAddress as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
-    protected void setMemberAccount_LikeSearch(String memberAccount, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(memberAccount), xgetCValueMemberAccount(), "MEMBER_ACCOUNT", likeSearchOption);
+    protected void setMailAddress_LikeSearch(String mailAddress, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(mailAddress), xgetCValueMailAddress(), "MAIL_ADDRESS", likeSearchOption);
     }
 
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)}
-     * @param memberAccount The value of memberAccount as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)}
+     * @param mailAddress The value of mailAddress as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setMemberAccount_NotLikeSearch(String memberAccount, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setMemberAccount_NotLikeSearch(memberAccount, xcLSOP(opLambda));
+    public void setMailAddress_NotLikeSearch(String mailAddress, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setMailAddress_NotLikeSearch(mailAddress, xcLSOP(opLambda));
     }
 
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (会員アカウント)MEMBER_ACCOUNT: {UQ, NotNull, VARCHAR(50)}
-     * @param memberAccount The value of memberAccount as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (メールアドレス)MAIL_ADDRESS: {UQ, NotNull, VARCHAR(200)}
+     * @param mailAddress The value of mailAddress as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
-    protected void setMemberAccount_NotLikeSearch(String memberAccount, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(memberAccount), xgetCValueMemberAccount(), "MEMBER_ACCOUNT", likeSearchOption);
+    protected void setMailAddress_NotLikeSearch(String mailAddress, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(mailAddress), xgetCValueMailAddress(), "MAIL_ADDRESS", likeSearchOption);
     }
 
-    protected void regMemberAccount(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberAccount(), "MEMBER_ACCOUNT"); }
-    protected abstract ConditionValue xgetCValueMemberAccount();
+    protected void regMailAddress(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMailAddress(), "MAIL_ADDRESS"); }
+    protected abstract ConditionValue xgetCValueMailAddress();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus}
-     * @param memberStatusCode The value of memberStatusCode as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (名前)USER_NAME: {NotNull, VARCHAR(200)}
+     * @param userName The value of userName as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    protected void setMemberStatusCode_Equal(String memberStatusCode) {
-        doSetMemberStatusCode_Equal(fRES(memberStatusCode));
+    public void setUserName_Equal(String userName) {
+        doSetUserName_Equal(fRES(userName));
+    }
+
+    protected void doSetUserName_Equal(String userName) {
+        regUserName(CK_EQ, userName);
     }
 
     /**
-     * Equal(=). As MemberStatus. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus} <br>
-     * status of member from entry to withdrawal
-     * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (名前)USER_NAME: {NotNull, VARCHAR(200)} <br>
+     * <pre>e.g. setUserName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param userName The value of userName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus cdef) {
-        doSetMemberStatusCode_Equal(cdef != null ? cdef.code() : null);
+    public void setUserName_LikeSearch(String userName, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setUserName_LikeSearch(userName, xcLSOP(opLambda));
     }
 
     /**
-     * Equal(=). As Formalized (FML). And OnlyOnceRegistered. <br>
-     * Formalized: as formal member, allowed to use all service
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (名前)USER_NAME: {NotNull, VARCHAR(200)} <br>
+     * <pre>e.g. setUserName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param userName The value of userName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of like-search. (NotNull)
      */
-    public void setMemberStatusCode_Equal_Formalized() {
-        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.Formalized);
+    protected void setUserName_LikeSearch(String userName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(userName), xgetCValueUserName(), "USER_NAME", likeSearchOption);
     }
 
     /**
-     * Equal(=). As Withdrawal (WDL). And OnlyOnceRegistered. <br>
-     * Withdrawal: withdrawal is fixed, not allowed to use service
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (名前)USER_NAME: {NotNull, VARCHAR(200)}
+     * @param userName The value of userName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setMemberStatusCode_Equal_Withdrawal() {
-        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.Withdrawal);
+    public void setUserName_NotLikeSearch(String userName, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setUserName_NotLikeSearch(userName, xcLSOP(opLambda));
     }
 
     /**
-     * Equal(=). As Provisional (PRV). And OnlyOnceRegistered. <br>
-     * Provisional: first status after entry, allowed to use only part of service
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (名前)USER_NAME: {NotNull, VARCHAR(200)}
+     * @param userName The value of userName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
      */
-    public void setMemberStatusCode_Equal_Provisional() {
-        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.Provisional);
+    protected void setUserName_NotLikeSearch(String userName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(userName), xgetCValueUserName(), "USER_NAME", likeSearchOption);
     }
 
-    protected void doSetMemberStatusCode_Equal(String memberStatusCode) {
-        regMemberStatusCode(CK_EQ, memberStatusCode);
+    protected void regUserName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueUserName(), "USER_NAME"); }
+    protected abstract ConditionValue xgetCValueUserName();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)}
+     * @param password The value of password as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setPassword_Equal(String password) {
+        doSetPassword_Equal(fRES(password));
+    }
+
+    protected void doSetPassword_Equal(String password) {
+        regPassword(CK_EQ, password);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus}
-     * @param memberStatusCode The value of memberStatusCode as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)}
+     * @param password The value of password as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    protected void setMemberStatusCode_NotEqual(String memberStatusCode) {
-        doSetMemberStatusCode_NotEqual(fRES(memberStatusCode));
+    public void setPassword_NotEqual(String password) {
+        doSetPassword_NotEqual(fRES(password));
     }
 
-    /**
-     * NotEqual(&lt;&gt;). As MemberStatus. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus} <br>
-     * status of member from entry to withdrawal
-     * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
-     */
-    public void setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus cdef) {
-        doSetMemberStatusCode_NotEqual(cdef != null ? cdef.code() : null);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As Formalized (FML). And OnlyOnceRegistered. <br>
-     * Formalized: as formal member, allowed to use all service
-     */
-    public void setMemberStatusCode_NotEqual_Formalized() {
-        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.Formalized);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As Withdrawal (WDL). And OnlyOnceRegistered. <br>
-     * Withdrawal: withdrawal is fixed, not allowed to use service
-     */
-    public void setMemberStatusCode_NotEqual_Withdrawal() {
-        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.Withdrawal);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As Provisional (PRV). And OnlyOnceRegistered. <br>
-     * Provisional: first status after entry, allowed to use only part of service
-     */
-    public void setMemberStatusCode_NotEqual_Provisional() {
-        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.Provisional);
-    }
-
-    protected void doSetMemberStatusCode_NotEqual(String memberStatusCode) {
-        regMemberStatusCode(CK_NES, memberStatusCode);
+    protected void doSetPassword_NotEqual(String password) {
+        regPassword(CK_NES, password);
     }
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus}
-     * @param memberStatusCodeList The collection of memberStatusCode as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)}
+     * @param passwordList The collection of password as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    protected void setMemberStatusCode_InScope(Collection<String> memberStatusCodeList) {
-        doSetMemberStatusCode_InScope(memberStatusCodeList);
+    public void setPassword_InScope(Collection<String> passwordList) {
+        doSetPassword_InScope(passwordList);
     }
 
-    /**
-     * InScope {in ('a', 'b')}. As MemberStatus. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus} <br>
-     * status of member from entry to withdrawal
-     * @param cdefList The list of classification definition (as ENUM type). (basically NotNull, NotEmpty: error as default, or no condition as option)
-     */
-    public void setMemberStatusCode_InScope_AsMemberStatus(Collection<CDef.MemberStatus> cdefList) {
-        doSetMemberStatusCode_InScope(cTStrL(cdefList));
-    }
-
-    /**
-     * InScope {in ('a', 'b')}. As MemberStatus. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * status of member from entry to withdrawal <br>
-     * means member that can use services <br>
-     * The group elements:[Formalized, Provisional]
-     */
-    public void setMemberStatusCode_InScope_ServiceAvailable() {
-        setMemberStatusCode_InScope_AsMemberStatus(CDef.MemberStatus.listOfServiceAvailable());
-    }
-
-    /**
-     * InScope {in ('a', 'b')}. As MemberStatus. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * status of member from entry to withdrawal <br>
-     * Members are not formalized yet <br>
-     * The group elements:[Provisional]
-     */
-    public void setMemberStatusCode_InScope_ShortOfFormalized() {
-        setMemberStatusCode_InScope_AsMemberStatus(CDef.MemberStatus.listOfShortOfFormalized());
-    }
-
-    protected void doSetMemberStatusCode_InScope(Collection<String> memberStatusCodeList) {
-        regINS(CK_INS, cTL(memberStatusCodeList), xgetCValueMemberStatusCode(), "MEMBER_STATUS_CODE");
+    protected void doSetPassword_InScope(Collection<String> passwordList) {
+        regINS(CK_INS, cTL(passwordList), xgetCValuePassword(), "PASSWORD");
     }
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus}
-     * @param memberStatusCodeList The collection of memberStatusCode as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)}
+     * @param passwordList The collection of password as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    protected void setMemberStatusCode_NotInScope(Collection<String> memberStatusCodeList) {
-        doSetMemberStatusCode_NotInScope(memberStatusCodeList);
+    public void setPassword_NotInScope(Collection<String> passwordList) {
+        doSetPassword_NotInScope(passwordList);
+    }
+
+    protected void doSetPassword_NotInScope(Collection<String> passwordList) {
+        regINS(CK_NINS, cTL(passwordList), xgetCValuePassword(), "PASSWORD");
     }
 
     /**
-     * NotInScope {not in ('a', 'b')}. As MemberStatus. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus} <br>
-     * status of member from entry to withdrawal
-     * @param cdefList The list of classification definition (as ENUM type). (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)} <br>
+     * <pre>e.g. setPassword_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param password The value of password as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setMemberStatusCode_NotInScope_AsMemberStatus(Collection<CDef.MemberStatus> cdefList) {
-        doSetMemberStatusCode_NotInScope(cTStrL(cdefList));
-    }
-
-    protected void doSetMemberStatusCode_NotInScope(Collection<String> memberStatusCodeList) {
-        regINS(CK_NINS, cTL(memberStatusCodeList), xgetCValueMemberStatusCode(), "MEMBER_STATUS_CODE");
-    }
-
-    protected void regMemberStatusCode(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberStatusCode(), "MEMBER_STATUS_CODE"); }
-    protected abstract ConditionValue xgetCValueMemberStatusCode();
-
-    /**
-     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * @param formalizedDatetime The value of formalizedDatetime as equal. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setFormalizedDatetime_Equal(java.time.LocalDateTime formalizedDatetime) {
-        regFormalizedDatetime(CK_EQ,  formalizedDatetime);
+    public void setPassword_LikeSearch(String password, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setPassword_LikeSearch(password, xcLSOP(opLambda));
     }
 
     /**
-     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * @param formalizedDatetime The value of formalizedDatetime as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)} <br>
+     * <pre>e.g. setPassword_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param password The value of password as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of like-search. (NotNull)
      */
-    public void setFormalizedDatetime_GreaterThan(java.time.LocalDateTime formalizedDatetime) {
-        regFormalizedDatetime(CK_GT,  formalizedDatetime);
+    protected void setPassword_LikeSearch(String password, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(password), xgetCValuePassword(), "PASSWORD", likeSearchOption);
     }
 
     /**
-     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * @param formalizedDatetime The value of formalizedDatetime as lessThan. (basically NotNull: error as default, or no condition as option)
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)}
+     * @param password The value of password as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
      */
-    public void setFormalizedDatetime_LessThan(java.time.LocalDateTime formalizedDatetime) {
-        regFormalizedDatetime(CK_LT,  formalizedDatetime);
+    public void setPassword_NotLikeSearch(String password, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setPassword_NotLikeSearch(password, xcLSOP(opLambda));
     }
 
     /**
-     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * @param formalizedDatetime The value of formalizedDatetime as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (パスワード)PASSWORD: {NotNull, VARCHAR(200)}
+     * @param password The value of password as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
      */
-    public void setFormalizedDatetime_GreaterEqual(java.time.LocalDateTime formalizedDatetime) {
-        regFormalizedDatetime(CK_GE,  formalizedDatetime);
+    protected void setPassword_NotLikeSearch(String password, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(password), xgetCValuePassword(), "PASSWORD", likeSearchOption);
     }
 
-    /**
-     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * @param formalizedDatetime The value of formalizedDatetime as lessEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setFormalizedDatetime_LessEqual(java.time.LocalDateTime formalizedDatetime) {
-        regFormalizedDatetime(CK_LE, formalizedDatetime);
-    }
-
-    /**
-     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
-     * And NullIgnored, OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * <pre>e.g. setFormalizedDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of formalizedDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of formalizedDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param opLambda The callback for option of from-to. (NotNull)
-     */
-    public void setFormalizedDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
-        setFormalizedDatetime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
-    }
-
-    /**
-     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
-     * And NullIgnored, OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     * <pre>e.g. setFormalizedDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of formalizedDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of formalizedDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param fromToOption The option of from-to. (NotNull)
-     */
-    protected void setFormalizedDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
-        String nm = "FORMALIZED_DATETIME"; FromToOption op = fromToOption;
-        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueFormalizedDatetime(), nm, op);
-    }
-
-    /**
-     * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     */
-    public void setFormalizedDatetime_IsNull() { regFormalizedDatetime(CK_ISN, DOBJ); }
-
-    /**
-     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * (正式会員日時)FORMALIZED_DATETIME: {IX, DATETIME(19)}
-     */
-    public void setFormalizedDatetime_IsNotNull() { regFormalizedDatetime(CK_ISNN, DOBJ); }
-
-    protected void regFormalizedDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueFormalizedDatetime(), "FORMALIZED_DATETIME"); }
-    protected abstract ConditionValue xgetCValueFormalizedDatetime();
-
-    /**
-     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * @param birthdate The value of birthdate as equal. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setBirthdate_Equal(java.time.LocalDate birthdate) {
-        regBirthdate(CK_EQ,  birthdate);
-    }
-
-    /**
-     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * @param birthdate The value of birthdate as greaterThan. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setBirthdate_GreaterThan(java.time.LocalDate birthdate) {
-        regBirthdate(CK_GT,  birthdate);
-    }
-
-    /**
-     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * @param birthdate The value of birthdate as lessThan. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setBirthdate_LessThan(java.time.LocalDate birthdate) {
-        regBirthdate(CK_LT,  birthdate);
-    }
-
-    /**
-     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * @param birthdate The value of birthdate as greaterEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setBirthdate_GreaterEqual(java.time.LocalDate birthdate) {
-        regBirthdate(CK_GE,  birthdate);
-    }
-
-    /**
-     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * @param birthdate The value of birthdate as lessEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setBirthdate_LessEqual(java.time.LocalDate birthdate) {
-        regBirthdate(CK_LE, birthdate);
-    }
-
-    /**
-     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
-     * And NullIgnored, OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * <pre>e.g. setBirthdate_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of birthdate. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of birthdate. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param opLambda The callback for option of from-to. (NotNull)
-     */
-    public void setBirthdate_FromTo(java.time.LocalDate fromDatetime, java.time.LocalDate toDatetime, ConditionOptionCall<FromToOption> opLambda) {
-        setBirthdate_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
-    }
-
-    /**
-     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
-     * And NullIgnored, OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     * <pre>e.g. setBirthdate_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of birthdate. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of birthdate. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param fromToOption The option of from-to. (NotNull)
-     */
-    protected void setBirthdate_FromTo(java.time.LocalDate fromDatetime, java.time.LocalDate toDatetime, FromToOption fromToOption) {
-        String nm = "BIRTHDATE"; FromToOption op = fromToOption;
-        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueBirthdate(), nm, op);
-    }
-
-    /**
-     * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     */
-    public void setBirthdate_IsNull() { regBirthdate(CK_ISN, DOBJ); }
-
-    /**
-     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * (生年月日)BIRTHDATE: {DATE(10)}
-     */
-    public void setBirthdate_IsNotNull() { regBirthdate(CK_ISNN, DOBJ); }
-
-    protected void regBirthdate(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueBirthdate(), "BIRTHDATE"); }
-    protected abstract ConditionValue xgetCValueBirthdate();
+    protected void regPassword(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValuePassword(), "PASSWORD"); }
+    protected abstract ConditionValue xgetCValuePassword();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
@@ -1319,7 +862,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public void xsmyselfDerive(String fn, SubQuery<MemberCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         MemberCB cb = new MemberCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepSpecifyMyselfDerived(cb.query()); String pk = "MEMBER_ID";
+        lockCall(() -> sq.query(cb)); String pp = keepSpecifyMyselfDerived(cb.query()); String pk = "USER_ID";
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(MemberCQ sq);
@@ -1335,7 +878,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         MemberCB cb = new MemberCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
-        String pk = "MEMBER_ID";
+        String pk = "USER_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
         registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);

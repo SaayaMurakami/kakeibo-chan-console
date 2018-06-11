@@ -46,22 +46,10 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
     protected static final Map<String, String> _tableDbNameClassNameMap;
     static {
         final Map<String, String> tmpMap = newHashMap();
-        tmpMap.put("member", "saaya.murakami.dbflute.bsentity.dbmeta.MemberDbm");
-        tmpMap.put("member_address", "saaya.murakami.dbflute.bsentity.dbmeta.MemberAddressDbm");
-        tmpMap.put("member_following", "saaya.murakami.dbflute.bsentity.dbmeta.MemberFollowingDbm");
-        tmpMap.put("member_login", "saaya.murakami.dbflute.bsentity.dbmeta.MemberLoginDbm");
-        tmpMap.put("member_security", "saaya.murakami.dbflute.bsentity.dbmeta.MemberSecurityDbm");
-        tmpMap.put("member_service", "saaya.murakami.dbflute.bsentity.dbmeta.MemberServiceDbm");
-        tmpMap.put("member_status", "saaya.murakami.dbflute.bsentity.dbmeta.MemberStatusDbm");
-        tmpMap.put("member_withdrawal", "saaya.murakami.dbflute.bsentity.dbmeta.MemberWithdrawalDbm");
-        tmpMap.put("product", "saaya.murakami.dbflute.bsentity.dbmeta.ProductDbm");
-        tmpMap.put("product_category", "saaya.murakami.dbflute.bsentity.dbmeta.ProductCategoryDbm");
-        tmpMap.put("product_status", "saaya.murakami.dbflute.bsentity.dbmeta.ProductStatusDbm");
-        tmpMap.put("purchase", "saaya.murakami.dbflute.bsentity.dbmeta.PurchaseDbm");
-        tmpMap.put("purchase_payment", "saaya.murakami.dbflute.bsentity.dbmeta.PurchasePaymentDbm");
-        tmpMap.put("region", "saaya.murakami.dbflute.bsentity.dbmeta.RegionDbm");
-        tmpMap.put("service_rank", "saaya.murakami.dbflute.bsentity.dbmeta.ServiceRankDbm");
-        tmpMap.put("withdrawal_reason", "saaya.murakami.dbflute.bsentity.dbmeta.WithdrawalReasonDbm");
+        tmpMap.put("ACCOUNT", "saaya.murakami.dbflute.bsentity.dbmeta.AccountDbm");
+        tmpMap.put("CATEGORY", "saaya.murakami.dbflute.bsentity.dbmeta.CategoryDbm");
+        tmpMap.put("MEMBER", "saaya.murakami.dbflute.bsentity.dbmeta.MemberDbm");
+        tmpMap.put("STATEMENT", "saaya.murakami.dbflute.bsentity.dbmeta.StatementDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);
     }
 

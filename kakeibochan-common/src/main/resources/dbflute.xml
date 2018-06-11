@@ -13,20 +13,8 @@
 	<component name="commonColumnAutoSetupper" class="saaya.murakami.dbflute.allcommon.ImplementedCommonColumnAutoSetupper"/>
 
 	<!-- The components of Behavior. -->
+	<component name="accountBhv" class="saaya.murakami.dbflute.exbhv.AccountBhv"/>
+	<component name="categoryBhv" class="saaya.murakami.dbflute.exbhv.CategoryBhv"/>
 	<component name="memberBhv" class="saaya.murakami.dbflute.exbhv.MemberBhv"/>
-	<component name="memberAddressBhv" class="saaya.murakami.dbflute.exbhv.MemberAddressBhv"/>
-	<component name="memberFollowingBhv" class="saaya.murakami.dbflute.exbhv.MemberFollowingBhv"/>
-	<component name="memberLoginBhv" class="saaya.murakami.dbflute.exbhv.MemberLoginBhv"/>
-	<component name="memberSecurityBhv" class="saaya.murakami.dbflute.exbhv.MemberSecurityBhv"/>
-	<component name="memberServiceBhv" class="saaya.murakami.dbflute.exbhv.MemberServiceBhv"/>
-	<component name="memberStatusBhv" class="saaya.murakami.dbflute.exbhv.MemberStatusBhv"/>
-	<component name="memberWithdrawalBhv" class="saaya.murakami.dbflute.exbhv.MemberWithdrawalBhv"/>
-	<component name="productBhv" class="saaya.murakami.dbflute.exbhv.ProductBhv"/>
-	<component name="productCategoryBhv" class="saaya.murakami.dbflute.exbhv.ProductCategoryBhv"/>
-	<component name="productStatusBhv" class="saaya.murakami.dbflute.exbhv.ProductStatusBhv"/>
-	<component name="purchaseBhv" class="saaya.murakami.dbflute.exbhv.PurchaseBhv"/>
-	<component name="purchasePaymentBhv" class="saaya.murakami.dbflute.exbhv.PurchasePaymentBhv"/>
-	<component name="regionBhv" class="saaya.murakami.dbflute.exbhv.RegionBhv"/>
-	<component name="serviceRankBhv" class="saaya.murakami.dbflute.exbhv.ServiceRankBhv"/>
-	<component name="withdrawalReasonBhv" class="saaya.murakami.dbflute.exbhv.WithdrawalReasonBhv"/>
+	<component name="statementBhv" class="saaya.murakami.dbflute.exbhv.StatementBhv"/>
 </components>
