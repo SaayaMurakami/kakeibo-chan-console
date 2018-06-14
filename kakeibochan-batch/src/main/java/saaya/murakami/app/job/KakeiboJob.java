@@ -66,20 +66,27 @@ public class KakeiboJob implements LaJob {
             long userId = loginProcess(reader);
 
             //家計
-            System.out.println("やりたいことを選んでね（数字で選択）");
-            System.out.println("1.家計簿をつける  2.家計簿を見る");
-            int num = inputIntNumber("", reader);
+            loopout: do {
+                System.out.println("やりたいことを選んでね（数字で選択）");
+                System.out.println("1.家計簿をつける  2.家計簿を見る　3.終了");
+                int num = inputIntNumber("", reader);
 
-            switch (num) {
-            case 1: //家計簿をつける
-                registerStatement(reader, userId);
-                break;
+                switch (num) {
+                case 1: //家計簿をつける
+                    registerStatement(reader, userId);
+                    break;
 
-            case 2:
+                case 2:
+                    break;
 
-            default:
-                break;
-            }
+                case 3:
+                    System.out.println("--- Bye ---");
+                    break loopout;
+
+                default:
+                    break;
+                }
+            } while (true);
         });
     }
 
@@ -116,11 +123,9 @@ public class KakeiboJob implements LaJob {
             //カテゴリを登録
             System.out.println("カテゴリを選んでください（数字で選択）");
             int countCategory = categoryBhv.selectCount(cb -> {
-                //TODO 会員ID
                 cb.query().setUserId_Equal(userId);
             });
             ListResultBean<Category> categoryList = categoryBhv.selectList(cb -> {
-                //TODO 他人のカテゴリー見えちゃまずね　会員ID！
                 cb.query().setUserId_Equal(userId);
                 cb.query().addOrderBy_CategoryId_Asc();
             });
@@ -129,24 +134,22 @@ public class KakeiboJob implements LaJob {
             });
             Long catergoryNum = inputLongNumber("", reader);
             while (catergoryNum < 1 || catergoryNum > countCategory) {
-                //TODO 二人目はIDが違いそうだね
                 System.out.println("1~" + countCategory + "の数字で入力してください");
                 catergoryNum = inputLongNumber("", reader);
             }
-            OptionalEntity<Category> selectMember1 = categoryBhv.selectEntity(cb -> {
-                cb.query().setUserId_Equal(userId);
+            final Long CATEGORY_NUM = catergoryNum;
+            OptionalEntity<Category> category = categoryBhv.selectEntity(cb -> {
+                cb.query().setCategoryId_Equal(CATEGORY_NUM);
             });
-            String categoryName = selectMember1.get().getCategory();
-            statement.setCategoryId(catergoryNum);
+            String categoryName = category.get().getCategory();
+            statement.setCategoryId(CATEGORY_NUM);
 
             //アカウントを登録
             System.out.println("アカウントを選んでください（数字で選択）");
             int countAccount = accountBhv.selectCount(cb -> {
-                //TODO　会員IDとヒモ付
                 cb.query().setUserId_Equal(userId);
             });
             ListResultBean<Account> AccounttList = accountBhv.selectList(cb -> {
-                //TODO 会員IDとヒモ付
                 cb.query().setUserId_Equal(userId);
                 cb.query().addOrderBy_AccountId_Asc();
             });
@@ -158,11 +161,12 @@ public class KakeiboJob implements LaJob {
                 System.out.println("1~" + countAccount + "の数字で入力してください");
                 accountNum = inputLongNumber("", reader);
             }
+            final Long ACCOUNT_NUM = accountNum;
             OptionalEntity<Account> selectMember2 = accountBhv.selectEntity(cb -> {
-                cb.query().setUserId_Equal(userId);
+                cb.query().setAccountId_Equal(ACCOUNT_NUM);
             });
             String accountName = selectMember2.get().getAccountName();
-            statement.setAccountId(accountNum);
+            statement.setAccountId(ACCOUNT_NUM);
 
             //金額を登録
             int amount = inputIntNumber("金額を入力してください（ex.500）", reader);
@@ -174,12 +178,12 @@ public class KakeiboJob implements LaJob {
 
             //登録内容の確認
             System.out.println("入力内容を確認します");
-            System.out.println(typeName + " " + localDate + " " + categoryName + " " + accountName + " " + amount + "円 " + memo); //TODO カテゴリとアカウントは名称で表示したい
-            String answer = getAnswer("登録しますか", reader);
+            System.out.println(typeName + " " + localDate + " " + categoryName + " " + accountName + " " + amount + "円 " + memo);
+            String answer = getAnswer("登録しますか（はい/いいえ）", reader);
             if (answer.equals("はい")) {
                 statementBhv.insert(statement); //statementをkakeibodbに登録
                 System.out.println("登録完了");
-                answer = getAnswer("続けて登録しますか？", reader);
+                answer = getAnswer("続けて登録しますか？（はい/いいえ）", reader);
                 if (answer.equals("いいえ")) {
                     break;
                 }
@@ -208,7 +212,7 @@ public class KakeiboJob implements LaJob {
                     System.out.println("メールアドレス：" + mailAddress);
                     System.out.print("ユーザー名：" + userName);
                     System.out.println("パスワード：" + password);
-                    loginAnswer = getAnswer("入力間違いはありませんか？", reader);
+                    loginAnswer = getAnswer("入力間違いはありませんか？（はい/いいえ）", reader);
                     if (loginAnswer.equals("いいえ")) {
                         System.out.println("やり直します");
                     }
