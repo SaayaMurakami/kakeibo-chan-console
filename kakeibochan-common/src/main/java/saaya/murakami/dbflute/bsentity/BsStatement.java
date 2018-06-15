@@ -34,7 +34,7 @@ import saaya.murakami.dbflute.exentity.*;
  *     STATEMENT_ID
  *
  * [column]
- *     STATEMENT_ID, CATEGORY_ID, ACCOUNT_ID, STATEMENT_TYPE, DATE, AMOUNT, MEMO, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     STATEMENT_ID, USER_ID, CATEGORY_ID, ACCOUNT_ID, STATEMENT_TYPE, DATE, AMOUNT, MEMO, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -46,13 +46,13 @@ import saaya.murakami.dbflute.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     ACCOUNT, CATEGORY
+ *     ACCOUNT, CATEGORY, MEMBER
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     account, category
+ *     account, category, member
  *
  * [referrer property]
  *     
@@ -60,6 +60,7 @@ import saaya.murakami.dbflute.exentity.*;
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long statementId = entity.getStatementId();
+ * Long userId = entity.getUserId();
  * Long categoryId = entity.getCategoryId();
  * Long accountId = entity.getAccountId();
  * String statementType = entity.getStatementType();
@@ -72,6 +73,7 @@ import saaya.murakami.dbflute.exentity.*;
  * String updateUser = entity.getUpdateUser();
  * Long versionNo = entity.getVersionNo();
  * entity.setStatementId(statementId);
+ * entity.setUserId(userId);
  * entity.setCategoryId(categoryId);
  * entity.setAccountId(accountId);
  * entity.setStatementType(statementType);
@@ -100,6 +102,9 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
     //                                                                           =========
     /** (明細ID)STATEMENT_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _statementId;
+
+    /** (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} */
+    protected Long _userId;
 
     /** (カテゴリーID)CATEGORY_ID: {IX, NotNull, BIGINT(19), FK to CATEGORY} */
     protected Long _categoryId;
@@ -201,6 +206,27 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
         _category = category;
     }
 
+    /** (会員)MEMBER by my USER_ID, named 'member'. */
+    protected OptionalEntity<Member> _member;
+
+    /**
+     * [get] (会員)MEMBER by my USER_ID, named 'member'. <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'member'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<Member> getMember() {
+        if (_member == null) { _member = OptionalEntity.relationEmpty(this, "member"); }
+        return _member;
+    }
+
+    /**
+     * [set] (会員)MEMBER by my USER_ID, named 'member'.
+     * @param member The entity of foreign property 'member'. (NullAllowed)
+     */
+    public void setMember(OptionalEntity<Member> member) {
+        _member = member;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
@@ -237,6 +263,8 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
         { sb.append(li).append(xbRDS(_account, "account")); }
         if (_category != null && _category.isPresent())
         { sb.append(li).append(xbRDS(_category, "category")); }
+        if (_member != null && _member.isPresent())
+        { sb.append(li).append(xbRDS(_member, "member")); }
         return sb.toString();
     }
     protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
@@ -247,6 +275,7 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_statementId));
+        sb.append(dm).append(xfND(_userId));
         sb.append(dm).append(xfND(_categoryId));
         sb.append(dm).append(xfND(_accountId));
         sb.append(dm).append(xfND(_statementType));
@@ -272,6 +301,8 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
         { sb.append(dm).append("account"); }
         if (_category != null && _category.isPresent())
         { sb.append(dm).append("category"); }
+        if (_member != null && _member.isPresent())
+        { sb.append(dm).append("member"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -302,6 +333,24 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
     public void setStatementId(Long statementId) {
         registerModifiedProperty("statementId");
         _statementId = statementId;
+    }
+
+    /**
+     * [get] (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} <br>
+     * @return The value of the column 'USER_ID'. (basically NotNull if selected: for the constraint)
+     */
+    public Long getUserId() {
+        checkSpecifiedProperty("userId");
+        return _userId;
+    }
+
+    /**
+     * [set] (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} <br>
+     * @param userId The value of the column 'USER_ID'. (basically NotNull if update: for the constraint)
+     */
+    public void setUserId(Long userId) {
+        registerModifiedProperty("userId");
+        _userId = userId;
     }
 
     /**

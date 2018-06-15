@@ -108,6 +108,26 @@ public class BsStatementCQ extends AbstractBsStatementCQ {
      */
     public BsStatementCQ addOrderBy_StatementId_Desc() { regOBD("STATEMENT_ID"); return this; }
 
+    protected ConditionValue _userId;
+    public ConditionValue xdfgetUserId()
+    { if (_userId == null) { _userId = nCV(); }
+      return _userId; }
+    protected ConditionValue xgetCValueUserId() { return xdfgetUserId(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @return this. (NotNull)
+     */
+    public BsStatementCQ addOrderBy_UserId_Asc() { regOBA("USER_ID"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @return this. (NotNull)
+     */
+    public BsStatementCQ addOrderBy_UserId_Desc() { regOBD("USER_ID"); return this; }
+
     protected ConditionValue _categoryId;
     public ConditionValue xdfgetCategoryId()
     { if (_categoryId == null) { _categoryId = nCV(); }
@@ -375,6 +395,9 @@ public class BsStatementCQ extends AbstractBsStatementCQ {
         if (bq.hasConditionQueryCategory()) {
             uq.queryCategory().reflectRelationOnUnionQuery(bq.queryCategory(), uq.queryCategory());
         }
+        if (bq.hasConditionQueryMember()) {
+            uq.queryMember().reflectRelationOnUnionQuery(bq.queryMember(), uq.queryMember());
+        }
     }
 
     // ===================================================================================
@@ -419,6 +442,26 @@ public class BsStatementCQ extends AbstractBsStatementCQ {
     }
     protected void xsetupOuterJoinCategory() { xregOutJo("category"); }
     public boolean hasConditionQueryCategory() { return xhasQueRlMap("category"); }
+
+    /**
+     * Get the condition-query for relation table. <br>
+     * (会員)MEMBER by my USER_ID, named 'member'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberCQ queryMember() {
+        return xdfgetConditionQueryMember();
+    }
+    public MemberCQ xdfgetConditionQueryMember() {
+        String prop = "member";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMember()); xsetupOuterJoinMember(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MemberCQ xcreateQueryMember() {
+        String nrp = xresolveNRP("STATEMENT", "member"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "member", nrp);
+    }
+    protected void xsetupOuterJoinMember() { xregOutJo("member"); }
+    public boolean hasConditionQueryMember() { return xhasQueRlMap("member"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;

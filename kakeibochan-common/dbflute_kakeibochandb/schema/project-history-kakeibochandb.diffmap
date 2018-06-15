@@ -1,4 +1,33 @@
 map:{
+    ; 2018/06/14 17:00:52 = map:{
+        ; diffDate = 2018/06/14 17:00:52
+        ; diffAuthor = s-murakami
+        ; diffGitBranch = feature/kakeibo-dbflute
+        ; tableDiff = map:{
+            ; STATEMENT = map:{
+                ; tableName = STATEMENT
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; USER_ID = map:{
+                        ; columnName = USER_ID
+                        ; diffType = ADD
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; statement_ibfk_3(new) = map:{
+                        ; constraintName = statement_ibfk_3(new)
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; USER_ID = map:{
+                        ; constraintName = USER_ID
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2018/06/11 13:05:01 = map:{
         ; diffDate = 2018/06/11 13:05:01
         ; diffAuthor = ta-kato2

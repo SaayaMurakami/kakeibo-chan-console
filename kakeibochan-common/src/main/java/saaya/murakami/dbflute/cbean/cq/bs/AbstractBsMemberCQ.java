@@ -211,6 +211,25 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepUserId_ExistsReferrer_CategoryList(CategoryCQ sq);
 
     /**
+     * Set up ExistsReferrer (correlated sub-query). <br>
+     * {exists (select USER_ID from STATEMENT where ...)} <br>
+     * (明細)STATEMENT by USER_ID, named 'statementAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">existsStatement</span>(statementCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     statementCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of StatementList for 'exists'. (NotNull)
+     */
+    public void existsStatement(SubQuery<StatementCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        StatementCB cb = new StatementCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepUserId_ExistsReferrer_StatementList(cb.query());
+        registerExistsReferrer(cb.query(), "USER_ID", "USER_ID", pp, "statementList");
+    }
+    public abstract String keepUserId_ExistsReferrer_StatementList(StatementCQ sq);
+
+    /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
      * {not exists (select USER_ID from ACCOUNT where ...)} <br>
      * (アカウント)ACCOUNT by USER_ID, named 'accountAsOne'.
@@ -248,6 +267,25 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     }
     public abstract String keepUserId_NotExistsReferrer_CategoryList(CategoryCQ sq);
 
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br>
+     * {not exists (select USER_ID from STATEMENT where ...)} <br>
+     * (明細)STATEMENT by USER_ID, named 'statementAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">notExistsStatement</span>(statementCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     statementCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of UserId_NotExistsReferrer_StatementList for 'not exists'. (NotNull)
+     */
+    public void notExistsStatement(SubQuery<StatementCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        StatementCB cb = new StatementCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepUserId_NotExistsReferrer_StatementList(cb.query());
+        registerNotExistsReferrer(cb.query(), "USER_ID", "USER_ID", pp, "statementList");
+    }
+    public abstract String keepUserId_NotExistsReferrer_StatementList(StatementCQ sq);
+
     public void xsderiveAccountList(String fn, SubQuery<AccountCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         AccountCB cb = new AccountCB(); cb.xsetupForDerivedReferrer(this);
@@ -263,6 +301,14 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
         registerSpecifyDerivedReferrer(fn, cb.query(), "USER_ID", "USER_ID", pp, "categoryList", al, op);
     }
     public abstract String keepUserId_SpecifyDerivedReferrer_CategoryList(CategoryCQ sq);
+
+    public void xsderiveStatementList(String fn, SubQuery<StatementCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        StatementCB cb = new StatementCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepUserId_SpecifyDerivedReferrer_StatementList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "USER_ID", "USER_ID", pp, "statementList", al, op);
+    }
+    public abstract String keepUserId_SpecifyDerivedReferrer_StatementList(StatementCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
@@ -317,6 +363,33 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     }
     public abstract String keepUserId_QueryDerivedReferrer_CategoryList(CategoryCQ sq);
     public abstract String keepUserId_QueryDerivedReferrer_CategoryListParameter(Object vl);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
+     * {FOO &lt;= (select max(BAR) from STATEMENT where ...)} <br>
+     * (明細)STATEMENT by USER_ID, named 'statementAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">derivedStatement()</span>.<span style="color: #CC4747">max</span>(statementCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     statementCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     statementCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<StatementCB> derivedStatement() {
+        return xcreateQDRFunctionStatementList();
+    }
+    protected HpQDRFunction<StatementCB> xcreateQDRFunctionStatementList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveStatementList(fn, sq, rd, vl, op));
+    }
+    public void xqderiveStatementList(String fn, SubQuery<StatementCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        StatementCB cb = new StatementCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepUserId_QueryDerivedReferrer_StatementList(cb.query()); String prpp = keepUserId_QueryDerivedReferrer_StatementListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "USER_ID", "USER_ID", sqpp, "statementList", rd, vl, prpp, op);
+    }
+    public abstract String keepUserId_QueryDerivedReferrer_StatementList(StatementCQ sq);
+    public abstract String keepUserId_QueryDerivedReferrer_StatementListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>

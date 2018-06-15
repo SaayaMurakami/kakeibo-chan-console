@@ -28,7 +28,7 @@ import saaya.murakami.dbflute.exentity.*;
  *     STATEMENT_ID
  *
  * [column]
- *     STATEMENT_ID, CATEGORY_ID, ACCOUNT_ID, STATEMENT_TYPE, DATE, AMOUNT, MEMO, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     STATEMENT_ID, USER_ID, CATEGORY_ID, ACCOUNT_ID, STATEMENT_TYPE, DATE, AMOUNT, MEMO, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -40,13 +40,13 @@ import saaya.murakami.dbflute.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     ACCOUNT, CATEGORY
+ *     ACCOUNT, CATEGORY, MEMBER
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     account, category
+ *     account, category, member
  *
  * [referrer property]
  *     
@@ -86,6 +86,13 @@ public class LoaderOfStatement {
         if (_foreignCategoryLoader == null)
         { _foreignCategoryLoader = new LoaderOfCategory().ready(myBhv().pulloutCategory(_selectedList), _selector); }
         return _foreignCategoryLoader;
+    }
+
+    protected LoaderOfMember _foreignMemberLoader;
+    public LoaderOfMember pulloutMember() {
+        if (_foreignMemberLoader == null)
+        { _foreignMemberLoader = new LoaderOfMember().ready(myBhv().pulloutMember(_selectedList), _selector); }
+        return _foreignMemberLoader;
     }
 
     // ===================================================================================

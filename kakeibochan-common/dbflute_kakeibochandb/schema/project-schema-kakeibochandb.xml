@@ -92,6 +92,8 @@
         <column autoIncrement="true" comment="明細ID" dbType="BIGINT"
             javaType="Long" name="STATEMENT_ID" pkName="PRIMARY"
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="会員ID" dbType="BIGINT" javaType="Long"
+            name="USER_ID" required="true" size="19" type="BIGINT"/>
         <column comment="カテゴリーID " dbType="BIGINT" javaType="Long"
             name="CATEGORY_ID" required="true" size="19" type="BIGINT"/>
         <column comment="アカウントID" dbType="BIGINT" javaType="Long"
@@ -126,11 +128,18 @@
             foreignTable="CATEGORY" name="statement_ibfk_2">
             <reference foreign="CATEGORY_ID" local="CATEGORY_ID"/>
         </foreign-key>
+        <foreign-key foreignSchema="kakeibochandb.$$NoNameSchema$$"
+            foreignTable="MEMBER" name="statement_ibfk_3">
+            <reference foreign="USER_ID" local="USER_ID"/>
+        </foreign-key>
         <index name="ACCOUNT_ID">
             <index-column name="ACCOUNT_ID" position="1"/>
         </index>
         <index name="CATEGORY_ID">
             <index-column name="CATEGORY_ID" position="1"/>
+        </index>
+        <index name="USER_ID">
+            <index-column name="USER_ID" position="1"/>
         </index>
     </table>
     <procedureGroup/>

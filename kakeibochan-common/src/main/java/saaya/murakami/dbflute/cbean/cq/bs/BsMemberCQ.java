@@ -100,17 +100,26 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     public Map<String, CategoryCQ> xdfgetUserId_ExistsReferrer_CategoryList() { return xgetSQueMap("userId_ExistsReferrer_CategoryList"); }
     public String keepUserId_ExistsReferrer_CategoryList(CategoryCQ sq) { return xkeepSQue("userId_ExistsReferrer_CategoryList", sq); }
 
+    public Map<String, StatementCQ> xdfgetUserId_ExistsReferrer_StatementList() { return xgetSQueMap("userId_ExistsReferrer_StatementList"); }
+    public String keepUserId_ExistsReferrer_StatementList(StatementCQ sq) { return xkeepSQue("userId_ExistsReferrer_StatementList", sq); }
+
     public Map<String, AccountCQ> xdfgetUserId_NotExistsReferrer_AccountList() { return xgetSQueMap("userId_NotExistsReferrer_AccountList"); }
     public String keepUserId_NotExistsReferrer_AccountList(AccountCQ sq) { return xkeepSQue("userId_NotExistsReferrer_AccountList", sq); }
 
     public Map<String, CategoryCQ> xdfgetUserId_NotExistsReferrer_CategoryList() { return xgetSQueMap("userId_NotExistsReferrer_CategoryList"); }
     public String keepUserId_NotExistsReferrer_CategoryList(CategoryCQ sq) { return xkeepSQue("userId_NotExistsReferrer_CategoryList", sq); }
 
+    public Map<String, StatementCQ> xdfgetUserId_NotExistsReferrer_StatementList() { return xgetSQueMap("userId_NotExistsReferrer_StatementList"); }
+    public String keepUserId_NotExistsReferrer_StatementList(StatementCQ sq) { return xkeepSQue("userId_NotExistsReferrer_StatementList", sq); }
+
     public Map<String, AccountCQ> xdfgetUserId_SpecifyDerivedReferrer_AccountList() { return xgetSQueMap("userId_SpecifyDerivedReferrer_AccountList"); }
     public String keepUserId_SpecifyDerivedReferrer_AccountList(AccountCQ sq) { return xkeepSQue("userId_SpecifyDerivedReferrer_AccountList", sq); }
 
     public Map<String, CategoryCQ> xdfgetUserId_SpecifyDerivedReferrer_CategoryList() { return xgetSQueMap("userId_SpecifyDerivedReferrer_CategoryList"); }
     public String keepUserId_SpecifyDerivedReferrer_CategoryList(CategoryCQ sq) { return xkeepSQue("userId_SpecifyDerivedReferrer_CategoryList", sq); }
+
+    public Map<String, StatementCQ> xdfgetUserId_SpecifyDerivedReferrer_StatementList() { return xgetSQueMap("userId_SpecifyDerivedReferrer_StatementList"); }
+    public String keepUserId_SpecifyDerivedReferrer_StatementList(StatementCQ sq) { return xkeepSQue("userId_SpecifyDerivedReferrer_StatementList", sq); }
 
     public Map<String, AccountCQ> xdfgetUserId_QueryDerivedReferrer_AccountList() { return xgetSQueMap("userId_QueryDerivedReferrer_AccountList"); }
     public String keepUserId_QueryDerivedReferrer_AccountList(AccountCQ sq) { return xkeepSQue("userId_QueryDerivedReferrer_AccountList", sq); }
@@ -121,6 +130,11 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     public String keepUserId_QueryDerivedReferrer_CategoryList(CategoryCQ sq) { return xkeepSQue("userId_QueryDerivedReferrer_CategoryList", sq); }
     public Map<String, Object> xdfgetUserId_QueryDerivedReferrer_CategoryListParameter() { return xgetSQuePmMap("userId_QueryDerivedReferrer_CategoryList"); }
     public String keepUserId_QueryDerivedReferrer_CategoryListParameter(Object pm) { return xkeepSQuePm("userId_QueryDerivedReferrer_CategoryList", pm); }
+
+    public Map<String, StatementCQ> xdfgetUserId_QueryDerivedReferrer_StatementList() { return xgetSQueMap("userId_QueryDerivedReferrer_StatementList"); }
+    public String keepUserId_QueryDerivedReferrer_StatementList(StatementCQ sq) { return xkeepSQue("userId_QueryDerivedReferrer_StatementList", sq); }
+    public Map<String, Object> xdfgetUserId_QueryDerivedReferrer_StatementListParameter() { return xgetSQuePmMap("userId_QueryDerivedReferrer_StatementList"); }
+    public String keepUserId_QueryDerivedReferrer_StatementListParameter(Object pm) { return xkeepSQuePm("userId_QueryDerivedReferrer_StatementList", pm); }
 
     /**
      * Add order-by as ascend. <br>

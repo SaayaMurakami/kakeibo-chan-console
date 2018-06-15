@@ -77,6 +77,7 @@ public class StatementCIQ extends AbstractBsStatementCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueStatementId() { return _myCQ.xdfgetStatementId(); }
+    protected ConditionValue xgetCValueUserId() { return _myCQ.xdfgetUserId(); }
     protected ConditionValue xgetCValueCategoryId() { return _myCQ.xdfgetCategoryId(); }
     protected ConditionValue xgetCValueAccountId() { return _myCQ.xdfgetAccountId(); }
     protected ConditionValue xgetCValueStatementType() { return _myCQ.xdfgetStatementType(); }

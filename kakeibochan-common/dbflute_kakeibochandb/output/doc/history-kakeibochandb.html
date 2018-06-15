@@ -214,6 +214,33 @@ dl.column-content dd span {
 <p class="sistersublink"><a href="./properties-kakeibochandb.html">to PropertiesHTML</a></p>
 </div>
 
+<div class="section diffCode_20180614170052">
+	<h2>
+		<span class="titlediffno">diffNo. 10:</span> <span class="titlediffdatepart">2018/06/14</span> <span class="titledifftimepart">17:00:52</span>
+		<span class="titlediffauthor">by s-murakami</span>
+		<span class="titlediffgitbranch">on feature/kakeibo-dbflute</span>
+	</h2>
+	<pre class="diffcomment"></pre>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4><a href="./schema-kakeibochandb.html#statement">STATEMENT</a></h4>
+		<div class="change-table-content">
+			<h5>Add Column</h5>
+			<ul class="column-content">
+				<li>USER_ID</li>
+			</ul>
+			<h5>Add FK</h5>
+			<ul class="column-content">
+				<li>statement_ibfk_3(new)</li>
+			</ul>
+			<h5>Add Index</h5>
+			<ul class="column-content">
+				<li>USER_ID</li>
+			</ul>
+		</div>
+	</div>
+</div>
 <div class="section diffCode_20180611130501">
 	<h2>
 		<span class="titlediffno">diffNo. 9:</span> <span class="titlediffdatepart">2018/06/11</span> <span class="titledifftimepart">13:05:01</span>
@@ -224,7 +251,7 @@ dl.column-content dd span {
 
 	<h3>Change Table</h3>
 	<div class="table-content">
-		<h4><a href="./schema-kakeibochandb.html#account">ACCOUNT</a></h4>
+		<h4>ACCOUNT</h4>
 		<div class="change-table-content">
 			<h5>Add Column</h5>
 			<ul class="column-content">
@@ -235,7 +262,7 @@ dl.column-content dd span {
 				<li>VERSION_NO</li>
 			</ul>
 		</div>
-		<h4><a href="./schema-kakeibochandb.html#category">CATEGORY</a></h4>
+		<h4>CATEGORY</h4>
 		<div class="change-table-content">
 			<h5>Add Column</h5>
 			<ul class="column-content">
@@ -246,7 +273,7 @@ dl.column-content dd span {
 				<li>VERSION_NO</li>
 			</ul>
 		</div>
-		<h4><a href="./schema-kakeibochandb.html#member">MEMBER</a></h4>
+		<h4>MEMBER</h4>
 		<div class="change-table-content">
 			<h5>Add Column</h5>
 			<ul class="column-content">
@@ -257,7 +284,7 @@ dl.column-content dd span {
 				<li>VERSION_NO</li>
 			</ul>
 		</div>
-		<h4><a href="./schema-kakeibochandb.html#statement">STATEMENT</a></h4>
+		<h4>STATEMENT</h4>
 		<div class="change-table-content">
 			<h5>Add Column</h5>
 			<ul class="column-content">
@@ -703,7 +730,11 @@ dl.column-content dd span {
             ]
         };
         this.pickupStore = {
-            '20180611130501' : {
+            '20180614170052' : {
+                'diffDate' : '2018/06/14 17:00:52',
+                'diffComment' : ''
+            }
+            , '20180611130501' : {
                 'diffDate' : '2018/06/11 13:05:01',
                 'diffComment' : ''
             }

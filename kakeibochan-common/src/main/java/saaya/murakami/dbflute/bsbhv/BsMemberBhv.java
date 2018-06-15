@@ -56,13 +56,13 @@ import saaya.murakami.dbflute.cbean.*;
  *     
  *
  * [referrer table]
- *     ACCOUNT, CATEGORY
+ *     ACCOUNT, CATEGORY, STATEMENT
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     accountList, categoryList
+ *     accountList, categoryList, statementList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -525,6 +525,70 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
 
     protected NestedReferrerListGateway<Category> doLoadCategory(List<Member> memberList, LoadReferrerOption<CategoryCB, Category> option) {
         return helpLoadReferrerInternally(memberList, option, "categoryList");
+    }
+
+    /**
+     * Load referrer of statementList by the set-upper of referrer. <br>
+     * (明細)STATEMENT by USER_ID, named 'statementList'.
+     * <pre>
+     * <span style="color: #0000C0">memberBhv</span>.<span style="color: #CC4747">loadStatement</span>(<span style="color: #553000">memberList</span>, <span style="color: #553000">statementCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">statementCB</span>.setupSelect...
+     *     <span style="color: #553000">statementCB</span>.query().set...
+     *     <span style="color: #553000">statementCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (Member member : <span style="color: #553000">memberList</span>) {
+     *     ... = member.<span style="color: #CC4747">getStatementList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setUserId_InScope(pkList);
+     * cb.query().addOrderBy_UserId_Asc();
+     * </pre>
+     * @param memberList The entity list of member. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<Statement> loadStatement(List<Member> memberList, ReferrerConditionSetupper<StatementCB> refCBLambda) {
+        xassLRArg(memberList, refCBLambda);
+        return doLoadStatement(memberList, new LoadReferrerOption<StatementCB, Statement>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of statementList by the set-upper of referrer. <br>
+     * (明細)STATEMENT by USER_ID, named 'statementList'.
+     * <pre>
+     * <span style="color: #0000C0">memberBhv</span>.<span style="color: #CC4747">loadStatement</span>(<span style="color: #553000">member</span>, <span style="color: #553000">statementCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">statementCB</span>.setupSelect...
+     *     <span style="color: #553000">statementCB</span>.query().set...
+     *     <span style="color: #553000">statementCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">member</span>.<span style="color: #CC4747">getStatementList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setUserId_InScope(pkList);
+     * cb.query().addOrderBy_UserId_Asc();
+     * </pre>
+     * @param member The entity of member. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<Statement> loadStatement(Member member, ReferrerConditionSetupper<StatementCB> refCBLambda) {
+        xassLRArg(member, refCBLambda);
+        return doLoadStatement(xnewLRLs(member), new LoadReferrerOption<StatementCB, Statement>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<Statement> doLoadStatement(List<Member> memberList, LoadReferrerOption<StatementCB, Statement> option) {
+        return helpLoadReferrerInternally(memberList, option, "statementList");
     }
 
     // ===================================================================================

@@ -41,7 +41,7 @@ import saaya.murakami.dbflute.cbean.*;
  *     STATEMENT_ID
  *
  * [column]
- *     STATEMENT_ID, CATEGORY_ID, ACCOUNT_ID, STATEMENT_TYPE, DATE, AMOUNT, MEMO, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     STATEMENT_ID, USER_ID, CATEGORY_ID, ACCOUNT_ID, STATEMENT_TYPE, DATE, AMOUNT, MEMO, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -53,13 +53,13 @@ import saaya.murakami.dbflute.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     ACCOUNT, CATEGORY
+ *     ACCOUNT, CATEGORY, MEMBER
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     account, category
+ *     account, category, member
  *
  * [referrer property]
  *     
@@ -392,6 +392,14 @@ public abstract class BsStatementBhv extends AbstractBehaviorWritable<Statement,
      */
     public List<Category> pulloutCategory(List<Statement> statementList)
     { return helpPulloutInternally(statementList, "category"); }
+
+    /**
+     * Pull out the list of foreign table 'Member'.
+     * @param statementList The list of statement. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<Member> pulloutMember(List<Statement> statementList)
+    { return helpPulloutInternally(statementList, "member"); }
 
     // ===================================================================================
     //                                                                      Extract Column

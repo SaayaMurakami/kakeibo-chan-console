@@ -51,4 +51,11 @@ public class StatementNss {
         _query.xdoNss(() -> _query.queryCategory());
         return new CategoryNss(_query.queryCategory());
     }
+    /**
+     * With nested relation columns to select clause. <br>
+     * (会員)MEMBER by my USER_ID, named 'member'.
+     */
+    public void withMember() {
+        _query.xdoNss(() -> _query.queryMember());
+    }
 }

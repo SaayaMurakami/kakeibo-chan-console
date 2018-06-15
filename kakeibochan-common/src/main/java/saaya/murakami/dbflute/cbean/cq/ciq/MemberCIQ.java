@@ -81,13 +81,19 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     { throwIICBOE("ExistsReferrer"); return null; }
     public String keepUserId_ExistsReferrer_CategoryList(CategoryCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepUserId_ExistsReferrer_StatementList(StatementCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepUserId_NotExistsReferrer_AccountList(AccountCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepUserId_NotExistsReferrer_CategoryList(CategoryCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepUserId_NotExistsReferrer_StatementList(StatementCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepUserId_SpecifyDerivedReferrer_AccountList(AccountCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepUserId_SpecifyDerivedReferrer_CategoryList(CategoryCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepUserId_SpecifyDerivedReferrer_StatementList(StatementCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepUserId_QueryDerivedReferrer_AccountList(AccountCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
@@ -96,6 +102,10 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     public String keepUserId_QueryDerivedReferrer_CategoryList(CategoryCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepUserId_QueryDerivedReferrer_CategoryListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepUserId_QueryDerivedReferrer_StatementList(StatementCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepUserId_QueryDerivedReferrer_StatementListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueMailAddress() { return _myCQ.xdfgetMailAddress(); }
     protected ConditionValue xgetCValueUserName() { return _myCQ.xdfgetUserName(); }

@@ -398,6 +398,23 @@ public class BsMemberCB extends AbstractConditionBean {
                     -> cq.xsderiveCategoryList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
+         * {select max(FOO) from STATEMENT where ...) as FOO_MAX} <br>
+         * (明細)STATEMENT by USER_ID, named 'statementList'.
+         * <pre>
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(statementCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     statementCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     statementCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, Statement.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<StatementCB, MemberCQ> derivedStatement() {
+            assertDerived("statementList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<StatementCB> sq, MemberCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveStatementList(fn, sq, al, op), _dbmetaProvider);
+        }
+        /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)
          */

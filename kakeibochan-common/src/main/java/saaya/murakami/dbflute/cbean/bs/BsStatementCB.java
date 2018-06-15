@@ -312,6 +312,26 @@ public class BsStatementCB extends AbstractConditionBean {
         return _nssCategory;
     }
 
+    /**
+     * Set up relation columns to select clause. <br>
+     * (会員)MEMBER by my USER_ID, named 'member'.
+     * <pre>
+     * <span style="color: #0000C0">statementBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Member()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.query().set...
+     * }).alwaysPresent(<span style="color: #553000">statement</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">statement</span>.<span style="color: #CC4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * });
+     * </pre>
+     */
+    public void setupSelect_Member() {
+        assertSetupSelectPurpose("member");
+        if (hasSpecifiedLocalColumn()) {
+            specify().columnUserId();
+        }
+        doSetupSelect(() -> query().queryMember());
+    }
+
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -355,6 +375,7 @@ public class BsStatementCB extends AbstractConditionBean {
     public static class HpSpecification extends HpAbstractSpecification<StatementCQ> {
         protected AccountCB.HpSpecification _account;
         protected CategoryCB.HpSpecification _category;
+        protected MemberCB.HpSpecification _member;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<StatementCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
@@ -364,6 +385,11 @@ public class BsStatementCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnStatementId() { return doColumn("STATEMENT_ID"); }
+        /**
+         * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnUserId() { return doColumn("USER_ID"); }
         /**
          * (カテゴリーID)CATEGORY_ID: {IX, NotNull, BIGINT(19), FK to CATEGORY}
          * @return The information object of specified column. (NotNull)
@@ -432,6 +458,10 @@ public class BsStatementCB extends AbstractConditionBean {
                     || qyCall().qy().xgetReferrerQuery() instanceof CategoryCQ) {
                 columnCategoryId(); // FK or one-to-one referrer
             }
+            if (qyCall().qy().hasConditionQueryMember()
+                    || qyCall().qy().xgetReferrerQuery() instanceof MemberCQ) {
+                columnUserId(); // FK or one-to-one referrer
+            }
         }
         @Override
         protected String getTableDbName() { return "STATEMENT"; }
@@ -474,6 +504,26 @@ public class BsStatementCB extends AbstractConditionBean {
                 }
             }
             return _category;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br>
+         * (会員)MEMBER by my USER_ID, named 'member'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberCB.HpSpecification specifyMember() {
+            assertRelation("member");
+            if (_member == null) {
+                _member = new MemberCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryMember()
+                                    , () -> _qyCall.qy().queryMember())
+                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
+                if (xhasSyncQyCall()) { // inherits it
+                    _member.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMember()
+                      , () -> xsyncQyCall().qy().queryMember()));
+                }
+            }
+            return _member;
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

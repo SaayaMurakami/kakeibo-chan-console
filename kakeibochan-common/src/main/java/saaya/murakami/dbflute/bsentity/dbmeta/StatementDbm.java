@@ -59,6 +59,7 @@ public class StatementDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((Statement)et).getStatementId(), (et, vl) -> ((Statement)et).setStatementId(ctl(vl)), "statementId");
+        setupEpg(_epgMap, et -> ((Statement)et).getUserId(), (et, vl) -> ((Statement)et).setUserId(ctl(vl)), "userId");
         setupEpg(_epgMap, et -> ((Statement)et).getCategoryId(), (et, vl) -> ((Statement)et).setCategoryId(ctl(vl)), "categoryId");
         setupEpg(_epgMap, et -> ((Statement)et).getAccountId(), (et, vl) -> ((Statement)et).setAccountId(ctl(vl)), "accountId");
         setupEpg(_epgMap, et -> ((Statement)et).getStatementType(), (et, vl) -> ((Statement)et).setStatementType((String)vl), "statementType");
@@ -83,6 +84,7 @@ public class StatementDbm extends AbstractDBMeta {
     protected void xsetupEfpg() {
         setupEfpg(_efpgMap, et -> ((Statement)et).getAccount(), (et, vl) -> ((Statement)et).setAccount((OptionalEntity<Account>)vl), "account");
         setupEfpg(_efpgMap, et -> ((Statement)et).getCategory(), (et, vl) -> ((Statement)et).setCategory((OptionalEntity<Category>)vl), "category");
+        setupEfpg(_efpgMap, et -> ((Statement)et).getMember(), (et, vl) -> ((Statement)et).setMember((OptionalEntity<Member>)vl), "member");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -106,6 +108,7 @@ public class StatementDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnStatementId = cci("STATEMENT_ID", "STATEMENT_ID", null, "明細ID", Long.class, "statementId", null, true, true, true, "BIGINT", 19, 0, null, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUserId = cci("USER_ID", "USER_ID", null, "会員ID", Long.class, "userId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "member", null, null, false);
     protected final ColumnInfo _columnCategoryId = cci("CATEGORY_ID", "CATEGORY_ID", null, "カテゴリーID", Long.class, "categoryId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "category", null, null, false);
     protected final ColumnInfo _columnAccountId = cci("ACCOUNT_ID", "ACCOUNT_ID", null, "アカウントID", Long.class, "accountId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "account", null, null, false);
     protected final ColumnInfo _columnStatementType = cci("STATEMENT_TYPE", "STATEMENT_TYPE", null, "STATEMENT_TYPE", String.class, "statementType", null, false, false, true, "VARCHAR", 10, 0, null, null, false, null, null, null, null, null, false);
@@ -123,6 +126,11 @@ public class StatementDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnStatementId() { return _columnStatementId; }
+    /**
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnUserId() { return _columnUserId; }
     /**
      * (カテゴリーID)CATEGORY_ID: {IX, NotNull, BIGINT(19), FK to CATEGORY}
      * @return The information object of specified column. (NotNull)
@@ -182,6 +190,7 @@ public class StatementDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnStatementId());
+        ls.add(columnUserId());
         ls.add(columnCategoryId());
         ls.add(columnAccountId());
         ls.add(columnStatementType());
@@ -231,6 +240,14 @@ public class StatementDbm extends AbstractDBMeta {
     public ForeignInfo foreignCategory() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCategoryId(), CategoryDbm.getInstance().columnCategoryId());
         return cfi("statement_ibfk_2", "category", this, CategoryDbm.getInstance(), mp, 1, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "statementList", false);
+    }
+    /**
+     * (会員)MEMBER by my USER_ID, named 'member'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMember() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUserId(), MemberDbm.getInstance().columnUserId());
+        return cfi("statement_ibfk_3", "member", this, MemberDbm.getInstance(), mp, 2, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "statementList", false);
     }
 
     // -----------------------------------------------------

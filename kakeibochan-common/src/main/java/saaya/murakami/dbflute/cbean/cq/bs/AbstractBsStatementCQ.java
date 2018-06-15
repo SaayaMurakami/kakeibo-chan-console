@@ -189,6 +189,123 @@ public abstract class AbstractBsStatementCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param userId The value of userId as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_Equal(Long userId) {
+        doSetUserId_Equal(userId);
+    }
+
+    protected void doSetUserId_Equal(Long userId) {
+        regUserId(CK_EQ, userId);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param userId The value of userId as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_NotEqual(Long userId) {
+        doSetUserId_NotEqual(userId);
+    }
+
+    protected void doSetUserId_NotEqual(Long userId) {
+        regUserId(CK_NES, userId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param userId The value of userId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_GreaterThan(Long userId) {
+        regUserId(CK_GT, userId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param userId The value of userId as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_LessThan(Long userId) {
+        regUserId(CK_LT, userId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param userId The value of userId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_GreaterEqual(Long userId) {
+        regUserId(CK_GE, userId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param userId The value of userId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_LessEqual(Long userId) {
+        regUserId(CK_LE, userId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param minNumber The min number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setUserId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setUserId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param minNumber The min number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setUserId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueUserId(), "USER_ID", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param userIdList The collection of userId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setUserId_InScope(Collection<Long> userIdList) {
+        doSetUserId_InScope(userIdList);
+    }
+
+    protected void doSetUserId_InScope(Collection<Long> userIdList) {
+        regINS(CK_INS, cTL(userIdList), xgetCValueUserId(), "USER_ID");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param userIdList The collection of userId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setUserId_NotInScope(Collection<Long> userIdList) {
+        doSetUserId_NotInScope(userIdList);
+    }
+
+    protected void doSetUserId_NotInScope(Collection<Long> userIdList) {
+        regINS(CK_NINS, cTL(userIdList), xgetCValueUserId(), "USER_ID");
+    }
+
+    protected void regUserId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueUserId(), "USER_ID"); }
+    protected abstract ConditionValue xgetCValueUserId();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
      * (カテゴリーID)CATEGORY_ID: {IX, NotNull, BIGINT(19), FK to CATEGORY}
      * @param categoryId The value of categoryId as equal. (basically NotNull: error as default, or no condition as option)
      */

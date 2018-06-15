@@ -88,7 +88,7 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnUserId = cci("USER_ID", "USER_ID", null, "会員ID", Long.class, "userId", null, true, true, true, "BIGINT", 19, 0, null, null, false, null, null, null, "accountList,categoryList", null, false);
+    protected final ColumnInfo _columnUserId = cci("USER_ID", "USER_ID", null, "会員ID", Long.class, "userId", null, true, true, true, "BIGINT", 19, 0, null, null, false, null, null, null, "accountList,categoryList,statementList", null, false);
     protected final ColumnInfo _columnMailAddress = cci("MAIL_ADDRESS", "MAIL_ADDRESS", null, "メールアドレス", String.class, "mailAddress", null, false, false, true, "VARCHAR", 200, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnUserName = cci("USER_NAME", "USER_NAME", null, "名前", String.class, "userName", null, false, false, true, "VARCHAR", 200, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnPassword = cci("PASSWORD", "PASSWORD", null, "パスワード", String.class, "password", null, false, false, true, "VARCHAR", 200, 0, null, null, false, null, null, null, null, null, false);
@@ -202,6 +202,14 @@ public class MemberDbm extends AbstractDBMeta {
     public ReferrerInfo referrerCategoryList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUserId(), CategoryDbm.getInstance().columnUserId());
         return cri("category_ibfk_1", "categoryList", this, CategoryDbm.getInstance(), mp, false, "member");
+    }
+    /**
+     * (明細)STATEMENT by USER_ID, named 'statementList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerStatementList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUserId(), StatementDbm.getInstance().columnUserId());
+        return cri("statement_ibfk_3", "statementList", this, StatementDbm.getInstance(), mp, false, "member");
     }
 
     // ===================================================================================

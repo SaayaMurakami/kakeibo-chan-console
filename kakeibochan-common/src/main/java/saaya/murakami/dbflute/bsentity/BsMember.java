@@ -47,13 +47,13 @@ import saaya.murakami.dbflute.exentity.*;
  *     
  *
  * [referrer table]
- *     ACCOUNT, CATEGORY
+ *     ACCOUNT, CATEGORY, STATEMENT
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     accountList, categoryList
+ *     accountList, categoryList, statementList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -196,6 +196,26 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         _categoryList = categoryList;
     }
 
+    /** (明細)STATEMENT by USER_ID, named 'statementList'. */
+    protected List<Statement> _statementList;
+
+    /**
+     * [get] (明細)STATEMENT by USER_ID, named 'statementList'.
+     * @return The entity list of referrer property 'statementList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<Statement> getStatementList() {
+        if (_statementList == null) { _statementList = newReferrerList(); }
+        return _statementList;
+    }
+
+    /**
+     * [set] (明細)STATEMENT by USER_ID, named 'statementList'.
+     * @param statementList The entity list of referrer property 'statementList'. (NullAllowed)
+     */
+    public void setStatementList(List<Statement> statementList) {
+        _statementList = statementList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
         return new ArrayList<ELEMENT>();
     }
@@ -229,6 +249,8 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         { if (et != null) { sb.append(li).append(xbRDS(et, "accountList")); } } }
         if (_categoryList != null) { for (Category et : _categoryList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "categoryList")); } } }
+        if (_statementList != null) { for (Statement et : _statementList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "statementList")); } } }
         return sb.toString();
     }
 
@@ -258,6 +280,8 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         { sb.append(dm).append("accountList"); }
         if (_categoryList != null && !_categoryList.isEmpty())
         { sb.append(dm).append("categoryList"); }
+        if (_statementList != null && !_statementList.isEmpty())
+        { sb.append(dm).append("statementList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
