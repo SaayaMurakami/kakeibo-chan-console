@@ -66,6 +66,10 @@ public class KakeiboJob implements LaJob {
             long userId = loginProcess(reader);
 
             //家計簿
+            OptionalEntity<Member> loginMember = memberBhv.selectEntity(cb -> {
+                cb.query().setUserId_Equal(userId);
+            });
+            System.out.println("ようこそ" + loginMember.get().getUserName() + "さん");
             loopout: do {
                 System.out.println("やりたいことを選んでね（数字で選択）");
                 System.out.println("1.家計簿をつける  2.家計簿を見る　3.カテゴリを編集する　4.アカウントを編集する　5.終了");
