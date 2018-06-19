@@ -176,14 +176,14 @@ public class BsStatementCQ extends AbstractBsStatementCQ {
 
     /**
      * Add order-by as ascend. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType}
      * @return this. (NotNull)
      */
     public BsStatementCQ addOrderBy_StatementType_Asc() { regOBA("STATEMENT_TYPE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType}
      * @return this. (NotNull)
      */
     public BsStatementCQ addOrderBy_StatementType_Desc() { regOBD("STATEMENT_TYPE"); return this; }

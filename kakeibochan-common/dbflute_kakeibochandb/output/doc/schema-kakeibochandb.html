@@ -366,10 +366,10 @@ dl.procedurelist dd.column pre {
 <p class="sisterlink"><a href="./history-kakeibochandb.html">to HistoryHTML</a></p>
 <p class="sistersublink">
 <a href="./properties-kakeibochandb.html">to PropertiesHTML</a>
-| <a href="./lastadoc-kakeibochan.html">to lastadoc-kakeibochan.html</a>
-| <a href="./lastadoc-hangar.html">to lastadoc-hangar.html</a>
 | <a href="./lastadoc-batch.html">to lastadoc-batch.html</a>
 | <a href="./lastadoc-dockside.html">to lastadoc-dockside.html</a>
+| <a href="./lastadoc-hangar.html">to lastadoc-hangar.html</a>
+| <a href="./lastadoc-kakeibochan.html">to lastadoc-kakeibochan.html</a>
 | <a href="./lastadoc-showbase.html">to lastadoc-showbase.html</a>
 </p>
 </div>
@@ -1181,7 +1181,7 @@ dl.procedurelist dd.column pre {
 		<td class="sizecell"> 10 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
+		<td class="relcell"><a href="#StatementTypeCls">StatementType</a></td>
 		<td class="commentcell"><pre>&nbsp;</pre></td>
 		<td class="subcell">statementType</td>
 		<td class="subcell">String</td>
@@ -1357,7 +1357,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td>Flg</td>
 		<td class="clstypecell"> implicit</td>
-		<td>general&nbsp;boolean&nbsp;classification&nbsp;for&nbsp;every&nbsp;flg-column</td>
+		<td>フラグ。共通的なフラグを表す区分値で、基本的にXxxフラグと呼べるものに関連付けられる。</td>
 		<td>
 			<table class="child">
 			<tr>
@@ -1368,17 +1368,47 @@ dl.procedurelist dd.column pre {
 				<th>Sisters</th>
 			</tr>
 			<tr>
-				<td>1</td>
+				<td>Y</td>
 				<td>True</td>
-				<td>Checked</td>
-				<td class="commentcell">means&nbsp;yes</td>
+				<td>Yes</td>
+				<td class="commentcell">フラグがTrueを表す</td>
 				<td>true</td>
 			</tr>
 			<tr>
-				<td>0</td>
+				<td>N</td>
 				<td>False</td>
-				<td>Unchecked</td>
-				<td class="commentcell">means&nbsp;no</td>
+				<td>No</td>
+				<td class="commentcell">フラグふぁFalseを表す</td>
+				<td>false</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>StatementType</td>
+		<td class="clstypecell"> implicit</td>
+		<td>明細の種類を表す区分値</td>
+		<td>
+			<table class="child">
+			<tr>
+				<th id="StatementTypeCls">Code</th>
+				<th>Name</th>
+				<th>Alias</th>
+				<th>Comment</th>
+				<th>Sisters</th>
+			</tr>
+			<tr>
+				<td>INCOME</td>
+				<td>Income</td>
+				<td>収入</td>
+				<td class="commentcell">収入を表す</td>
+				<td>true</td>
+			</tr>
+			<tr>
+				<td>SPEND</td>
+				<td>Spend</td>
+				<td>支出</td>
+				<td class="commentcell">支出を表す</td>
 				<td>false</td>
 			</tr>
 			</table>

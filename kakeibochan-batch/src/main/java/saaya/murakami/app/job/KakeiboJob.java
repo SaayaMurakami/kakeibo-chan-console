@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import javax.annotation.Resource;
 
@@ -30,6 +31,7 @@ import org.lastaflute.job.LaJobRuntime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import saaya.murakami.dbflute.allcommon.CDef.StatementType;
 import saaya.murakami.dbflute.exbhv.AccountBhv;
 import saaya.murakami.dbflute.exbhv.CategoryBhv;
 import saaya.murakami.dbflute.exbhv.MemberBhv;
@@ -54,6 +56,10 @@ public class KakeiboJob implements LaJob {
     @Resource
     private AccountBhv accountBhv;
 
+    private final int ALL_PERIOD = 1; //全期間
+    private final int YEARLY_PERIOD = 2; //年間
+    private final int MONTHLY_PERIOD = 3; //月間
+
     // ===================================================================================
     //                                                                             Job Run
     //                                                                             =======
@@ -63,7 +69,7 @@ public class KakeiboJob implements LaJob {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
             //ユーザー登録・ログイン
-            long userId = loginProcess(reader);
+            long userId = registerAndLoginProcess(reader);
 
             //家計簿
             OptionalEntity<Member> loginMember = memberBhv.selectEntity(cb -> {
@@ -215,61 +221,19 @@ public class KakeiboJob implements LaJob {
             int num = inputIntNumber("1.明細　2.カテゴリー分析　3.アカウント分析　4.もどる", reader);
             switch (num) {
             case 1:
-                System.out.println("期間を選択");
-                int periodNum = inputIntNumber("1.全期間　2.年間　3.月間", reader);
-                LocalDate yearlyLocalDate = null;
-                LocalDate monthlyLocalDate = null;
-                switch (periodNum) {
-                case 1:
-                    break;
+                int periodNum = inputPeriod(reader);
+                final LocalDate periodDate = prepareDateForPeriod(reader, periodNum);
 
-                case 2:
-                    int year = inputIntNumber("表示したい年度を入力してください（ex.2018）", reader);
-                    yearlyLocalDate = LocalDate.of(year, 1, 1);
-                    break;
-
-                case 3:
-                    int month = inputIntNumber("表示したい月を入力してください（ex.6）", reader);
-                    monthlyLocalDate = LocalDate.of(2018, month, 1);
-                    break;
-
-                default:
-                    break;
-                }
-                final LocalDate YEARLY_LOCALDATE = yearlyLocalDate;
-                final LocalDate MONTHLY_LOCALDATE = monthlyLocalDate;
                 ListResultBean<Statement> statementList = statementBhv.selectList(cb -> {
                     cb.query().setUserId_Equal(userId);
+                    cb.query().arrangeSetPeriodDate(periodNum, periodDate);
                     cb.query().addOrderBy_Date_Asc();
-                    switch (periodNum) {
-                    case 1:
-                        break;
-                    case 2:
-
-                        cb.query().setDate_FromTo(YEARLY_LOCALDATE, YEARLY_LOCALDATE, op -> op.compareAsYear());
-                        break;
-
-                    case 3:
-                        cb.query().setDate_FromTo(MONTHLY_LOCALDATE, MONTHLY_LOCALDATE, op -> op.compareAsMonth());
-                        break;
-
-                    default:
-                        break;
-                    }
-
                 });
+
                 if (statementList.isEmpty()) {
                     System.out.println("閲覧するデータはありません");
                 } {
                 statementList.forEach(statement -> {
-                    String typeName = null;
-                    if (statement.getStatementType().equals("INCOME")) {
-                        typeName = "収入";
-                    } else if (statement.getStatementType().equals("SPEND")) {
-                        typeName = "支出";
-                    }
-                    final String TYPE_NAME = typeName;
-
                     OptionalEntity<Category> category = categoryBhv.selectEntity(cb -> {
                         cb.query().setCategoryId_Equal(statement.getCategoryId());
                     });
@@ -278,60 +242,26 @@ public class KakeiboJob implements LaJob {
                         cb.query().setAccountId_Equal(statement.getAccountId());
                     });
 
-                    System.out.println(TYPE_NAME + " " + statement.getDate() + " " + category.get().getCategory() + " "
-                            + account.get().getAccountName() + " " + statement.getAmount() + "円 " + statement.getMemo());
+                    System.out.println(statement.getStatementTypeAlias() + " " + statement.getDate() + " " + category.get().getCategory()
+                            + " " + account.get().getAccountName() + " " + statement.getAmount() + "円 " + statement.getMemo());
                 });
                 inputString("閲覧をやめるときはEnterをおす", reader);
             }
                 break;
 
             case 2:
-                System.out.println("期間を選択");
-                periodNum = inputIntNumber("1.全期間　2.年間　3.月間", reader);
+                int periodNum2 = inputPeriod(reader);
+                final LocalDate periodDate2 = prepareDateForPeriod(reader, periodNum2);
+
                 ListResultBean<Category> categoryList = categoryBhv.selectList(cb -> {
                     cb.query().setUserId_Equal(userId);
                 });
-                LocalDate yearlyLocalDate2 = null;
-                LocalDate monthlyLocalDte2 = null;
-                switch (periodNum) {
-                case 1:
-                    break;
-
-                case 2:
-                    int year = inputIntNumber("表示したい年度を入力してください (ex.2018)", reader);
-                    yearlyLocalDate2 = LocalDate.of(year, 1, 1);
-                    break;
-
-                case 3:
-                    int month = inputIntNumber("表示したい月を入力してください (ex.6)", reader);
-                    monthlyLocalDte2 = LocalDate.of(2018, month, 1);
-                    break;
-
-                default:
-                    break;
-                }
-                final LocalDate YEARLY_LOCALDATE2 = yearlyLocalDate2;
-                final LocalDate MONTHLY_LOCALDATE2 = monthlyLocalDte2;
 
                 categoryList.forEach(category -> {
                     ListResultBean<Statement> categoryStatementList = statementBhv.selectList(cb -> {
                         cb.query().setUserId_Equal(userId);
                         cb.query().setCategoryId_Equal(category.getCategoryId());
-                        switch (periodNum) {
-                        case 1:
-                            break;
-
-                        case 2:
-                            cb.query().setDate_FromTo(YEARLY_LOCALDATE2, YEARLY_LOCALDATE2, op -> op.compareAsYear());
-                            break;
-
-                        case 3:
-                            cb.query().setDate_FromTo(MONTHLY_LOCALDATE2, MONTHLY_LOCALDATE2, op -> op.compareAsMonth());
-                            break;
-
-                        default:
-                            break;
-                        }
+                        cb.query().arrangeSetPeriodDate(periodNum2, periodDate2);
                     });
                     int categoryAmount = 0;
                     for (Statement statement : categoryStatementList) {
@@ -344,58 +274,24 @@ public class KakeiboJob implements LaJob {
                 break;
 
             case 3:
-                System.out.println("期間を選択");
-                periodNum = inputIntNumber("1.全期間　2.年間　3.月間", reader);
+                int periodNum3 = inputPeriod(reader);
+                final LocalDate periodDate3 = prepareDateForPeriod(reader, periodNum3);
+
                 ListResultBean<Account> accountList = accountBhv.selectList(cb -> {
                     cb.query().setUserId_Equal(userId);
                 });
-                LocalDate yearlyLocalDate3 = null;
-                LocalDate monthlyLocalDate3 = null;
-                switch (periodNum) {
-                case 1:
-                    break;
-
-                case 2:
-                    int year = inputIntNumber("表示したい年度を入力してください (ex.2018)", reader);
-                    yearlyLocalDate3 = LocalDate.of(year, 1, 1);
-                    break;
-
-                case 3:
-                    int month = inputIntNumber("表示したい月を入力してください (ex.6)", reader);
-                    monthlyLocalDate3 = LocalDate.of(2018, month, 1);
-                    break;
-
-                default:
-                    break;
-                }
-                final LocalDate YEARLY_LOCALDATE3 = yearlyLocalDate3;
-                final LocalDate MONTHLY_LOCALDATE3 = monthlyLocalDate3;
 
                 accountList.forEach(account -> {
                     ListResultBean<Statement> accountStatementList = statementBhv.selectList(cb -> {
                         cb.query().setUserId_Equal(userId);
                         cb.query().setAccountId_Equal(account.getAccountId());
-                        switch (periodNum) {
-                        case 1:
-                            break;
-
-                        case 2:
-                            cb.query().setDate_FromTo(YEARLY_LOCALDATE3, YEARLY_LOCALDATE3, op -> op.compareAsYear());
-                            break;
-
-                        case 3:
-                            cb.query().setDate_FromTo(MONTHLY_LOCALDATE3, MONTHLY_LOCALDATE3, op -> op.compareAsMonth());
-                            break;
-
-                        default:
-                            break;
-                        }
+                        cb.query().arrangeSetPeriodDate(periodNum3, periodDate3);
                     });
                     int accountAmount = 0;
                     for (Statement statement : accountStatementList) {
-                        if (statement.getStatementType().equals("INCOME")) {
+                        if (statement.getStatementTypeAsStatementType() == StatementType.Income) {
                             accountAmount += statement.getAmount();
-                        } else if (statement.getStatementType().equals("SPEND")) {
+                        } else if (statement.getStatementTypeAsStatementType() == StatementType.Spend) {
                             accountAmount -= statement.getAmount();
                         }
                     }
@@ -425,17 +321,11 @@ public class KakeiboJob implements LaJob {
                 System.out.println("1か2を入力してください");
                 typeNum = inputIntNumber("1.支出　2.収入（数字で選択）", reader);
             }
-            String statementType = "";
-            String typeName = "";
             if (typeNum == 1) {
-                statementType = "SPEND";
-                typeName = "支出";
+                statement.setStatementType_Spend();
             } else if (typeNum == 2) {
-                statementType = "INCOME";
-                typeName = "収入";
-
+                statement.setStatementType_Income();
             }
-            statement.setStatementType(statementType);
 
             //日付を登録
             System.out.println("日付を登録します");
@@ -504,7 +394,8 @@ public class KakeiboJob implements LaJob {
 
             //登録内容の確認
             System.out.println("入力内容を確認します");
-            System.out.println(typeName + " " + localDate + " " + categoryName + " " + accountName + " " + amount + "円 " + memo);
+            System.out.println(statement.getStatementTypeAlias() + " " + localDate + " " + categoryName + " " + accountName + " " + amount
+                    + "円 " + memo);
             String answer = getAnswer("登録しますか（はい/いいえ）", reader);
             if (answer.equals("はい")) {
                 statementBhv.insert(statement); //statementをkakeibodbに登録
@@ -519,7 +410,12 @@ public class KakeiboJob implements LaJob {
         } while (true);
     }
 
-    private long loginProcess(BufferedReader reader) {
+    /**
+     * 会員登録処理と、ログイン処理を実行する
+     * @param reader
+     * @return ログインしたユーザーのID
+     */
+    private long registerAndLoginProcess(BufferedReader reader) {
         do {
             System.out.println("家計簿ちゃん");
             System.out.println("1.会員登録　2.ログイン 3.終了");
@@ -531,17 +427,18 @@ public class KakeiboJob implements LaJob {
                 String userName;
                 String password;
                 do {
-                    loop: do {
+                    do {
                         mailAddress = inputString("メールアドレスを入力してください", reader);
                         final String MAIL_ADDRESS = mailAddress;
-                        OptionalEntity<Member> selectMember = memberBhv.selectEntity(cb -> {
+                        OptionalEntity<Member> memberOpt = memberBhv.selectEntity(cb -> {
                             cb.query().setMailAddress_Equal(MAIL_ADDRESS);
                         });
-                        boolean Existence = selectMember.isPresent();
-                        if (Existence) {
+
+                        boolean existance = memberOpt.isPresent();
+                        if (existance) {
                             System.out.println("入力されたメールアドレスはすでに使われています");
                         } else {
-                            break loop;
+                            break;
                         }
                     } while (true);
 
@@ -568,26 +465,27 @@ public class KakeiboJob implements LaJob {
                 category.setCategory("食費");
                 categoryBhv.insert(category);
 
-                Account account1 = new Account();
-                account1.setUserId(userId);
-                account1.setAccountName("財布");
-                accountBhv.insert(account1);
-                Account account2 = new Account();
-                account2.setUserId(userId);
-                account2.setAccountName("銀行");
-                accountBhv.insert(account2);
+                Account wallet = new Account();
+                wallet.setUserId(userId);
+                wallet.setAccountName("財布");
+                accountBhv.insert(wallet);
+
+                Account bank = new Account();
+                bank.setUserId(userId);
+                bank.setAccountName("銀行");
+                accountBhv.insert(bank);
 
                 System.out.println("登録完了");
                 break;
 
             case 2:
                 do {
-                    final String loginAdd = inputString("メールアドレスを入力してください", reader);//TODO 何も入力されなかったときどうするか
-                    final String loginPass = inputString("パスワードを入力してください", reader);
+                    final String loginMailAddress = inputString("メールアドレスを入力してください", reader);//TODO 何も入力されなかったときどうするか
+                    final String loginPassword = inputString("パスワードを入力してください", reader);
 
                     OptionalEntity<Member> loginMenber = memberBhv.selectEntity(cb -> {
-                        cb.query().setMailAddress_Equal(loginAdd);
-                        cb.query().setPassword_Equal(loginPass);
+                        cb.query().setMailAddress_Equal(loginMailAddress);
+                        cb.query().setPassword_Equal(loginPassword);
                     });
                     if (loginMenber.isPresent()) {
                         return loginMenber.get().getUserId();
@@ -613,21 +511,6 @@ public class KakeiboJob implements LaJob {
         do {
             try {
                 return Integer.parseInt(reader.readLine());
-            } catch (NumberFormatException e) {
-                System.out.println("数字を入力してください");
-            } catch (IOException e) {
-                throw new RuntimeException("エラー", e);
-            }
-        } while (true);
-    }
-
-    private long inputLongNumber(String message, BufferedReader reader) {
-        if (!message.isEmpty()) {
-            System.out.println(message);
-        }
-        do {
-            try {
-                return Long.parseLong(reader.readLine());
             } catch (NumberFormatException e) {
                 System.out.println("数字を入力してください");
             } catch (IOException e) {
@@ -665,6 +548,40 @@ public class KakeiboJob implements LaJob {
                 throw new RuntimeException("エラー", e);
             }
         } while (true);
+    }
+
+    private int inputPeriod(BufferedReader reader) {
+        System.out.println("期間を選択");
+        do {
+            int periodNum = inputIntNumber("1.全期間　2.年間　3.月間", reader);
+            if (Arrays.asList(ALL_PERIOD, YEARLY_PERIOD, MONTHLY_PERIOD).contains(periodNum)) {
+                return periodNum;
+            }
+            System.out.println("1~3で選択してください");
+        } while (true);
+    }
+
+    private LocalDate prepareDateForPeriod(BufferedReader reader, int periodNum) {
+        LocalDate inputDate = null;
+        switch (periodNum) {
+        case ALL_PERIOD:
+            break;
+
+        case YEARLY_PERIOD:
+            int year = inputIntNumber("表示したい年度を入力してください（ex.2018）", reader);
+            inputDate = LocalDate.of(year, 1, 1);
+            break;
+
+        case MONTHLY_PERIOD:
+            int month = inputIntNumber("表示したい月を入力してください（ex.6）", reader);
+            inputDate = LocalDate.of(2018, month, 1);
+            break;
+
+        default:
+            break;
+        }
+
+        return inputDate;
     }
 
 }

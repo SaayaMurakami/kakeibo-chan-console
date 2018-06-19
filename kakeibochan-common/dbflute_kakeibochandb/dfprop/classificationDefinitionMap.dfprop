@@ -42,10 +42,20 @@ map:{
     #                                                                               ======
     ; Flg = list:{
         ; map:{
-            ; topComment=general boolean classification for every flg-column; codeType=Number
+            ; topComment=フラグ。共通的なフラグを表す区分値で、基本的にXxxフラグと呼べるものに関連付けられる。
+            ; codeType=String
         }
-        ; map:{code=1; name=True ; alias=Checked  ; comment=means yes; sisterCode=true }
-        ; map:{code=0; name=False; alias=Unchecked; comment=means no ; sisterCode=false}
+        ; map:{code=Y; name=True ; alias=Yes  ; comment=フラグがTrueを表す; sisterCode=true }
+        ; map:{code=N; name=False; alias=No; comment=フラグふぁFalseを表す; sisterCode=false}
+    }
+    
+    ; StatementType = list:{
+        ; map:{
+            ; topComment=明細の種類を表す区分値
+            ; codeType=String
+        }
+        ; map:{code=INCOME; name=Income ; alias=収入  ; comment=収入を表す; sisterCode=true }
+        ; map:{code=SPEND; name=Spend; alias=支出; comment=支出を表す; sisterCode=false}
     }
 
     # ====================================================================================

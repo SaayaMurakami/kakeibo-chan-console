@@ -25,6 +25,7 @@ import org.dbflute.dbmeta.accessory.DomainEntity;
 import org.dbflute.optional.OptionalEntity;
 import saaya.murakami.dbflute.allcommon.EntityDefinedCommonColumn;
 import saaya.murakami.dbflute.allcommon.DBMetaInstanceHandler;
+import saaya.murakami.dbflute.allcommon.CDef;
 import saaya.murakami.dbflute.exentity.*;
 
 /**
@@ -112,7 +113,7 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
     /** (アカウントID)ACCOUNT_ID: {IX, NotNull, BIGINT(19), FK to ACCOUNT} */
     protected Long _accountId;
 
-    /** (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)} */
+    /** (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} */
     protected String _statementType;
 
     /** (日付)DATE: {NotNull, DATE(10)} */
@@ -159,6 +160,96 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
     public boolean hasPrimaryKeyValue() {
         if (_statementId == null) { return false; }
         return true;
+    }
+
+    // ===================================================================================
+    //                                                             Classification Property
+    //                                                             =======================
+    /**
+     * Get the value of statementType as the classification of StatementType. <br>
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
+     * 明細の種類を表す区分値
+     * <p>It's treated as case insensitive and if the code value is null, it returns null.</p>
+     * @return The instance of classification definition (as ENUM type). (NullAllowed: when the column value is null)
+     */
+    public CDef.StatementType getStatementTypeAsStatementType() {
+        return CDef.StatementType.codeOf(getStatementType());
+    }
+
+    /**
+     * Set the value of statementType as the classification of StatementType. <br>
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
+     * 明細の種類を表す区分値
+     * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
+     */
+    public void setStatementTypeAsStatementType(CDef.StatementType cdef) {
+        setStatementType(cdef != null ? cdef.code() : null);
+    }
+
+    /**
+     * Set the value of statementType as boolean. <br>
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
+     * 明細の種類を表す区分値
+     * @param determination The determination, true or false. (NullAllowed: if null, null value is set to the column)
+     */
+    public void setStatementTypeAsBoolean(Boolean determination) {
+        setStatementTypeAsStatementType(CDef.StatementType.codeOf(determination));
+    }
+
+    // ===================================================================================
+    //                                                              Classification Setting
+    //                                                              ======================
+    /**
+     * Set the value of statementType as Income (INCOME). <br>
+     * 収入: 収入を表す
+     */
+    public void setStatementType_Income() {
+        setStatementTypeAsStatementType(CDef.StatementType.Income);
+    }
+
+    /**
+     * Set the value of statementType as Spend (SPEND). <br>
+     * 支出: 支出を表す
+     */
+    public void setStatementType_Spend() {
+        setStatementTypeAsStatementType(CDef.StatementType.Spend);
+    }
+
+    // ===================================================================================
+    //                                                        Classification Determination
+    //                                                        ============================
+    /**
+     * Is the value of statementType Income? <br>
+     * 収入: 収入を表す
+     * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
+     * @return The determination, true or false.
+     */
+    public boolean isStatementTypeIncome() {
+        CDef.StatementType cdef = getStatementTypeAsStatementType();
+        return cdef != null ? cdef.equals(CDef.StatementType.Income) : false;
+    }
+
+    /**
+     * Is the value of statementType Spend? <br>
+     * 支出: 支出を表す
+     * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
+     * @return The determination, true or false.
+     */
+    public boolean isStatementTypeSpend() {
+        CDef.StatementType cdef = getStatementTypeAsStatementType();
+        return cdef != null ? cdef.equals(CDef.StatementType.Spend) : false;
+    }
+
+    // ===================================================================================
+    //                                                           Classification Name/Alias
+    //                                                           =========================
+    /**
+     * Get the value of the column 'statementType' as classification alias.
+     * @return The string of classification alias. (NullAllowed: when the column value is null)
+     */
+    public String getStatementTypeAlias() {
+        CDef.StatementType cdef = getStatementTypeAsStatementType();
+        return cdef != null ? cdef.alias() : null;
     }
 
     // ===================================================================================
@@ -390,7 +481,7 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
     }
 
     /**
-     * [get] (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)} <br>
+     * [get] (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
      * @return The value of the column 'STATEMENT_TYPE'. (basically NotNull if selected: for the constraint)
      */
     public String getStatementType() {
@@ -399,10 +490,11 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
     }
 
     /**
-     * [set] (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)} <br>
+     * [set] (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
      * @param statementType The value of the column 'STATEMENT_TYPE'. (basically NotNull if update: for the constraint)
      */
-    public void setStatementType(String statementType) {
+    protected void setStatementType(String statementType) {
+        checkClassificationCode("STATEMENT_TYPE", CDef.DefMeta.StatementType, statementType);
         registerModifiedProperty("statementType");
         _statementType = statementType;
     }
@@ -551,5 +643,13 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
     public void setVersionNo(Long versionNo) {
         registerModifiedProperty("versionNo");
         _versionNo = versionNo;
+    }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param statementType The value of the column 'STATEMENT_TYPE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingStatementType(String statementType) {
+        setStatementType(statementType);
     }
 }
