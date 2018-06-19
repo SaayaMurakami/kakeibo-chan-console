@@ -65,7 +65,7 @@ public class KakeiboJob implements LaJob {
             //ユーザー登録・ログイン
             long userId = loginProcess(reader);
 
-            //家計
+            //家計簿
             loopout: do {
                 System.out.println("やりたいことを選んでね（数字で選択）");
                 System.out.println("1.家計簿をつける  2.家計簿を見る　3.カテゴリを編集する　4.アカウントを編集する　5.終了");
@@ -97,6 +97,7 @@ public class KakeiboJob implements LaJob {
                 }
             } while (true);
         });
+        System.out.println("終了");
     }
 
     private void registerCategory(BufferedReader reader, Long userId) {
@@ -204,35 +205,209 @@ public class KakeiboJob implements LaJob {
     }
 
     private void showStatement(BufferedReader reader, Long userId) {
-        ListResultBean<Statement> statementList = statementBhv.selectList(cb -> {
-            cb.query().setUserId_Equal(userId);
-        });
-        if (statementList.isEmpty()) {
-            System.out.println("閲覧するデータはありません");
-        }
-        {
-            statementList.forEach(statement -> {
-                String typeName = null;
-                if (statement.getStatementType().equals("INCOME")) {
-                    typeName = "収入";
-                } else if (statement.getStatementType().equals("SPEND")) {
-                    typeName = "支出";
+        boolean continueAnswer = true;
+        do {
+            System.out.println("何をしますか？");
+            int num = inputIntNumber("1.明細　2.カテゴリー分析　3.アカウント分析　4.もどる", reader);
+            switch (num) {
+            case 1:
+                System.out.println("期間を選択");
+                int periodNum = inputIntNumber("1.全期間　2.年間　3.月間", reader);
+                LocalDate yearlyLocalDate = null;
+                LocalDate monthlyLocalDate = null;
+                switch (periodNum) {
+                case 1:
+                    break;
+
+                case 2:
+                    int year = inputIntNumber("表示したい年度を入力してください（ex.2018）", reader);
+                    yearlyLocalDate = LocalDate.of(year, 1, 1);
+                    break;
+
+                case 3:
+                    int month = inputIntNumber("表示したい月を入力してください（ex.6）", reader);
+                    monthlyLocalDate = LocalDate.of(2018, month, 1);
+                    break;
+
+                default:
+                    break;
                 }
-                final String TYPE_NAME = typeName;
+                final LocalDate YEARLY_LOCALDATE = yearlyLocalDate;
+                final LocalDate MONTHLY_LOCALDATE = monthlyLocalDate;
+                ListResultBean<Statement> statementList = statementBhv.selectList(cb -> {
+                    cb.query().setUserId_Equal(userId);
+                    cb.query().addOrderBy_Date_Asc();
+                    switch (periodNum) {
+                    case 1:
+                        break;
+                    case 2:
 
-                OptionalEntity<Category> category = categoryBhv.selectEntity(cb -> {
-                    cb.query().setCategoryId_Equal(statement.getCategoryId());
+                        cb.query().setDate_FromTo(YEARLY_LOCALDATE, YEARLY_LOCALDATE, op -> op.compareAsYear());
+                        break;
+
+                    case 3:
+                        cb.query().setDate_FromTo(MONTHLY_LOCALDATE, MONTHLY_LOCALDATE, op -> op.compareAsMonth());
+                        break;
+
+                    default:
+                        break;
+                    }
+
+                });
+                if (statementList.isEmpty()) {
+                    System.out.println("閲覧するデータはありません");
+                } {
+                statementList.forEach(statement -> {
+                    String typeName = null;
+                    if (statement.getStatementType().equals("INCOME")) {
+                        typeName = "収入";
+                    } else if (statement.getStatementType().equals("SPEND")) {
+                        typeName = "支出";
+                    }
+                    final String TYPE_NAME = typeName;
+
+                    OptionalEntity<Category> category = categoryBhv.selectEntity(cb -> {
+                        cb.query().setCategoryId_Equal(statement.getCategoryId());
+                    });
+
+                    OptionalEntity<Account> account = accountBhv.selectEntity(cb -> {
+                        cb.query().setAccountId_Equal(statement.getAccountId());
+                    });
+
+                    System.out.println(TYPE_NAME + " " + statement.getDate() + " " + category.get().getCategory() + " "
+                            + account.get().getAccountName() + " " + statement.getAmount() + "円 " + statement.getMemo());
+                });
+                inputString("閲覧をやめるときはEnterをおす", reader);
+            }
+                break;
+
+            case 2:
+                System.out.println("期間を選択");
+                periodNum = inputIntNumber("1.全期間　2.年間　3.月間", reader);
+                ListResultBean<Category> categoryList = categoryBhv.selectList(cb -> {
+                    cb.query().setUserId_Equal(userId);
+                });
+                LocalDate yearlyLocalDate2 = null;
+                LocalDate monthlyLocalDte2 = null;
+                switch (periodNum) {
+                case 1:
+                    break;
+
+                case 2:
+                    int year = inputIntNumber("表示したい年度を入力してください (ex.2018)", reader);
+                    yearlyLocalDate2 = LocalDate.of(year, 1, 1);
+                    break;
+
+                case 3:
+                    int month = inputIntNumber("表示したい月を入力してください (ex.6)", reader);
+                    monthlyLocalDte2 = LocalDate.of(2018, month, 1);
+                    break;
+
+                default:
+                    break;
+                }
+                final LocalDate YEARLY_LOCALDATE2 = yearlyLocalDate2;
+                final LocalDate MONTHLY_LOCALDATE2 = monthlyLocalDte2;
+
+                categoryList.forEach(category -> {
+                    ListResultBean<Statement> categoryStatementList = statementBhv.selectList(cb -> {
+                        cb.query().setUserId_Equal(userId);
+                        cb.query().setCategoryId_Equal(category.getCategoryId());
+                        switch (periodNum) {
+                        case 1:
+                            break;
+
+                        case 2:
+                            cb.query().setDate_FromTo(YEARLY_LOCALDATE2, YEARLY_LOCALDATE2, op -> op.compareAsYear());
+                            break;
+
+                        case 3:
+                            cb.query().setDate_FromTo(MONTHLY_LOCALDATE2, MONTHLY_LOCALDATE2, op -> op.compareAsMonth());
+                            break;
+
+                        default:
+                            break;
+                        }
+                    });
+                    int categoryAmount = 0;
+                    for (Statement statement : categoryStatementList) {
+                        categoryAmount += statement.getAmount();
+                    }
+                    System.out.println(category.getCategory() + ":" + categoryAmount + "円");
+                });
+                inputString("閲覧をやめるときはEnterをおす", reader);
+
+                break;
+
+            case 3:
+                System.out.println("期間を選択");
+                periodNum = inputIntNumber("1.全期間　2.年間　3.月間", reader);
+                ListResultBean<Account> accountList = accountBhv.selectList(cb -> {
+                    cb.query().setUserId_Equal(userId);
+                });
+                LocalDate yearlyLocalDate3 = null;
+                LocalDate monthlyLocalDate3 = null;
+                switch (periodNum) {
+                case 1:
+                    break;
+
+                case 2:
+                    int year = inputIntNumber("表示したい年度を入力してください (ex.2018)", reader);
+                    yearlyLocalDate3 = LocalDate.of(year, 1, 1);
+                    break;
+
+                case 3:
+                    int month = inputIntNumber("表示したい月を入力してください (ex.6)", reader);
+                    monthlyLocalDate3 = LocalDate.of(2018, month, 1);
+                    break;
+
+                default:
+                    break;
+                }
+                final LocalDate YEARLY_LOCALDATE3 = yearlyLocalDate3;
+                final LocalDate MONTHLY_LOCALDATE3 = monthlyLocalDate3;
+
+                accountList.forEach(account -> {
+                    ListResultBean<Statement> accountStatementList = statementBhv.selectList(cb -> {
+                        cb.query().setUserId_Equal(userId);
+                        cb.query().setAccountId_Equal(account.getAccountId());
+                        switch (periodNum) {
+                        case 1:
+                            break;
+
+                        case 2:
+                            cb.query().setDate_FromTo(YEARLY_LOCALDATE3, YEARLY_LOCALDATE3, op -> op.compareAsYear());
+                            break;
+
+                        case 3:
+                            cb.query().setDate_FromTo(MONTHLY_LOCALDATE3, MONTHLY_LOCALDATE3, op -> op.compareAsMonth());
+                            break;
+
+                        default:
+                            break;
+                        }
+                    });
+                    int accountAmount = 0;
+                    for (Statement statement : accountStatementList) {
+                        if (statement.getStatementType().equals("INCOME")) {
+                            accountAmount += statement.getAmount();
+                        } else if (statement.getStatementType().equals("SPEND")) {
+                            accountAmount -= statement.getAmount();
+                        }
+                    }
+                    System.out.println(account.getAccountName() + ":" + accountAmount + "円");
                 });
 
-                OptionalEntity<Account> account = accountBhv.selectEntity(cb -> {
-                    cb.query().setAccountId_Equal(statement.getAccountId());
-                });
+                break;
 
-                System.out.println(TYPE_NAME + " " + statement.getDate() + " " + category.get().getCategory() + " "
-                        + account.get().getAccountName() + " " + statement.getAmount() + "円 " + statement.getMemo());
-            });
-            inputString("閲覧をやめるときはEnterをおす", reader);
-        }
+            case 4:
+                continueAnswer = false;
+
+            default:
+                break;
+            }
+        } while (continueAnswer);
+
     }
 
     private void registerStatement(BufferedReader reader, Long userId) {
@@ -403,7 +578,7 @@ public class KakeiboJob implements LaJob {
 
             case 2:
                 do {
-                    final String loginAdd = inputString("メールアドレスを入力してください", reader);
+                    final String loginAdd = inputString("メールアドレスを入力してください", reader);//TODO 何も入力されなかったときどうするか
                     final String loginPass = inputString("パスワードを入力してください", reader);
 
                     OptionalEntity<Member> loginMenber = memberBhv.selectEntity(cb -> {
