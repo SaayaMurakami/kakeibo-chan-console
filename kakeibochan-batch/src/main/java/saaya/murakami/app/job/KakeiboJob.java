@@ -31,6 +31,7 @@ import org.lastaflute.job.LaJobRuntime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import saaya.murakami.dbflute.allcommon.CDef.StatementType;
 import saaya.murakami.dbflute.exbhv.AccountBhv;
 import saaya.murakami.dbflute.exbhv.CategoryBhv;
 import saaya.murakami.dbflute.exbhv.MemberBhv;
@@ -229,14 +230,6 @@ public class KakeiboJob implements LaJob {
                     System.out.println("閲覧するデータはありません");
                 } {
                 statementList.forEach(statement -> {
-                    String typeName = null;
-                    if (statement.getStatementType().equals("INCOME")) {
-                        typeName = "収入";
-                    } else if (statement.getStatementType().equals("SPEND")) {
-                        typeName = "支出";
-                    }
-                    final String TYPE_NAME = typeName;
-
                     OptionalEntity<Category> category = categoryBhv.selectEntity(cb -> {
                         cb.query().setCategoryId_Equal(statement.getCategoryId());
                     });
@@ -245,8 +238,8 @@ public class KakeiboJob implements LaJob {
                         cb.query().setAccountId_Equal(statement.getAccountId());
                     });
 
-                    System.out.println(TYPE_NAME + " " + statement.getDate() + " " + category.get().getCategory() + " "
-                            + account.get().getAccountName() + " " + statement.getAmount() + "円 " + statement.getMemo());
+                    System.out.println(statement.getStatementTypeAlias() + " " + statement.getDate() + " " + category.get().getCategory()
+                            + " " + account.get().getAccountName() + " " + statement.getAmount() + "円 " + statement.getMemo());
                 });
                 inputString("閲覧をやめるときはEnterをおす", reader);
             }
@@ -292,9 +285,9 @@ public class KakeiboJob implements LaJob {
                     });
                     int accountAmount = 0;
                     for (Statement statement : accountStatementList) {
-                        if (statement.getStatementType().equals("INCOME")) {
+                        if (statement.getStatementTypeAsStatementType() == StatementType.Income) {
                             accountAmount += statement.getAmount();
-                        } else if (statement.getStatementType().equals("SPEND")) {
+                        } else if (statement.getStatementTypeAsStatementType() == StatementType.Spend) {
                             accountAmount -= statement.getAmount();
                         }
                     }
@@ -324,16 +317,11 @@ public class KakeiboJob implements LaJob {
                 System.out.println("1か2を入力してください");
                 typeNum = inputIntNumber("1.支出　2.収入（数字で選択）", reader);
             }
-            String statementType = "";
-            String typeName = "";
             if (typeNum == 1) {
-                statementType = "SPEND";
-                typeName = "支出";
+                statement.setStatementType_Spend();
             } else if (typeNum == 2) {
-                statementType = "INCOME";
-                typeName = "収入";
+                statement.setStatementType_Income();
             }
-            statement.setStatementType(statementType);
 
             //日付を登録
             System.out.println("日付を登録します");
@@ -402,7 +390,8 @@ public class KakeiboJob implements LaJob {
 
             //登録内容の確認
             System.out.println("入力内容を確認します");
-            System.out.println(typeName + " " + localDate + " " + categoryName + " " + accountName + " " + amount + "円 " + memo);
+            System.out.println(statement.getStatementTypeAlias() + " " + localDate + " " + categoryName + " " + accountName + " " + amount
+                    + "円 " + memo);
             String answer = getAnswer("登録しますか（はい/いいえ）", reader);
             if (answer.equals("はい")) {
                 statementBhv.insert(statement); //statementをkakeibodbに登録

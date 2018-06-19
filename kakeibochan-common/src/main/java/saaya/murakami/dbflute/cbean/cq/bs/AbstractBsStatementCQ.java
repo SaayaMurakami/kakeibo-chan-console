@@ -540,11 +540,47 @@ public abstract class AbstractBsStatementCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType}
      * @param statementType The value of statementType as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setStatementType_Equal(String statementType) {
+    protected void setStatementType_Equal(String statementType) {
         doSetStatementType_Equal(fRES(statementType));
+    }
+
+    /**
+     * Equal(=). As StatementType. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
+     * 明細の種類を表す区分値
+     * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
+     */
+    public void setStatementType_Equal_AsStatementType(CDef.StatementType cdef) {
+        doSetStatementType_Equal(cdef != null ? cdef.code() : null);
+    }
+
+    /**
+     * Equal(=). As boolean for StatementType. <br>
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
+     * 明細の種類を表す区分値
+     * @param determination The determination, true or false. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setStatementType_Equal_AsBoolean(Boolean determination) {
+        setStatementType_Equal_AsStatementType(CDef.StatementType.codeOf(determination));
+    }
+
+    /**
+     * Equal(=). As Income (INCOME). And OnlyOnceRegistered. <br>
+     * 収入: 収入を表す
+     */
+    public void setStatementType_Equal_Income() {
+        setStatementType_Equal_AsStatementType(CDef.StatementType.Income);
+    }
+
+    /**
+     * Equal(=). As Spend (SPEND). And OnlyOnceRegistered. <br>
+     * 支出: 支出を表す
+     */
+    public void setStatementType_Equal_Spend() {
+        setStatementType_Equal_AsStatementType(CDef.StatementType.Spend);
     }
 
     protected void doSetStatementType_Equal(String statementType) {
@@ -553,11 +589,37 @@ public abstract class AbstractBsStatementCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType}
      * @param statementType The value of statementType as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setStatementType_NotEqual(String statementType) {
+    protected void setStatementType_NotEqual(String statementType) {
         doSetStatementType_NotEqual(fRES(statementType));
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). As StatementType. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
+     * 明細の種類を表す区分値
+     * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
+     */
+    public void setStatementType_NotEqual_AsStatementType(CDef.StatementType cdef) {
+        doSetStatementType_NotEqual(cdef != null ? cdef.code() : null);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). As Income (INCOME). And OnlyOnceRegistered. <br>
+     * 収入: 収入を表す
+     */
+    public void setStatementType_NotEqual_Income() {
+        setStatementType_NotEqual_AsStatementType(CDef.StatementType.Income);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). As Spend (SPEND). And OnlyOnceRegistered. <br>
+     * 支出: 支出を表す
+     */
+    public void setStatementType_NotEqual_Spend() {
+        setStatementType_NotEqual_AsStatementType(CDef.StatementType.Spend);
     }
 
     protected void doSetStatementType_NotEqual(String statementType) {
@@ -566,11 +628,21 @@ public abstract class AbstractBsStatementCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType}
      * @param statementTypeList The collection of statementType as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setStatementType_InScope(Collection<String> statementTypeList) {
+    protected void setStatementType_InScope(Collection<String> statementTypeList) {
         doSetStatementType_InScope(statementTypeList);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. As StatementType. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
+     * 明細の種類を表す区分値
+     * @param cdefList The list of classification definition (as ENUM type). (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setStatementType_InScope_AsStatementType(Collection<CDef.StatementType> cdefList) {
+        doSetStatementType_InScope(cTStrL(cdefList));
     }
 
     protected void doSetStatementType_InScope(Collection<String> statementTypeList) {
@@ -579,59 +651,25 @@ public abstract class AbstractBsStatementCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType}
      * @param statementTypeList The collection of statementType as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setStatementType_NotInScope(Collection<String> statementTypeList) {
+    protected void setStatementType_NotInScope(Collection<String> statementTypeList) {
         doSetStatementType_NotInScope(statementTypeList);
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. As StatementType. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} <br>
+     * 明細の種類を表す区分値
+     * @param cdefList The list of classification definition (as ENUM type). (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setStatementType_NotInScope_AsStatementType(Collection<CDef.StatementType> cdefList) {
+        doSetStatementType_NotInScope(cTStrL(cdefList));
     }
 
     protected void doSetStatementType_NotInScope(Collection<String> statementTypeList) {
         regINS(CK_NINS, cTL(statementTypeList), xgetCValueStatementType(), "STATEMENT_TYPE");
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)} <br>
-     * <pre>e.g. setStatementType_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param statementType The value of statementType as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setStatementType_LikeSearch(String statementType, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setStatementType_LikeSearch(statementType, xcLSOP(opLambda));
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)} <br>
-     * <pre>e.g. setStatementType_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param statementType The value of statementType as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     * @param likeSearchOption The option of like-search. (NotNull)
-     */
-    protected void setStatementType_LikeSearch(String statementType, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(statementType), xgetCValueStatementType(), "STATEMENT_TYPE", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
-     * @param statementType The value of statementType as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setStatementType_NotLikeSearch(String statementType, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setStatementType_NotLikeSearch(statementType, xcLSOP(opLambda));
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
-     * @param statementType The value of statementType as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    protected void setStatementType_NotLikeSearch(String statementType, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(statementType), xgetCValueStatementType(), "STATEMENT_TYPE", likeSearchOption);
     }
 
     protected void regStatementType(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueStatementType(), "STATEMENT_TYPE"); }

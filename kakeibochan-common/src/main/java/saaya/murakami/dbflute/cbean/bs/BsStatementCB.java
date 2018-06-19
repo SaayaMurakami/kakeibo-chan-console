@@ -401,7 +401,7 @@ public class BsStatementCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnAccountId() { return doColumn("ACCOUNT_ID"); }
         /**
-         * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
+         * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnStatementType() { return doColumn("STATEMENT_TYPE"); }

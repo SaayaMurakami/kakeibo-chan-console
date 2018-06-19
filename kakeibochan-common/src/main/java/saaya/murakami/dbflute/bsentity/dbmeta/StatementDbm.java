@@ -62,7 +62,14 @@ public class StatementDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((Statement)et).getUserId(), (et, vl) -> ((Statement)et).setUserId(ctl(vl)), "userId");
         setupEpg(_epgMap, et -> ((Statement)et).getCategoryId(), (et, vl) -> ((Statement)et).setCategoryId(ctl(vl)), "categoryId");
         setupEpg(_epgMap, et -> ((Statement)et).getAccountId(), (et, vl) -> ((Statement)et).setAccountId(ctl(vl)), "accountId");
-        setupEpg(_epgMap, et -> ((Statement)et).getStatementType(), (et, vl) -> ((Statement)et).setStatementType((String)vl), "statementType");
+        setupEpg(_epgMap, et -> ((Statement)et).getStatementType(), (et, vl) -> {
+            CDef.StatementType cls = (CDef.StatementType)gcls(et, columnStatementType(), vl);
+            if (cls != null) {
+                ((Statement)et).setStatementTypeAsStatementType(cls);
+            } else {
+                ((Statement)et).mynativeMappingStatementType((String)vl);
+            }
+        }, "statementType");
         setupEpg(_epgMap, et -> ((Statement)et).getDate(), (et, vl) -> ((Statement)et).setDate(ctld(vl)), "date");
         setupEpg(_epgMap, et -> ((Statement)et).getAmount(), (et, vl) -> ((Statement)et).setAmount(cti(vl)), "amount");
         setupEpg(_epgMap, et -> ((Statement)et).getMemo(), (et, vl) -> ((Statement)et).setMemo((String)vl), "memo");
@@ -111,7 +118,7 @@ public class StatementDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnUserId = cci("USER_ID", "USER_ID", null, "会員ID", Long.class, "userId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "member", null, null, false);
     protected final ColumnInfo _columnCategoryId = cci("CATEGORY_ID", "CATEGORY_ID", null, "カテゴリーID", Long.class, "categoryId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "category", null, null, false);
     protected final ColumnInfo _columnAccountId = cci("ACCOUNT_ID", "ACCOUNT_ID", null, "アカウントID", Long.class, "accountId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "account", null, null, false);
-    protected final ColumnInfo _columnStatementType = cci("STATEMENT_TYPE", "STATEMENT_TYPE", null, "STATEMENT_TYPE", String.class, "statementType", null, false, false, true, "VARCHAR", 10, 0, null, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnStatementType = cci("STATEMENT_TYPE", "STATEMENT_TYPE", null, "STATEMENT_TYPE", String.class, "statementType", null, false, false, true, "VARCHAR", 10, 0, null, null, false, null, null, null, null, CDef.DefMeta.StatementType, false);
     protected final ColumnInfo _columnDate = cci("DATE", "DATE", null, "日付", java.time.LocalDate.class, "date", null, false, false, true, "DATE", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnAmount = cci("AMOUNT", "AMOUNT", null, "金額", Integer.class, "amount", null, false, false, true, "INT", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnMemo = cci("MEMO", "MEMO", null, "メモ", String.class, "memo", null, false, false, false, "VARCHAR", 200, 0, null, null, false, null, null, null, null, null, false);
@@ -142,7 +149,7 @@ public class StatementDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnAccountId() { return _columnAccountId; }
     /**
-     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10)}
+     * (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnStatementType() { return _columnStatementType; }
