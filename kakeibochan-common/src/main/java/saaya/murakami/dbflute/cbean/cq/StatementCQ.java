@@ -15,8 +15,11 @@
  */
 package saaya.murakami.dbflute.cbean.cq;
 
+import java.time.LocalDate;
+
 import org.dbflute.cbean.ConditionQuery;
 import org.dbflute.cbean.sqlclause.SqlClause;
+
 import saaya.murakami.dbflute.cbean.cq.bs.BsStatementCQ;
 
 /**
@@ -48,4 +51,21 @@ public class StatementCQ extends BsStatementCQ {
     //                                                                       Arrange Query
     //                                                                       =============
     // You can make your arranged query methods here. e.g. public void arrangeXxx()
+    public void arrangeSetPeriodDate(int periodNum, LocalDate periodDate) {
+        switch (periodNum) {
+        case 1:
+            break;
+        case 2:
+
+            setDate_FromTo(periodDate, periodDate, op -> op.compareAsYear());
+            break;
+
+        case 3:
+            setDate_FromTo(periodDate, periodDate, op -> op.compareAsMonth());
+            break;
+
+        default:
+            break;
+        }
+    }
 }
