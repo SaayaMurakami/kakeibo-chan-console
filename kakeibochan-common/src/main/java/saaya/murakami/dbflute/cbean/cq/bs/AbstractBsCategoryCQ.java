@@ -379,6 +379,105 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @param categoryType The value of categoryType as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCategoryType_Equal(String categoryType) {
+        doSetCategoryType_Equal(fRES(categoryType));
+    }
+
+    protected void doSetCategoryType_Equal(String categoryType) {
+        regCategoryType(CK_EQ, categoryType);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @param categoryType The value of categoryType as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCategoryType_NotEqual(String categoryType) {
+        doSetCategoryType_NotEqual(fRES(categoryType));
+    }
+
+    protected void doSetCategoryType_NotEqual(String categoryType) {
+        regCategoryType(CK_NES, categoryType);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @param categoryTypeList The collection of categoryType as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCategoryType_InScope(Collection<String> categoryTypeList) {
+        doSetCategoryType_InScope(categoryTypeList);
+    }
+
+    protected void doSetCategoryType_InScope(Collection<String> categoryTypeList) {
+        regINS(CK_INS, cTL(categoryTypeList), xgetCValueCategoryType(), "CATEGORY_TYPE");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @param categoryTypeList The collection of categoryType as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCategoryType_NotInScope(Collection<String> categoryTypeList) {
+        doSetCategoryType_NotInScope(categoryTypeList);
+    }
+
+    protected void doSetCategoryType_NotInScope(Collection<String> categoryTypeList) {
+        regINS(CK_NINS, cTL(categoryTypeList), xgetCValueCategoryType(), "CATEGORY_TYPE");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)} <br>
+     * <pre>e.g. setCategoryType_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param categoryType The value of categoryType as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setCategoryType_LikeSearch(String categoryType, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setCategoryType_LikeSearch(categoryType, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)} <br>
+     * <pre>e.g. setCategoryType_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param categoryType The value of categoryType as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setCategoryType_LikeSearch(String categoryType, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(categoryType), xgetCValueCategoryType(), "CATEGORY_TYPE", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @param categoryType The value of categoryType as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setCategoryType_NotLikeSearch(String categoryType, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setCategoryType_NotLikeSearch(categoryType, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @param categoryType The value of categoryType as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setCategoryType_NotLikeSearch(String categoryType, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(categoryType), xgetCValueCategoryType(), "CATEGORY_TYPE", likeSearchOption);
+    }
+
+    protected void regCategoryType(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueCategoryType(), "CATEGORY_TYPE"); }
+    protected abstract ConditionValue xgetCValueCategoryType();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * (カテゴリー)CATEGORY: {NotNull, VARCHAR(200)}
      * @param category The value of category as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */

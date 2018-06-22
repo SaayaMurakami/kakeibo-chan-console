@@ -34,7 +34,7 @@ import saaya.murakami.dbflute.exentity.*;
  *     CATEGORY_ID
  *
  * [column]
- *     CATEGORY_ID, USER_ID, CATEGORY, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     CATEGORY_ID, USER_ID, CATEGORY_TYPE, CATEGORY, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -61,6 +61,7 @@ import saaya.murakami.dbflute.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long categoryId = entity.getCategoryId();
  * Long userId = entity.getUserId();
+ * String categoryType = entity.getCategoryType();
  * String category = entity.getCategory();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * String registerUser = entity.getRegisterUser();
@@ -69,6 +70,7 @@ import saaya.murakami.dbflute.exentity.*;
  * Long versionNo = entity.getVersionNo();
  * entity.setCategoryId(categoryId);
  * entity.setUserId(userId);
+ * entity.setCategoryType(categoryType);
  * entity.setCategory(category);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setRegisterUser(registerUser);
@@ -95,6 +97,9 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity,
 
     /** (会員ID)USER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} */
     protected Long _userId;
+
+    /** (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)} */
+    protected String _categoryType;
 
     /** (カテゴリー)CATEGORY: {NotNull, VARCHAR(200)} */
     protected String _category;
@@ -227,6 +232,7 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity,
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_categoryId));
         sb.append(dm).append(xfND(_userId));
+        sb.append(dm).append(xfND(_categoryType));
         sb.append(dm).append(xfND(_category));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_registerUser));
@@ -295,6 +301,24 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity,
     public void setUserId(Long userId) {
         registerModifiedProperty("userId");
         _userId = userId;
+    }
+
+    /**
+     * [get] (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)} <br>
+     * @return The value of the column 'CATEGORY_TYPE'. (basically NotNull if selected: for the constraint)
+     */
+    public String getCategoryType() {
+        checkSpecifiedProperty("categoryType");
+        return convertEmptyToNull(_categoryType);
+    }
+
+    /**
+     * [set] (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)} <br>
+     * @param categoryType The value of the column 'CATEGORY_TYPE'. (basically NotNull if update: for the constraint)
+     */
+    public void setCategoryType(String categoryType) {
+        registerModifiedProperty("categoryType");
+        _categoryType = categoryType;
     }
 
     /**

@@ -35,7 +35,7 @@ import saaya.murakami.dbflute.exentity.*;
  *     STATEMENT_ID
  *
  * [column]
- *     STATEMENT_ID, USER_ID, CATEGORY_ID, ACCOUNT_ID, STATEMENT_TYPE, DATE, AMOUNT, MEMO, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     STATEMENT_ID, USER_ID, CATEGORY_ID, ACCOUNT_ID, STATEMENT_TYPE, DEL_FLAG, DATE, AMOUNT, MEMO, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -65,6 +65,7 @@ import saaya.murakami.dbflute.exentity.*;
  * Long categoryId = entity.getCategoryId();
  * Long accountId = entity.getAccountId();
  * String statementType = entity.getStatementType();
+ * Integer delFlag = entity.getDelFlag();
  * java.time.LocalDate date = entity.getDate();
  * Integer amount = entity.getAmount();
  * String memo = entity.getMemo();
@@ -78,6 +79,7 @@ import saaya.murakami.dbflute.exentity.*;
  * entity.setCategoryId(categoryId);
  * entity.setAccountId(accountId);
  * entity.setStatementType(statementType);
+ * entity.setDelFlag(delFlag);
  * entity.setDate(date);
  * entity.setAmount(amount);
  * entity.setMemo(memo);
@@ -115,6 +117,9 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
 
     /** (STATEMENT_TYPE)STATEMENT_TYPE: {NotNull, VARCHAR(10), classification=StatementType} */
     protected String _statementType;
+
+    /** (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]} */
+    protected Integer _delFlag;
 
     /** (日付)DATE: {NotNull, DATE(10)} */
     protected java.time.LocalDate _date;
@@ -370,6 +375,7 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
         sb.append(dm).append(xfND(_categoryId));
         sb.append(dm).append(xfND(_accountId));
         sb.append(dm).append(xfND(_statementType));
+        sb.append(dm).append(xfND(_delFlag));
         sb.append(dm).append(xfND(_date));
         sb.append(dm).append(xfND(_amount));
         sb.append(dm).append(xfND(_memo));
@@ -497,6 +503,24 @@ public abstract class BsStatement extends AbstractEntity implements DomainEntity
         checkClassificationCode("STATEMENT_TYPE", CDef.DefMeta.StatementType, statementType);
         registerModifiedProperty("statementType");
         _statementType = statementType;
+    }
+
+    /**
+     * [get] (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]} <br>
+     * @return The value of the column 'DEL_FLAG'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getDelFlag() {
+        checkSpecifiedProperty("delFlag");
+        return _delFlag;
+    }
+
+    /**
+     * [set] (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]} <br>
+     * @param delFlag The value of the column 'DEL_FLAG'. (basically NotNull if update: for the constraint)
+     */
+    public void setDelFlag(Integer delFlag) {
+        registerModifiedProperty("delFlag");
+        _delFlag = delFlag;
     }
 
     /**

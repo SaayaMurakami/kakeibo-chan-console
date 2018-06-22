@@ -406,6 +406,11 @@ public class BsStatementCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnStatementType() { return doColumn("STATEMENT_TYPE"); }
         /**
+         * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnDelFlag() { return doColumn("DEL_FLAG"); }
+        /**
          * (日付)DATE: {NotNull, DATE(10)}
          * @return The information object of specified column. (NotNull)
          */

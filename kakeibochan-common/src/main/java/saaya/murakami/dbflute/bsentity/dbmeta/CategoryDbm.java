@@ -60,6 +60,7 @@ public class CategoryDbm extends AbstractDBMeta {
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((Category)et).getCategoryId(), (et, vl) -> ((Category)et).setCategoryId(ctl(vl)), "categoryId");
         setupEpg(_epgMap, et -> ((Category)et).getUserId(), (et, vl) -> ((Category)et).setUserId(ctl(vl)), "userId");
+        setupEpg(_epgMap, et -> ((Category)et).getCategoryType(), (et, vl) -> ((Category)et).setCategoryType((String)vl), "categoryType");
         setupEpg(_epgMap, et -> ((Category)et).getCategory(), (et, vl) -> ((Category)et).setCategory((String)vl), "category");
         setupEpg(_epgMap, et -> ((Category)et).getRegisterDatetime(), (et, vl) -> ((Category)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((Category)et).getRegisterUser(), (et, vl) -> ((Category)et).setRegisterUser((String)vl), "registerUser");
@@ -102,6 +103,7 @@ public class CategoryDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnCategoryId = cci("CATEGORY_ID", "CATEGORY_ID", null, "カテゴリーID", Long.class, "categoryId", null, true, true, true, "BIGINT", 19, 0, null, null, false, null, null, null, "statementList", null, false);
     protected final ColumnInfo _columnUserId = cci("USER_ID", "USER_ID", null, "会員ID", Long.class, "userId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "member", null, null, false);
+    protected final ColumnInfo _columnCategoryType = cci("CATEGORY_TYPE", "CATEGORY_TYPE", null, "カテゴリタイプ", String.class, "categoryType", null, false, false, true, "VARCHAR", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnCategory = cci("CATEGORY", "CATEGORY", null, "カテゴリー", String.class, "category", null, false, false, true, "VARCHAR", 200, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, "登録日時", java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, "登録ユーザー", String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, null, true, null, null, null, null, null, false);
@@ -119,6 +121,11 @@ public class CategoryDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnUserId() { return _columnUserId; }
+    /**
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnCategoryType() { return _columnCategoryType; }
     /**
      * (カテゴリー)CATEGORY: {NotNull, VARCHAR(200)}
      * @return The information object of specified column. (NotNull)
@@ -154,6 +161,7 @@ public class CategoryDbm extends AbstractDBMeta {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnCategoryId());
         ls.add(columnUserId());
+        ls.add(columnCategoryType());
         ls.add(columnCategory());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());

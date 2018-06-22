@@ -142,6 +142,26 @@ public class BsCategoryCQ extends AbstractBsCategoryCQ {
      */
     public BsCategoryCQ addOrderBy_UserId_Desc() { regOBD("USER_ID"); return this; }
 
+    protected ConditionValue _categoryType;
+    public ConditionValue xdfgetCategoryType()
+    { if (_categoryType == null) { _categoryType = nCV(); }
+      return _categoryType; }
+    protected ConditionValue xgetCValueCategoryType() { return xdfgetCategoryType(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @return this. (NotNull)
+     */
+    public BsCategoryCQ addOrderBy_CategoryType_Asc() { regOBA("CATEGORY_TYPE"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+     * @return this. (NotNull)
+     */
+    public BsCategoryCQ addOrderBy_CategoryType_Desc() { regOBD("CATEGORY_TYPE"); return this; }
+
     protected ConditionValue _category;
     public ConditionValue xdfgetCategory()
     { if (_category == null) { _category = nCV(); }

@@ -70,6 +70,7 @@ public class StatementDbm extends AbstractDBMeta {
                 ((Statement)et).mynativeMappingStatementType((String)vl);
             }
         }, "statementType");
+        setupEpg(_epgMap, et -> ((Statement)et).getDelFlag(), (et, vl) -> ((Statement)et).setDelFlag(cti(vl)), "delFlag");
         setupEpg(_epgMap, et -> ((Statement)et).getDate(), (et, vl) -> ((Statement)et).setDate(ctld(vl)), "date");
         setupEpg(_epgMap, et -> ((Statement)et).getAmount(), (et, vl) -> ((Statement)et).setAmount(cti(vl)), "amount");
         setupEpg(_epgMap, et -> ((Statement)et).getMemo(), (et, vl) -> ((Statement)et).setMemo((String)vl), "memo");
@@ -119,6 +120,7 @@ public class StatementDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnCategoryId = cci("CATEGORY_ID", "CATEGORY_ID", null, "カテゴリーID", Long.class, "categoryId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "category", null, null, false);
     protected final ColumnInfo _columnAccountId = cci("ACCOUNT_ID", "ACCOUNT_ID", null, "アカウントID", Long.class, "accountId", null, false, false, true, "BIGINT", 19, 0, null, null, false, null, null, "account", null, null, false);
     protected final ColumnInfo _columnStatementType = cci("STATEMENT_TYPE", "STATEMENT_TYPE", null, "STATEMENT_TYPE", String.class, "statementType", null, false, false, true, "VARCHAR", 10, 0, null, null, false, null, null, null, null, CDef.DefMeta.StatementType, false);
+    protected final ColumnInfo _columnDelFlag = cci("DEL_FLAG", "DEL_FLAG", null, "削除フラグ", Integer.class, "delFlag", null, false, false, true, "INT", 10, 0, null, "0", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDate = cci("DATE", "DATE", null, "日付", java.time.LocalDate.class, "date", null, false, false, true, "DATE", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnAmount = cci("AMOUNT", "AMOUNT", null, "金額", Integer.class, "amount", null, false, false, true, "INT", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnMemo = cci("MEMO", "MEMO", null, "メモ", String.class, "memo", null, false, false, false, "VARCHAR", 200, 0, null, null, false, null, null, null, null, null, false);
@@ -153,6 +155,11 @@ public class StatementDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnStatementType() { return _columnStatementType; }
+    /**
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnDelFlag() { return _columnDelFlag; }
     /**
      * (日付)DATE: {NotNull, DATE(10)}
      * @return The information object of specified column. (NotNull)
@@ -201,6 +208,7 @@ public class StatementDbm extends AbstractDBMeta {
         ls.add(columnCategoryId());
         ls.add(columnAccountId());
         ls.add(columnStatementType());
+        ls.add(columnDelFlag());
         ls.add(columnDate());
         ls.add(columnAmount());
         ls.add(columnMemo());

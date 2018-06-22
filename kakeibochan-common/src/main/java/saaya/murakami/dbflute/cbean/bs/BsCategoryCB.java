@@ -330,6 +330,11 @@ public class BsCategoryCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnUserId() { return doColumn("USER_ID"); }
         /**
+         * (カテゴリタイプ)CATEGORY_TYPE: {NotNull, VARCHAR(10)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnCategoryType() { return doColumn("CATEGORY_TYPE"); }
+        /**
          * (カテゴリー)CATEGORY: {NotNull, VARCHAR(200)}
          * @return The information object of specified column. (NotNull)
          */

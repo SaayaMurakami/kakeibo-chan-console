@@ -38,6 +38,8 @@
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="会員ID" dbType="BIGINT" javaType="Long"
             name="USER_ID" required="true" size="19" type="BIGINT"/>
+        <column comment="カテゴリタイプ" dbType="VARCHAR" javaType="String"
+            name="CATEGORY_TYPE" required="true" size="10" type="VARCHAR"/>
         <column comment="カテゴリー" dbType="VARCHAR" javaType="String"
             name="CATEGORY" required="true" size="200" type="VARCHAR"/>
         <column comment="登録日時" dbType="DATETIME"
@@ -101,6 +103,8 @@
         <column comment="STATEMENT_TYPE" dbType="VARCHAR"
             javaType="String" name="STATEMENT_TYPE" required="true"
             size="10" type="VARCHAR"/>
+        <column comment="削除フラグ" dbType="INT" default="0"
+            javaType="Integer" name="DEL_FLAG" required="true" size="10" type="INTEGER"/>
         <column comment="日付" dbType="DATE"
             javaType="java.time.LocalDate" name="DATE" required="true"
             size="10" type="DATE"/>

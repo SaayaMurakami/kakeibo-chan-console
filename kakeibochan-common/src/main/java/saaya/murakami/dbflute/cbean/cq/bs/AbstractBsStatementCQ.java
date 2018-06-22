@@ -677,6 +677,123 @@ public abstract class AbstractBsStatementCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param delFlag The value of delFlag as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setDelFlag_Equal(Integer delFlag) {
+        doSetDelFlag_Equal(delFlag);
+    }
+
+    protected void doSetDelFlag_Equal(Integer delFlag) {
+        regDelFlag(CK_EQ, delFlag);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param delFlag The value of delFlag as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setDelFlag_NotEqual(Integer delFlag) {
+        doSetDelFlag_NotEqual(delFlag);
+    }
+
+    protected void doSetDelFlag_NotEqual(Integer delFlag) {
+        regDelFlag(CK_NES, delFlag);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param delFlag The value of delFlag as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setDelFlag_GreaterThan(Integer delFlag) {
+        regDelFlag(CK_GT, delFlag);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param delFlag The value of delFlag as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setDelFlag_LessThan(Integer delFlag) {
+        regDelFlag(CK_LT, delFlag);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param delFlag The value of delFlag as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setDelFlag_GreaterEqual(Integer delFlag) {
+        regDelFlag(CK_GE, delFlag);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param delFlag The value of delFlag as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setDelFlag_LessEqual(Integer delFlag) {
+        regDelFlag(CK_LE, delFlag);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param minNumber The min number of delFlag. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of delFlag. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setDelFlag_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setDelFlag_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param minNumber The min number of delFlag. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of delFlag. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setDelFlag_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueDelFlag(), "DEL_FLAG", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param delFlagList The collection of delFlag as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setDelFlag_InScope(Collection<Integer> delFlagList) {
+        doSetDelFlag_InScope(delFlagList);
+    }
+
+    protected void doSetDelFlag_InScope(Collection<Integer> delFlagList) {
+        regINS(CK_INS, cTL(delFlagList), xgetCValueDelFlag(), "DEL_FLAG");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @param delFlagList The collection of delFlag as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setDelFlag_NotInScope(Collection<Integer> delFlagList) {
+        doSetDelFlag_NotInScope(delFlagList);
+    }
+
+    protected void doSetDelFlag_NotInScope(Collection<Integer> delFlagList) {
+        regINS(CK_NINS, cTL(delFlagList), xgetCValueDelFlag(), "DEL_FLAG");
+    }
+
+    protected void regDelFlag(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueDelFlag(), "DEL_FLAG"); }
+    protected abstract ConditionValue xgetCValueDelFlag();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
      * (日付)DATE: {NotNull, DATE(10)}
      * @param date The value of date as equal. (basically NotNull: error as default, or no condition as option)
      */

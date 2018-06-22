@@ -188,6 +188,26 @@ public class BsStatementCQ extends AbstractBsStatementCQ {
      */
     public BsStatementCQ addOrderBy_StatementType_Desc() { regOBD("STATEMENT_TYPE"); return this; }
 
+    protected ConditionValue _delFlag;
+    public ConditionValue xdfgetDelFlag()
+    { if (_delFlag == null) { _delFlag = nCV(); }
+      return _delFlag; }
+    protected ConditionValue xgetCValueDelFlag() { return xdfgetDelFlag(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @return this. (NotNull)
+     */
+    public BsStatementCQ addOrderBy_DelFlag_Asc() { regOBA("DEL_FLAG"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * (削除フラグ)DEL_FLAG: {NotNull, INT(10), default=[0]}
+     * @return this. (NotNull)
+     */
+    public BsStatementCQ addOrderBy_DelFlag_Desc() { regOBD("DEL_FLAG"); return this; }
+
     protected ConditionValue _date;
     public ConditionValue xdfgetDate()
     { if (_date == null) { _date = nCV(); }

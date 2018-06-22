@@ -1,4 +1,31 @@
 map:{
+    ; 2018/06/20 10:51:26 = map:{
+        ; diffDate = 2018/06/20 10:51:26
+        ; diffAuthor = s-murakami
+        ; diffGitBranch = feature/kakeibo-dbflute
+        ; tableDiff = map:{
+            ; CATEGORY = map:{
+                ; tableName = CATEGORY
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; CATEGORY_TYPE = map:{
+                        ; columnName = CATEGORY_TYPE
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; STATEMENT = map:{
+                ; tableName = STATEMENT
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; DEL_FLAG = map:{
+                        ; columnName = DEL_FLAG
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2018/06/14 17:00:52 = map:{
         ; diffDate = 2018/06/14 17:00:52
         ; diffAuthor = s-murakami

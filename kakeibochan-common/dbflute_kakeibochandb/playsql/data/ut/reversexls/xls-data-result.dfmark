@@ -9,4 +9,4 @@ data-directory: playsql/data/ut/reversexls
 [cyclic-data-01-MEMBER-plus.xls]
   MEMBER (1)
   ACCOUNT (1)
-  CATEGORY (4)
+  CATEGORY (5)

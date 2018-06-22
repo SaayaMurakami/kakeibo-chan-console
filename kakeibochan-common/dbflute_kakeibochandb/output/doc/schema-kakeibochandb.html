@@ -366,10 +366,10 @@ dl.procedurelist dd.column pre {
 <p class="sisterlink"><a href="./history-kakeibochandb.html">to HistoryHTML</a></p>
 <p class="sistersublink">
 <a href="./properties-kakeibochandb.html">to PropertiesHTML</a>
+| <a href="./lastadoc-kakeibochan.html">to lastadoc-kakeibochan.html</a>
+| <a href="./lastadoc-hangar.html">to lastadoc-hangar.html</a>
 | <a href="./lastadoc-batch.html">to lastadoc-batch.html</a>
 | <a href="./lastadoc-dockside.html">to lastadoc-dockside.html</a>
-| <a href="./lastadoc-hangar.html">to lastadoc-hangar.html</a>
-| <a href="./lastadoc-kakeibochan.html">to lastadoc-kakeibochan.html</a>
 | <a href="./lastadoc-showbase.html">to lastadoc-showbase.html</a>
 </p>
 </div>
@@ -459,7 +459,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td class="rownumcell">2</td>
 		<td class="aliascell">カテゴリー</td>
-		<td class="namecell" data-name="CATEGORY"><a href="#category" title="type=TABLE, primaryKey={CATEGORY_ID}, nameLength=8, columnCount=8">CATEGORY</a></td>
+		<td class="namecell" data-name="CATEGORY"><a href="#category" title="type=TABLE, primaryKey={CATEGORY_ID}, nameLength=8, columnCount=9">CATEGORY</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#member" title="category_ibfk_1">MEMBER</a></td>
 		<td class="relcell"><a href="#statement" title="statement_ibfk_2">STATEMENT</a></td>
@@ -481,7 +481,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td class="rownumcell">4</td>
 		<td class="aliascell">明細</td>
-		<td class="namecell" data-name="STATEMENT"><a href="#statement" title="type=TABLE, primaryKey={STATEMENT_ID}, nameLength=9, columnCount=13">STATEMENT</a></td>
+		<td class="namecell" data-name="STATEMENT"><a href="#statement" title="type=TABLE, primaryKey={STATEMENT_ID}, nameLength=9, columnCount=14">STATEMENT</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#account" title="statement_ibfk_1">ACCOUNT</a>, <a href="#category" title="statement_ibfk_2">CATEGORY</a>, <a href="#member" title="statement_ibfk_3">MEMBER</a></td>
 		<td class="relcell">&nbsp;</td>
@@ -676,7 +676,7 @@ dl.procedurelist dd.column pre {
 	</tbody>
 </table>
 
-<h2 id="category" title="type=TABLE, primaryKey={CATEGORY_ID}, nameLength=8, columnCount=8">
+<h2 id="category" title="type=TABLE, primaryKey={CATEGORY_ID}, nameLength=8, columnCount=9">
 (カテゴリー)CATEGORY
 &nbsp;<span class="tablefirstdatetitle">since 2018/06/11</span>
 </h2>
@@ -750,6 +750,25 @@ dl.procedurelist dd.column pre {
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
+		<td class="aliascell">カテゴリタイプ</td>
+		<td class=" columnnamecell" id="category_category_type">CATEGORY_TYPE</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 10 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="subcell">categoryType</td>
+		<td class="subcell">String</td>
+		<td class="subcell">2018/06/20</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
 		<td class="aliascell">カテゴリー</td>
 		<td class=" columnnamecell" id="category_category">CATEGORY</td>
 		<td class="typecell">VARCHAR</td>
@@ -763,7 +782,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">first</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">4</td>
+		<td class="rownumcell">5</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -782,7 +801,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">2018/06/11</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -801,7 +820,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">2018/06/11</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -820,7 +839,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">2018/06/11</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -839,7 +858,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">2018/06/11</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1063,7 +1082,7 @@ dl.procedurelist dd.column pre {
 	</tbody>
 </table>
 
-<h2 id="statement" title="type=TABLE, primaryKey={STATEMENT_ID}, nameLength=9, columnCount=13">
+<h2 id="statement" title="type=TABLE, primaryKey={STATEMENT_ID}, nameLength=9, columnCount=14">
 (明細)STATEMENT
 &nbsp;<span class="tablefirstdatetitle">since 2018/06/11</span>
 </h2>
@@ -1082,6 +1101,7 @@ dl.procedurelist dd.column pre {
 		<th>Name</th>
 		<th>Type</th>
 		<th>Size</th>
+		<th>Default</th>
 		<th>ForeignTable</th>
 		<th>ReferrerTable</th>
 		<th>Classification</th>
@@ -1103,6 +1123,7 @@ dl.procedurelist dd.column pre {
 		<td class=" columnnamecell" id="statement_statement_id">STATEMENT_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1122,6 +1143,7 @@ dl.procedurelist dd.column pre {
 		<td class=" columnnamecell" id="statement_user_id">USER_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell"><a href="#member" title="statement_ibfk_3">MEMBER</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1141,6 +1163,7 @@ dl.procedurelist dd.column pre {
 		<td class=" columnnamecell" id="statement_category_id">CATEGORY_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell"><a href="#category" title="statement_ibfk_2">CATEGORY</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1160,6 +1183,7 @@ dl.procedurelist dd.column pre {
 		<td class=" columnnamecell" id="statement_account_id">ACCOUNT_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell"><a href="#account" title="statement_ibfk_1">ACCOUNT</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1179,6 +1203,7 @@ dl.procedurelist dd.column pre {
 		<td class=" columnnamecell" id="statement_statement_type">STATEMENT_TYPE</td>
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"><a href="#StatementTypeCls">StatementType</a></td>
@@ -1194,10 +1219,31 @@ dl.procedurelist dd.column pre {
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
+		<td class="aliascell">削除フラグ</td>
+		<td class=" columnnamecell" id="statement_del_flag">DEL_FLAG</td>
+		<td class="typecell">INT</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 0</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="subcell">delFlag</td>
+		<td class="subcell">Integer</td>
+		<td class="subcell">2018/06/20</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
 		<td class="aliascell">日付</td>
 		<td class=" columnnamecell" id="statement_date">DATE</td>
 		<td class="typecell">DATE</td>
 		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1207,7 +1253,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">first</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1217,6 +1263,7 @@ dl.procedurelist dd.column pre {
 		<td class=" columnnamecell" id="statement_amount">AMOUNT</td>
 		<td class="typecell">INT</td>
 		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1226,7 +1273,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">first</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1236,6 +1283,7 @@ dl.procedurelist dd.column pre {
 		<td class=" columnnamecell" id="statement_memo">MEMO</td>
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 200 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1245,7 +1293,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">first</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">10</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1255,6 +1303,7 @@ dl.procedurelist dd.column pre {
 		<td class="comcolcell columnnamecell" id="statement_register_datetime">REGISTER_DATETIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1264,7 +1313,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">2018/06/11</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">10</td>
+		<td class="rownumcell">11</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1274,6 +1323,7 @@ dl.procedurelist dd.column pre {
 		<td class="comcolcell columnnamecell" id="statement_register_user">REGISTER_USER</td>
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 200 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1283,7 +1333,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">2018/06/11</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">11</td>
+		<td class="rownumcell">12</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1293,6 +1343,7 @@ dl.procedurelist dd.column pre {
 		<td class="comcolcell columnnamecell" id="statement_update_datetime">UPDATE_DATETIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1302,7 +1353,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">2018/06/11</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">12</td>
+		<td class="rownumcell">13</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1312,6 +1363,7 @@ dl.procedurelist dd.column pre {
 		<td class="comcolcell columnnamecell" id="statement_update_user">UPDATE_USER</td>
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 200 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1321,7 +1373,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">2018/06/11</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">13</td>
+		<td class="rownumcell">14</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1331,6 +1383,7 @@ dl.procedurelist dd.column pre {
 		<td class="optcell columnnamecell" id="statement_version_no">VERSION_NO</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
+		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
@@ -1988,6 +2041,9 @@ function StoreClient() {
 				, 'USER_ID': {
 					'databaseComment': ''
 				}
+				, 'CATEGORY_TYPE': {
+					'databaseComment': ''
+				}
 				, 'CATEGORY': {
 					'databaseComment': ''
 				}
@@ -2056,6 +2112,9 @@ function StoreClient() {
 					'databaseComment': ''
 				}
 				, 'STATEMENT_TYPE': {
+					'databaseComment': ''
+				}
+				, 'DEL_FLAG': {
 					'databaseComment': ''
 				}
 				, 'DATE': {

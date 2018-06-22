@@ -81,6 +81,7 @@ public class StatementCIQ extends AbstractBsStatementCQ {
     protected ConditionValue xgetCValueCategoryId() { return _myCQ.xdfgetCategoryId(); }
     protected ConditionValue xgetCValueAccountId() { return _myCQ.xdfgetAccountId(); }
     protected ConditionValue xgetCValueStatementType() { return _myCQ.xdfgetStatementType(); }
+    protected ConditionValue xgetCValueDelFlag() { return _myCQ.xdfgetDelFlag(); }
     protected ConditionValue xgetCValueDate() { return _myCQ.xdfgetDate(); }
     protected ConditionValue xgetCValueAmount() { return _myCQ.xdfgetAmount(); }
     protected ConditionValue xgetCValueMemo() { return _myCQ.xdfgetMemo(); }

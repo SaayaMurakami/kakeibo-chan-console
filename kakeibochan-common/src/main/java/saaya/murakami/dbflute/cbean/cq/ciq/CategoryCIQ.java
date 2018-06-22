@@ -88,6 +88,7 @@ public class CategoryCIQ extends AbstractBsCategoryCQ {
     public String keepCategoryId_QueryDerivedReferrer_StatementListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueUserId() { return _myCQ.xdfgetUserId(); }
+    protected ConditionValue xgetCValueCategoryType() { return _myCQ.xdfgetCategoryType(); }
     protected ConditionValue xgetCValueCategory() { return _myCQ.xdfgetCategory(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueRegisterUser() { return _myCQ.xdfgetRegisterUser(); }
