@@ -78,7 +78,7 @@ public class KakeiboJob implements LaJob {
             System.out.println("ようこそ" + loginMember.get().getUserName() + "さん");
             loopout: do {
                 System.out.println("やりたいことを選んでね（数字で選択）");
-                System.out.println("1.家計簿をつける  2.家計簿を見る　3.カテゴリを編集する　4.アカウントを編集する　5.終了");
+                System.out.println("1.家計簿をつける  2.家計簿を見る　3.家計簿を編集する　4.終了");
                 int num = inputIntNumber("", reader);
 
                 switch (num) {
@@ -91,14 +91,30 @@ public class KakeiboJob implements LaJob {
                     break;
 
                 case 3:
-                    registerCategory(reader, userId);
+                    System.out.println("何をしますか？");
+                    int editNum = inputIntNumber("1.明細の削除　2.カテゴリの追加　3.アカウントの追加　4.もどる", reader);
+                    switch (editNum) {
+                    case 1:
+                        deleteStatement(reader, userId);
+                        break;
+
+                    case 2:
+                        registerCategory(reader, userId);
+                        break;
+
+                    case 3:
+                        registerAccount(reader, userId);
+                        break;
+
+                    case 4:
+                        break;
+
+                    default:
+                        break;
+                    }
                     break;
 
                 case 4:
-                    registerAccount(reader, userId);
-                    break;
-
-                case 5:
                     System.out.println("--- Bye ---");
                     break loopout;
 
@@ -107,7 +123,66 @@ public class KakeiboJob implements LaJob {
                 }
             } while (true);
         });
-        System.out.println("終了");
+    }
+
+    private void deleteStatement(BufferedReader reader, Long userId) {
+        boolean continueAnswer = true;
+        do {
+            int year = inputIntNumber("削除したい明細の年度を入力してください", reader);
+            int month = inputIntNumber("削除したい明細の月を入力してください", reader);
+            LocalDate localDate = LocalDate.of(year, month, 1);
+            ListResultBean<Statement> statementList = statementBhv.selectList(cb -> {
+                cb.query().setUserId_Equal(userId);
+                cb.query().setDate_FromTo(localDate, localDate, op -> op.compareAsMonth());
+            });
+            statementList.forEach(statement -> {
+                OptionalEntity<Category> category = categoryBhv.selectEntity(cb -> {
+                    cb.query().setCategoryId_Equal(statement.getCategoryId());
+                });
+
+                OptionalEntity<Account> account = accountBhv.selectEntity(cb -> {
+                    cb.query().setAccountId_Equal(statement.getAccountId());
+                });
+                System.out.println("ID  明細タイプ  日付  カテゴリ名  アカウント名  金額  メモ");
+
+                System.out.println(statement.getStatementId() + " " + statement.getStatementTypeAlias() + " " + statement.getDate() + " "
+                        + category.get().getCategory() + " " + account.get().getAccountName() + " " + statement.getAmount() + "円 "
+                        + statement.getMemo());
+            });
+
+            Long statementId = Long.parseLong(inputString("削除したい明細の明細IDを入力してください", reader));
+            OptionalEntity<Statement> optStatement = statementBhv.selectEntity(cb -> {
+                cb.query().setStatementId_Equal(statementId);
+            });
+            if (optStatement.isPresent()) {
+                Statement statement = optStatement.get();
+                System.out.println("この明細を削除しますか？（はい/いいえ）");
+                OptionalEntity<Category> optCategory = categoryBhv.selectEntity(cb -> {
+                    cb.query().setCategoryId_Equal(statement.getCategoryId());
+                });
+                OptionalEntity<Account> account = accountBhv.selectEntity(cb -> {
+                    cb.query().setAccountId_Equal(statement.getAccountId());
+                });
+
+                System.out.println(statement.getStatementId() + " " + statement.getStatementTypeAlias() + " " + statement.getDate() + " "
+                        + optCategory.get().getCategory() + " " + account.get().getAccountName() + " " + statement.getAmount() + "円 "
+                        + statement.getMemo());
+                String answer = getAnswer("", reader);
+                if (answer.equals("はい")) {
+                    Statement updateStatement = new Statement();
+                    updateStatement.setStatementId(statementId);
+                    statement.setDelFlag(1);
+                    statementBhv.updateNonstrict(statement);
+                    System.out.println("削除しました");
+                    continueAnswer = false;
+                } else if (answer.equals("いいえ")) {
+                    System.out.println("やりなおします");
+                }
+            } else {
+                System.out.println("入力されたIDの明細は存在しません、やりなおしてください");
+            }
+        } while (continueAnswer);
+
     }
 
     private void registerCategory(BufferedReader reader, Long userId) {
@@ -115,17 +190,29 @@ public class KakeiboJob implements LaJob {
         do {
             String answer;
             System.out.println("現在のカテゴリー");
-            ListResultBean<Category> categoryList = categoryBhv.selectList(cb -> {
+            ListResultBean<Category> spendCategoryList = categoryBhv.selectList(cb -> {
                 cb.query().setUserId_Equal(userId);
+                cb.query().setCategoryType_Equal("SPEND");
             });
-            if (categoryList.isEmpty()) {
-                System.out.println("カテゴリーは登録されていません");
-            } else {
-                for (int i = 0; i < categoryList.getAllRecordCount(); i++) {
-                    Category category = categoryList.get(i);
-                    System.out.print((i + 1) + ":" + category.getCategory() + " ");
+            ListResultBean<Category> incomeCategoryList = categoryBhv.selectList(cb -> {
+                cb.query().setUserId_Equal(userId);
+                cb.query().setCategoryType_Equal("INCOME");
+            });
+            if (!spendCategoryList.isEmpty() || !incomeCategoryList.isEmpty()) {
+                System.out.print("支出　");
+                for (int i = 0; i < spendCategoryList.getAllRecordCount(); i++) {
+                    Category spendCategory = spendCategoryList.get(i);
+                    System.out.print((i + 1) + ":" + spendCategory.getCategory() + " ");
+                }
+                System.out.print("    ");
+                System.out.print("収入　");
+                for (int i = 0; i < incomeCategoryList.getAllRecordCount(); i++) {
+                    Category incomeCategory = incomeCategoryList.get(i);
+                    System.out.print((i + 1) + ":" + incomeCategory.getCategory() + " ");
                 }
                 System.out.println("");
+            } else {
+                System.out.println("カテゴリーは登録されていません");
             }
             System.out.println("何をしますか？");
             int num;
@@ -134,8 +221,15 @@ public class KakeiboJob implements LaJob {
             case 1:
                 do {
                     Category category = new Category();
+                    System.out.println("どちらのカテゴリを追加しますか？");
+                    int typeNum = inputIntNumber("1.支出　2.収入", reader);
                     String categoryName = inputString("追加したいカテゴリ名を入力してください", reader);
                     category.setUserId(userId);
+                    if (typeNum == 1) {
+                        category.setCategoryType("SPEND");
+                    } else if (typeNum == 2) {
+                        category.setCategoryType("INCOME");
+                    }
                     category.setCategory(categoryName);
                     answer = getAnswer("「" + categoryName + "」" + "を追加しますか？（はい/いいえ）", reader);
                     if (answer.equals("はい")) {
@@ -226,6 +320,7 @@ public class KakeiboJob implements LaJob {
 
                 ListResultBean<Statement> statementList = statementBhv.selectList(cb -> {
                     cb.query().setUserId_Equal(userId);
+                    cb.query().setDelFlag_Equal(0);
                     cb.query().arrangeSetPeriodDate(periodNum, periodDate);
                     cb.query().addOrderBy_Date_Asc();
                 });
@@ -321,9 +416,10 @@ public class KakeiboJob implements LaJob {
                 System.out.println("1か2を入力してください");
                 typeNum = inputIntNumber("1.支出　2.収入（数字で選択）", reader);
             }
-            if (typeNum == 1) {
+            final int TYPE_NUM = typeNum;
+            if (TYPE_NUM == 1) {
                 statement.setStatementType_Spend();
-            } else if (typeNum == 2) {
+            } else if (TYPE_NUM == 2) {
                 statement.setStatementType_Income();
             }
 
@@ -331,28 +427,30 @@ public class KakeiboJob implements LaJob {
             System.out.println("日付を登録します");
             int year = inputIntNumber("年度を入力してください（ex.1998）", reader);
             int month = inputIntNumber("月を入力してください（ex.9）", reader);
-            int date = inputIntNumber("日付を入してください（ex.16）", reader);
+            int date = inputIntNumber("日付を入力してください（ex.16）", reader);
             LocalDate localDate = LocalDate.of(year, month, date);
             statement.setDate(localDate);
 
             //カテゴリを登録
             System.out.println("カテゴリを選んでください（数字で選択）");
-            int countCategory = categoryBhv.selectCount(cb -> {
-                cb.query().setUserId_Equal(userId);
-            });
             ListResultBean<Category> categoryList = categoryBhv.selectList(cb -> {
                 cb.query().setUserId_Equal(userId);
+                if (TYPE_NUM == 1) {
+                    cb.query().setCategoryType_Equal("SPEND");
+                } else if (TYPE_NUM == 2) {
+                    cb.query().setCategoryType_Equal("INCOME");
+                }
                 cb.query().addOrderBy_CategoryId_Asc();
             });
 
-            for (int i = 0; i < countCategory; i++) {
+            for (int i = 0; i < categoryList.size(); i++) {
                 Category category = categoryList.get(i);
                 System.out.print((i + 1) + ":" + category.getCategory() + " ");
             }
             System.out.println("");
             int catergoryNum = inputIntNumber("", reader);
-            while (catergoryNum < 1 || catergoryNum > countCategory) {
-                System.out.println("1~" + countCategory + "の数字で入力してください");
+            while (catergoryNum < 1 || catergoryNum > categoryList.size()) {
+                System.out.println("1~" + categoryList.size() + "の数字で入力してください");
                 catergoryNum = inputIntNumber("", reader);
             }
             Category category = categoryList.get(catergoryNum - 1); //選択されたカテゴリーを取得
@@ -460,10 +558,17 @@ public class KakeiboJob implements LaJob {
                 memberBhv.insert(member);
 
                 Long userId = member.getUserId();
-                Category category = new Category();
-                category.setUserId(userId);
-                category.setCategory("食費");
-                categoryBhv.insert(category);
+                Category foodExpense = new Category();
+                foodExpense.setUserId(userId);
+                foodExpense.setCategoryType("SPEND");
+                foodExpense.setCategory("食費");
+                categoryBhv.insert(foodExpense);
+
+                Category salary = new Category();
+                salary.setUserId(userId);
+                salary.setCategoryType("INCOME");
+                salary.setCategory("給料");
+                categoryBhv.insert(salary);
 
                 Account wallet = new Account();
                 wallet.setUserId(userId);
