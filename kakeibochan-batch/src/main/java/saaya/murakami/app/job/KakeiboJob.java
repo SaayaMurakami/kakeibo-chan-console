@@ -25,6 +25,7 @@ import javax.annotation.Resource;
 
 import org.dbflute.cbean.result.ListResultBean;
 import org.dbflute.optional.OptionalEntity;
+import org.lastaflute.core.security.PrimaryCipher;
 import org.lastaflute.db.jta.stage.TransactionStage;
 import org.lastaflute.job.LaJob;
 import org.lastaflute.job.LaJobRuntime;
@@ -47,6 +48,8 @@ public class KakeiboJob implements LaJob {
 
     @Resource
     private TransactionStage stage;
+    @Resource
+    private PrimaryCipher cipher;
     @Resource
     private MemberBhv memberBhv;
     @Resource
@@ -135,6 +138,7 @@ public class KakeiboJob implements LaJob {
                 cb.query().setUserId_Equal(userId);
                 cb.query().setDate_FromTo(localDate, localDate, op -> op.compareAsMonth());
             });
+            System.out.println("ID  明細タイプ  日付  カテゴリ名  アカウント名  金額  メモ");
             statementList.forEach(statement -> {
                 OptionalEntity<Category> category = categoryBhv.selectEntity(cb -> {
                     cb.query().setCategoryId_Equal(statement.getCategoryId());
@@ -143,7 +147,6 @@ public class KakeiboJob implements LaJob {
                 OptionalEntity<Account> account = accountBhv.selectEntity(cb -> {
                     cb.query().setAccountId_Equal(statement.getAccountId());
                 });
-                System.out.println("ID  明細タイプ  日付  カテゴリ名  アカウント名  金額  メモ");
 
                 System.out.println(statement.getStatementId() + " " + statement.getStatementTypeAlias() + " " + statement.getDate() + " "
                         + category.get().getCategory() + " " + account.get().getAccountName() + " " + statement.getAmount() + "円 "
@@ -357,6 +360,7 @@ public class KakeiboJob implements LaJob {
                         cb.query().setUserId_Equal(userId);
                         cb.query().setCategoryId_Equal(category.getCategoryId());
                         cb.query().arrangeSetPeriodDate(periodNum2, periodDate2);
+                        cb.query().setDelFlag_Equal(0);
                     });
                     int categoryAmount = 0;
                     for (Statement statement : categoryStatementList) {
@@ -381,6 +385,7 @@ public class KakeiboJob implements LaJob {
                         cb.query().setUserId_Equal(userId);
                         cb.query().setAccountId_Equal(account.getAccountId());
                         cb.query().arrangeSetPeriodDate(periodNum3, periodDate3);
+                        cb.query().setDelFlag_Equal(0);
                     });
                     int accountAmount = 0;
                     for (Statement statement : accountStatementList) {
@@ -551,10 +556,13 @@ public class KakeiboJob implements LaJob {
                         System.out.println("やり直します");
                     }
                 } while (loginAnswer.equals("いいえ"));
+
+                String encryptPassword = cipher.encrypt(password);
+
                 Member member = new Member();
                 member.setMailAddress(mailAddress);
                 member.setUserName(userName);
-                member.setPassword(password);
+                member.setPassword(encryptPassword);
                 memberBhv.insert(member);
 
                 Long userId = member.getUserId();
@@ -588,9 +596,11 @@ public class KakeiboJob implements LaJob {
                     final String loginMailAddress = inputString("メールアドレスを入力してください", reader);//TODO 何も入力されなかったときどうするか
                     final String loginPassword = inputString("パスワードを入力してください", reader);
 
+                    final String loginencryptPassword = cipher.encrypt(loginPassword);
+
                     OptionalEntity<Member> loginMenber = memberBhv.selectEntity(cb -> {
                         cb.query().setMailAddress_Equal(loginMailAddress);
-                        cb.query().setPassword_Equal(loginPassword);
+                        cb.query().setPassword_Equal(loginencryptPassword);
                     });
                     if (loginMenber.isPresent()) {
                         return loginMenber.get().getUserId();
